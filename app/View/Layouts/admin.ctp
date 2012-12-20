@@ -13,7 +13,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
                 
                 echo $this->Html->css('grid');
                 echo $this->Html->css('theme/jquery-ui');
-                echo $this->Html->css('menu_board/menu_board');
+                echo $this->Html->css('menu/menu');
                 echo $this->Html->css('popup');
                 echo $this->Html->css('buttons');
                 echo $this->Html->css('colorbox/colorbox');
@@ -50,7 +50,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
                </table>
            </div>
            <div>
-             <?//=$this->element("menu_board");?>
+             <?=$this->element("menu");?>
            </div>
            
          </div>
