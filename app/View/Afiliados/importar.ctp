@@ -7,7 +7,7 @@
 	           <?php echo $this->form->input("field", array('type' => 'file', 'label' => false)); ?>			
 			</td>
 			<td>
-	           <input type="submit" name="Procesar" value="Procesar">			
+	           <input type="submit" name="Procesar" value="Procesar Afiliados">			
 			</td>
 		</tr>
 	</table>	

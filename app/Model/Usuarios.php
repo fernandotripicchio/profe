@@ -12,10 +12,8 @@
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'Login es requerido'
-            )
-            
-		),
-		
+            ))
+		)
        );
   
  }

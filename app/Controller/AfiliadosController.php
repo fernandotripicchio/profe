@@ -4,7 +4,7 @@
   var $name = 'Afiliados';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler");
-  var $uses = array('Afiliados');
+  var $uses = array('Afiliado');
   var $paginate = array('limit' => 50,'order' => array('Afiliado.id' => 'asc'));
   
     
@@ -19,13 +19,15 @@
   
   
   public function importar(){
-  	 App::import("Vendor","parsecsv.lib");
+  	 //App::import("Vendor","parsecsv.lib");
      if (!empty($this->data))  {
             $fileData = fread(fopen($this->data['field']['tmp_name'], "r"), 
                                      $this->data['field']['size']);
             //$this->data['field']['data'] = $fileData;
 					
-            print_r($fileData);
+            //Agregar Codigo para parsear el CSV y poder ingresar los nuevos afiliados
+            
+            $this->Afiliado->import($fileData);
             //$this->redirect('somecontroller/someaction');
      }	 
 	 
