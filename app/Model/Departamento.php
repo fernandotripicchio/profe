@@ -1,6 +1,6 @@
 <?php
- class Afiliado extends AppModel {
-      public $name = 'Afiliado';
+ class Departamento extends AppModel {
+      public $name = 'Departamento';
 	  
       public $validate = array(
         'nombre' => array(

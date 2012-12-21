@@ -1,29 +1,27 @@
 <?php
-$cakeDescription = __d('La Posta', 'La Posta');
+$cakeDescription = __d('Profe', 'PROFE');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		Profe
+		PROFE SAN LUIS
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-                
-                echo $this->Html->css('grid');
-                echo $this->Html->css('theme/jquery-ui');
-                echo $this->Html->css('menu/menu');
-                echo $this->Html->css('popup');
-                echo $this->Html->css('buttons');
-                echo $this->Html->css('colorbox/colorbox');
-                echo $this->Html->script(array('jquery',
-                                               'jquery.validate',
-                                               'jquery.colorbox',
-                                               'jquery.ui',
-                                               'jquery.buttons',
-                                               'calendar-spanish'
-                                             ));
+        echo $this->Html->css('grid');
+        echo $this->Html->css('theme/jquery-ui');
+        echo $this->Html->css('menu/menu');
+        echo $this->Html->css('popup');
+        echo $this->Html->css('buttons');
+        echo $this->Html->css('colorbox/colorbox');
+        echo $this->Html->script(array('jquery',
+                                       'jquery.validate',
+                                       'jquery.colorbox',
+                                       'jquery.ui',
+                                       'jquery.buttons',
+                                       'calendar-spanish'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -33,7 +31,7 @@ $cakeDescription = __d('La Posta', 'La Posta');
      <div id="headerbg">
        <div id="contenido">
          <div class="left">
-           <?=$this->Html->image("logo2.png",array("width"=>160, "height"=>90, "style" => "padding:5px;marging:10px"))?>
+           <?//=$this->Html->image("logo2.png",array("width"=>160, "height"=>90, "style" => "padding:5px;marging:10px"))?>
            <br />
          </div>
          <div class="right">

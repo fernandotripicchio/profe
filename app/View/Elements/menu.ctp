@@ -7,8 +7,16 @@
                 <li>
                     <?=$this->Html->link('<span>Importar Afiliados</span>', array('controller' => 'afiliados', 'action' => 'importar'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
+                
                </ul>
             </div>
         </li>
+        <li>
+            <?=$this->Html->link('<span>Centros de Salud</span>', array('controller' => 'centros', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+        </li>
+        <li>
+            <?=$this->Html->link('<span>Centros de Salud</span>', array('controller' => 'centros', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+        </li>
+        
     </ul>
 </div>
