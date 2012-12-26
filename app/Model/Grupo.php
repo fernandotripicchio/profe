@@ -2,6 +2,9 @@
  class Grupo extends AppModel {
       public $name = 'Grupo';
 	  
+	  
+	  public $hasMany = array("Afiliados"); 
+	  
       public $validate = array(
         'nombre' => array(
             'required' => array(

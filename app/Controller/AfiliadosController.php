@@ -14,20 +14,19 @@
   
   
   public function index(){
-  	 $afiliados = $this->Afiliados->find("all");
+  	 $afiliados = $this->Afiliado->find("all");
   }
   
   
   public function importar(){
   	 //App::import("Vendor","parsecsv.lib");
      if (!empty($this->data))  {
-            $fileData = fread(fopen($this->data['field']['tmp_name'], "r"), 
-                                     $this->data['field']['size']);
+
             //$this->data['field']['data'] = $fileData;
 					
             //Agregar Codigo para parsear el CSV y poder ingresar los nuevos afiliados
             
-            $this->Afiliado->import($fileData);
+            $this->Afiliado->import($this->data['field']['tmp_name']);
             //$this->redirect('somecontroller/someaction');
      }	 
 	 

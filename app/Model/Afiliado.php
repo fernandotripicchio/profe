@@ -2,6 +2,8 @@
  class Afiliado extends AppModel {
       public $name = 'Afiliado';
 	  
+	  public $belongsTo = array('Grupo');
+	  
       public $validate = array(
         'nombre' => array(
             'required' => array(
@@ -17,8 +19,19 @@
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'Tipo Documento es requerido'
-            ))
-
+            )),
+        'sexo' => array(
+             'required' => array(
+                 'rule' => array('notEmpty'),
+                 'message' => 'Sexo es requerida'
+			  )
+		 ),     
+        'clave' => array(
+             'required' => array(
+                 'rule' => array('notEmpty'),
+                 'message' => 'Clave es requerida'
+			  )
+		 )
 
        );
 	   
@@ -30,10 +43,13 @@
 		// eg: Post.id, Post.title, Post.description
 
 		// open the file
- 		//$handle = fopen($filename, "r");
+ 		$handle = fopen($filename, "r");
 
+        //$fileData = fread(fopen($filename, "r"),$filesize); 		
+ 		
+ 		
  		// read the 1st row as headings
- 		$header = fgetcsv($filename);
+ 		$header = fgetcsv($handle);
 
 		// create a message container
 		$return = array(
@@ -41,6 +57,47 @@
 			'errors' => array(),
 		);
 
+        $nuevo_afiliado = array();
+		
+		
+		$i = 0;
+		
+        while (($row = fgetcsv($handle)) !== FALSE) {
+            $clave_numero = $nuevo_afiliado["clave_numero"] = $row[2];
+			$nuevo_afiliado["tipo_documento"] = $row[9];
+			$nuevo_afiliado["documento"] = $row[10];
+			$nuevo_afiliado["nombre"] = $row[6]; 
+			$nuevo_afiliado["sexo"]   = $row[7]; 
+			
+			//Grupo
+			$codigo = $row[5];
+			$grupo = $this->Grupo->find("first" , array("conditions" => array("codigo" =>  $codigo)));
+			
+			$nuevo_afiliado["group_id"]   = $grupo["Grupo"]["id"];
+			//Localidad
+			$nuevo_afiliado["codigo_postal"]   = $row[18];
+			$nuevo_afiliado["provincia_id"]    = $row[19];
+			$nuevo_afiliado["departamento_id"] = $row[20];
+			$nuevo_afiliado["localidad_id"]    = $row[21];
+			
+			
+        	print_r($nuevo_afiliado);
+			
+			//Me fijo si ya existe, si existe hago el update si no hago el create
+			$afiliado = $this->find("first",  array("conditions" => array("clave_numero" => $clave_numero )));
+			
+			if (empty($afiliado)) {
+				$this->create();
+				$this->save($nuevo_afiliado);
+				
+			} else {
+				echo "no esta vacio;";
+			}
+		
+		}
+		
+		
+		
  		// read each data row in the file
  		/*
         $i = 0;
