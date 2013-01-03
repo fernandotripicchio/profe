@@ -2,7 +2,13 @@
  class Afiliado extends AppModel {
       public $name = 'Afiliado';
 	  
-	  public $belongsTo = array('Grupo');
+	  public $belongsTo = array('Grupo',	                             
+	                            'Localidad' => array(
+                                   'className'  => 'Localidad',
+                                 ) 
+	                            );
+	  
+	  
 	  
       public $validate = array(
         'nombre' => array(
@@ -61,38 +67,65 @@
 		
 		
 		$i = 0;
-		
+		$cantidad_afiliados = 0;
         while (($row = fgetcsv($handle)) !== FALSE) {
-            $clave_numero = $nuevo_afiliado["clave_numero"] = $row[2];
-			$nuevo_afiliado["tipo_documento"] = $row[9];
-			$nuevo_afiliado["documento"] = $row[10];
-			$nuevo_afiliado["nombre"] = $row[6]; 
-			$nuevo_afiliado["sexo"]   = $row[7]; 
-			
+        	if ( 1 ) {
+        		
 			//Grupo
 			$codigo = $row[5];
-			$grupo = $this->Grupo->find("first" , array("conditions" => array("codigo" =>  $codigo)));
+			$grupo = $this->Grupo->find("first" , array("conditions" => array("codigo" =>  $codigo), "recursive" => -1));
+            //Localidad
+            $provincia_id    = $row[19];
+			$departamento_id = $row[20];
+			$localidad_id    = $row[21];
+			$localidad = $this->Localidad->find("first", array("conditions" => 
+			                                              array("localidad_id " => $localidad_id,
+														        "provincia_id" => $provincia_id,
+																"departamento_id" => $departamento_id), 
+			                                               "recursive" => -1));
+            			
+			if (sizeof($grupo) > 0 && sizeof($localidad) > 0) {
+				    
+		            $clave_numero = $nuevo_afiliado["clave_numero"] = $row[2];
+					$nuevo_afiliado["tipo_documento"] = $row[9];
+					$nuevo_afiliado["documento"] = $row[10];
+					$nuevo_afiliado["nombre"] = $row[6]; 
+					$nuevo_afiliado["sexo"]   = $row[7]; 
+					$nuevo_afiliado["estado_civil"]   = $row[8];
+									
+					
+					$nuevo_afiliado["grupo_id"]   = $grupo["Grupo"]["id"];
+					//Localidad
+					$nuevo_afiliado["localidad_id"]    = $localidad["Localidad"]["id"];
+					$nuevo_afiliado["codigo_postal"]   = $row[18];
+					$nuevo_afiliado["domicilio_calle"] = $row[14];
+					$nuevo_afiliado["domicilio_nro"]   = $row[15];
+					$nuevo_afiliado["domicilio_piso"]  = $row[16];					
+					
+					//Fecha de Nacimiento
+					$fecha_nacimiento = $row[11];
+					$fecha_nacimiento = $this->date_format($fecha_nacimiento);
+					$nuevo_afiliado["fecha_nacimiento"] = $this->date_format(11);
+					//Fecha Alta
+					$nuevo_afiliado["fecha_alta"]   = $this->date_format($row[13]);
+					//Me fijo si ya existe, si existe hago el update si no hago el create
+					$afiliado = $this->find("first",  array("conditions" => array("clave_numero" => $clave_numero ), "recursive" => -1));
+					
+					if (empty($afiliado)) {
+						$this->create();
+						$this->save($nuevo_afiliado);
+						$cantidad_afiliados++;
+					} else {
+						$this->id = $afiliado["Afiliado"]["id"];
+						$this->save($nuevo_afiliado);
+						$this->id = -1;
+						$cantidad_afiliados++;
+					}
 			
-			$nuevo_afiliado["group_id"]   = $grupo["Grupo"]["id"];
-			//Localidad
-			$nuevo_afiliado["codigo_postal"]   = $row[18];
-			$nuevo_afiliado["provincia_id"]    = $row[19];
-			$nuevo_afiliado["departamento_id"] = $row[20];
-			$nuevo_afiliado["localidad_id"]    = $row[21];
-			
-			
-        	print_r($nuevo_afiliado);
-			
-			//Me fijo si ya existe, si existe hago el update si no hago el create
-			$afiliado = $this->find("first",  array("conditions" => array("clave_numero" => $clave_numero )));
-			
-			if (empty($afiliado)) {
-				$this->create();
-				$this->save($nuevo_afiliado);
-				
-			} else {
-				echo "no esta vacio;";
 			}
+			
+			}
+            $i++;
 		
 		}
 		
@@ -168,7 +201,7 @@
  		fclose($handle);
 
  		// return the messages
- 		return $return;
+ 		return $cantidad_afiliados;
 
 	}
 	

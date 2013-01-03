@@ -16,6 +16,8 @@ $cakeDescription = __d('Profe', 'PROFE');
         echo $this->Html->css('popup');
         echo $this->Html->css('buttons');
         echo $this->Html->css('colorbox/colorbox');
+		echo $this->Html->css('pagination');
+		echo $this->Html->css(array('tabla'));
         echo $this->Html->script(array('jquery',
                                        'jquery.validate',
                                        'jquery.colorbox',
@@ -69,7 +71,7 @@ $cakeDescription = __d('Profe', 'PROFE');
 
  <div class="clear"></div>
  <div id="footer"><p>Profe</p>
-    <?php echo $this->element('sql_dump'); ?>
+    <?//php echo $this->element('sql_dump'); ?>
    </div>
 </body>
 </html>

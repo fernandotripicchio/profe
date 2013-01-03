@@ -1,0 +1,71 @@
+table {
+	width:95%;
+	/*border-top:1px solid #e5eff8;
+	border-right:1px solid #e5eff8;*/
+	margin:1em auto;
+	border-collapse:collapse;
+	left: 0px;
+}
+
+caption {
+	background-color: #335588;
+	font: bold 1.0em/1.5em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+}
+
+th{
+	background: #F4F9FE;
+	text-align: center;
+	font: bold 0.9em/1.3em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+	color: #66A3D3;
+}
+td {
+	color:#678197;
+	border: 1px solid #e5eff8;
+	padding:.3em 1em;
+	text-align:center;
+	font: bold 0.8em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+}
+
+tr.odd td {
+	background:#f7fbff
+}
+
+tr .even td{
+  
+}
+tr.odd .column1 {
+	background:#f4f9fe;
+}
+
+
+
+.column1 {
+	background:#f9fcfe;
+}
+
+.job_app_subtable,.candidates_subtable,.job_openings_subtable{
+    color: #588D2F;
+    cursor: pointer;
+}
+.sub_table{
+	text-align: center;
+	display: none;
+}
+
+.bigTable{
+   width: 100%!important;
+}
+
+
+.list tr:hover td { 
+	background: #FFEF8F;
+}
+
+
+.left {
+	text-align: left !important;
+}
+
+.right{
+	text-align: right;
+}

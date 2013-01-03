@@ -2,6 +2,8 @@
  class Localidad extends AppModel {
       public $name = 'Localidad';
 	  
+	  public $belongsTo = array('Departamento', 'Provincia');
+	  
       public $validate = array(
         'nombre' => array(
             'required' => array(

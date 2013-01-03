@@ -31,4 +31,12 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+	
+	function date_format($date) {		
+		$aux = split("/", $date);
+		
+		$date_aux = $aux[2]."-".$aux[1]."-".$aux[0];
+		//$date_aux = strtotime($date);
+		return $date_aux;
+	}
 }
