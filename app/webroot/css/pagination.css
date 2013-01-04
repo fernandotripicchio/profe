@@ -1,67 +1,65 @@
 .paging div{ 
- border:0; 
- padding:0; 
- margin:0;
+	 border:0; 
+	 padding:0; 
+	 margin:0;
+	 
 }
  
 .paging {
- width:100%;
- clear:both;
- height:25px;
- padding-left:20px;
- padding-top:10px;
- padding-bottom:10px;
+	 width:100%;
+	 clear:both;
+	 height:25px;
+	 padding-left:40px;
+	 padding-top:10px;
+	 padding-bottom:10px;
+	 
 }
  
 .paging div,
 .paging a{
- border:0; 
- margin:0; 
- padding:0;
- font-size:11px;
- list-style:none;
-  
- float:left;
+	 border:0; 
+	 margin:0; 
+	 padding:0;
+	 font-size:11px;
+	 list-style:none;	  
+	 float:left;
 }
  
 .paging a{
- border:solid 1px #667151;
- margin-right:2px;
+	 border:solid 1px #667151;
+	 margin-right:2px;
 }
  
-.paging div.off {
- border:solid 1px #667151;
- color:#888888;
- display:block;
- float:left;
- padding:3px 4px;
- margin-right:2px;
+.paging .off {
+    color: #667151;
+    display: block;
+    float: left;
+    padding: 2px 3px;
+    text-decoration: none;	 
 }
  
 .paging .current{
- border:solid 1px #667151;
- background:#000000;
- color:#ffffff;
- font-weight:bold;
- display:block;
- float:left;
- padding:3px 4px;
- margin-right:2px;
+	 border:solid 1px #667151;
+	 background:#000000;
+	 color:#ffffff;
+	 font-weight:bold;
+	 display:block;
+	 float:left;
+	 padding:3px 4px;
+	 margin-right:2px;
 }
  
 .paging a:link,
 .paging a:visited {
- color:#667151;
- display:block;
- float:left;
- padding:3px 4px;
- text-decoration:none;
+	 color:#667151;
+	 display:block;
+	 float:left;
+	 padding:3px 4px;
+	 text-decoration:none;
 }
  
 .paging a:hover{
- border:solid 1px #667151;
- background:#000000;
- color:#FFFFFF;
-  
-  
+	 border:solid 1px #667151;
+	 background:#000000;
+	 color:#FFFFFF;
 }

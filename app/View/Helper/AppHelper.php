@@ -31,4 +31,14 @@ App::uses('Helper', 'View');
  * @package       app.View.Helper
  */
 class AppHelper extends Helper {
+	
+	function sexo($tipo_sexo){
+		if ($tipo_sexo == "M") {
+			return "Masculino";
+		}
+		
+		if ($tipo_sexo == "F") {
+			return "Femenino";
+		}
+	}
 }

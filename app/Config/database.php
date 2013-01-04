@@ -67,7 +67,7 @@ class DATABASE_CONFIG {
 		'password' => '3833105m',
 		'database' => 'profe_dev',
 		'prefix' => '',
-		//'encoding' => 'utf8',
+		'encoding' => 'utf8',
 	);
 
 	public $test = array(

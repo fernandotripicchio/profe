@@ -6,7 +6,7 @@
   var $components = array("RequestHandler");
   var $uses = array('Afiliado');
   public $paginate = array(
-                          'limit' => 10,
+                          'limit' => 50,
                                'order' => array(
                                'Afiliado.nombre' => 'asc'
         )
@@ -53,6 +53,17 @@
             $this->Session->setFlash('No se pudo modificar el Afiliado.');
         }
     }  	
+  }
+  
+  
+  public function show($id){
+    $this->Afiliado->id = $id;
+    if (!$this->Afiliado->exists()) {
+            throw new NotFoundException(__('Afiliado invalido'));
+    }  	
+	
+   $this->set('afiliado', $this->Afiliado->read());	
+	
   }
   
   

@@ -105,9 +105,12 @@
 					//Fecha de Nacimiento
 					$fecha_nacimiento = $row[11];
 					$fecha_nacimiento = $this->date_format($fecha_nacimiento);
-					$nuevo_afiliado["fecha_nacimiento"] = $this->date_format(11);
+					$nuevo_afiliado["fecha_nacimiento"] = $this->date_format($row[11]);
 					//Fecha Alta
 					$nuevo_afiliado["fecha_alta"]   = $this->date_format($row[13]);
+					
+					
+					$nuevo_afiliado["incapcidad"] = $row[12];
 					//Me fijo si ya existe, si existe hago el update si no hago el create
 					$afiliado = $this->find("first",  array("conditions" => array("clave_numero" => $clave_numero ), "recursive" => -1));
 					

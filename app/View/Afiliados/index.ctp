@@ -20,13 +20,14 @@
           <caption>Afiliados</caption>
           <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Domicilio</th>
+                <th scope="col">Clave</th>
+                <th scope="col">Nombre</th>                
                 <th scope="col">Documento</th>
                 <th scope="col">Fecha Nacimiento</th>
-                <th scope="col">Fecha Alta</th>
+                <th scope="col">Fecha Alta</th>                
                 <th scope="col">Localidad</th>
+                <th scope="col">Domicilio</th>   
+                <th>&nbsp;</th>             
             </tr>
         </thead>
             <!-- Here is where we loop through our $posts array, printing out post info -->
@@ -34,14 +35,12 @@
             <?php foreach ($afiliados as $afiliado): ?>
                <tr>
 	                 <td class="left">
-	                 	<?php echo $afiliado['Afiliado']['id'];      ?>
+
+	                 	<?php echo $afiliado['Afiliado']['clave_numero'];      ?>
 	                 </td>
 	                 <td class="left">
 	                    <?php echo $afiliado['Afiliado']['nombre']   ?>
  	                 </td>
-	                 <td class="left">
-	                    <?php echo $afiliado['Afiliado']['domicilio_calle'] ?>
-	                 </td>
 	                 <td>
 	                    <?php echo $afiliado['Afiliado']['documento']  ?>
 	                 </td>
@@ -55,20 +54,20 @@
 	                 <td class="left">
 	                    <?php echo $afiliado['Localidad']['nombre']  ?>	
 	                 </td>
+	                 <td class="left">
+	                    <?php echo $afiliado['Afiliado']['domicilio_calle'] ?>
+	                 </td>
+                     <td>
+                     	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $afiliado['Afiliado']['id']))?>
+	                 	
+                     </td>	                 
+	                 
             </tr>
             <?php endforeach; ?>
             </tbody>
-            <tfoot>
-            </tfoot>
        </table>
       <div class="paging">
-      
-             <?php echo $this->Paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'off'));?>
+             <?php echo $this->Paginator->prev('<< '.__('Anteriores', true), array(), null, array('class'=>'off'));?>
              <?php echo $this->Paginator->numbers(array('tag' => 'div','separator' => ''));?>
-             <?php echo $this->Paginator->next(__('next', true).' >>', array(), array(), array('class' => 'off'));?>
-             
-      	<?// echo $this->Paginator->prev(' << ' . __('Anteriores'), array(), null, array('class' => 'off')); ?>
-      	<?// echo $this->Paginator->numbers(array('first' => 'First page')); ?>
-      	<?// echo $this->Paginator->next(' >> ' . __('Siguientes'), array(), null, array('class' => 'off ')); ?>
-        
+             <?php echo $this->Paginator->next(__('Siguientes', true).' >>', array(), array(), array('class' => 'off'));?>
        </div>

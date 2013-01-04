@@ -17,6 +17,7 @@ $cakeDescription = __d('Profe', 'PROFE');
         echo $this->Html->css('buttons');
         echo $this->Html->css('colorbox/colorbox');
 		echo $this->Html->css('pagination');
+		echo $this->Html->css('admin');
 		echo $this->Html->css(array('tabla'));
         echo $this->Html->script(array('jquery',
                                        'jquery.validate',
@@ -59,20 +60,25 @@ $cakeDescription = __d('Profe', 'PROFE');
      </div>
 
 
-<div class="clear"></div>
- <!-- CENTER CONTENT -->
-<div id="tabContent">
-    <div id="contentHolder">
-        <!-- The AJAX fetched content goes here -->
-	<?php echo $this->Session->flash(); ?>
-	<?php echo $this->fetch('content'); ?>
-    </div>
-</div>
-
- <div class="clear"></div>
- <div id="footer"><p>Profe</p>
-    <?//php echo $this->element('sql_dump'); ?>
-   </div>
+    <div class="clear"></div>
+    <!-- CENTER CONTENT -->
+	<div id="tabContent">
+	    <div id="contentHolder">
+	        <!-- The AJAX fetched content goes here -->
+		<?php echo $this->Session->flash(); ?>
+		<?php echo $this->fetch('content'); ?>
+	    </div>
+	</div>
+	<div class="clear"></div>
+	<div>
+	    <?//php echo $this->element('sql_dump'); ?>
+	</div>
+   
+<!-- begin footer -->
+	<div id="footer">
+	     <div class="pinstripe">&nbsp;</div>
+	     <div id="copyrightSection">Profe San Luis </div>
+	</div>   
 </body>
 </html>
 <?=$this->Html->scriptBlock("var root = '".$this->Html->url('/')."';");?>

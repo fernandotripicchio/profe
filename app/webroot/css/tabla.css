@@ -8,7 +8,7 @@ table {
 }
 
 caption {
-	background-color: #335588;
+	background-color: #a9a9a9;
 	font: bold 1.0em/1.5em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
 }
 
@@ -19,7 +19,7 @@ th{
 	color: #66A3D3;
 }
 td {
-	color:#678197;
+	color: #363636;
 	border: 1px solid #e5eff8;
 	padding:.3em 1em;
 	text-align:center;
