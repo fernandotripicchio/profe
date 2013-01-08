@@ -1,7 +1,7 @@
 <?
  
- class AfiliadosController extends AppController {
-  var $name = 'Afiliados';
+ class AdministracionesController extends AppController {
+  var $name = 'Administraciones';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler");
   var $uses = array('Afiliado');
@@ -17,8 +17,6 @@
   
   
   public function index(){
-  	
-	
     $afiliados = $this->paginate('Afiliado');
     $this->set('afiliados', $afiliados);	 
   }
@@ -59,44 +57,15 @@
   
   
   public function show($id){
-   $this->Afiliado->unbindModel(array(
-    'belongsTo' => array('Localidad')
-    ));
- 
-   $this->Afiliado->bindModel(array(
-    'hasOne' => array(
-        'Localidad' => array(
-            'foreignKey' => false,
-            'conditions' => array('Localidad.id = Afiliado.localidad_id and Localidad.provincia_id = 19 ')
-        ),
-        'Departamento' => array(
-            'foreignKey' => false,
-            'conditions' => array('Localidad.departamento_id = Departamento.departamento and Departamento.provincia_id = 19 ')
-        )    
-		
-    )
-   ));	   
-	      
+    $this->Afiliado->id = $id;
+    if (!$this->Afiliado->exists()) {
+            throw new NotFoundException(__('Afiliado invalido'));
+    }  	
 	
-   $afiliado = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id), 
-                                                    "contain" => array('Localidad', 'Departamento')
-								                 )
-				                 );
-   $this->set('afiliado', $afiliado);	
+   $this->set('afiliado', $this->Afiliado->read());	
 	
   }
   
-  
-  public function importar(){
-    $cantidad_afiliados = 0; 
-    if (!empty($this->data))  {
-    	    set_time_limit ( 3000 );
-            $cantidad_afiliados = $this->Afiliado->import($this->data['field']['tmp_name']);
-            //$this->redirect('somecontroller/someaction');
-    }	 
-	 
-	$this->set(compact("cantidad_afiliados")); 
-	   
-  }
+
  
  }

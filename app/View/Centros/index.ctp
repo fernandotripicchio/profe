@@ -1,0 +1,67 @@
+<!-- Formulario de Busqueda -->
+<div id="formulario_centros">
+	<?php echo $this->Form->create("keys") ?>
+	<table>
+		<tr>
+			<td>				
+				<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"label" => "Datos a Buscar" )) ?>
+			</td>
+			<td>
+				<?php echo $this->Form->submit("Buscar")?>
+			</td>
+		</tr>
+	</table>
+	<?php echo $this->Form->end; ?>
+</div>
+
+
+<div id = "listado_centros">
+  <table class="list">
+          <caption>Centros</caption>
+          <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Direccion</th>                
+                <th scope="col">Telefonos</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Departamento</th>                
+                <th scope="col">Afiliados</th>
+   
+                <th>&nbsp;</th>             
+            </tr>
+        </thead>
+            <!-- Here is where we loop through our $posts array, printing out post info -->
+            <tbody>
+            <?php foreach ($centros as $centro): ?>
+               <tr>
+	                 <td class="left">
+
+	                 	<?php echo $centro['Centro']['nombre'];      ?>
+	                 </td>
+	                 <td class="left">
+	                    <?php echo $centro['Centro']['direccion']   ?>
+ 	                 </td>
+	                 <td>
+	                    <?php echo $centro['Centro']['telefonos']  ?>
+	                 </td>
+	                 
+	                 <td class="left">
+	                    <?php echo $centro['Localidad']['nombre']  ?>	
+	                 </td>
+	                 <td class="left">
+	                    
+	                 </td>
+                     <td>
+                     	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $centro['Centro']['id']))?>
+	                 	
+                     </td>	                 
+	                 
+            </tr>
+            <?php endforeach; ?>
+            </tbody>
+       </table>
+      <div class="paging">
+             <?php echo $this->Paginator->prev('<< '.__('Anteriores', true), array(), null, array('class'=>'off'));?>
+             <?php echo $this->Paginator->numbers(array('tag' => 'div','separator' => ''));?>
+             <?php echo $this->Paginator->next(__('Siguientes', true).' >>', array(), array(), array('class' => 'off'));?>
+       </div>

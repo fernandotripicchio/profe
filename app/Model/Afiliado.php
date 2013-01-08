@@ -29,7 +29,7 @@
         'sexo' => array(
              'required' => array(
                  'rule' => array('notEmpty'),
-                 'message' => 'Sexo es requerida'
+                 'message' => 'Sexo es requerido'
 			  )
 		 ),     
         'clave' => array(
@@ -42,6 +42,8 @@
        );
 	   
 	   
+	   
+ 
 	 //Funcion para importar usuarios desde un archivo CSV y generar un nuevo listado  
 	 function import($filename)  {
  		// to avoid having to tweak the contents of
@@ -97,20 +99,21 @@
 					$nuevo_afiliado["grupo_id"]   = $grupo["Grupo"]["id"];
 					//Localidad
 					$nuevo_afiliado["localidad_id"]    = $localidad["Localidad"]["id"];
-					$nuevo_afiliado["codigo_postal"]   = $row[18];
 					$nuevo_afiliado["domicilio_calle"] = $row[14];
 					$nuevo_afiliado["domicilio_nro"]   = $row[15];
 					$nuevo_afiliado["domicilio_piso"]  = $row[16];					
+					$nuevo_afiliado["domicilio_depto"] = $row[17];
+					$nuevo_afiliado["codigo_postal"]   = $row[18];
+					
+										
 					
 					//Fecha de Nacimiento
-					$fecha_nacimiento = $row[11];
-					$fecha_nacimiento = $this->date_format($fecha_nacimiento);
 					$nuevo_afiliado["fecha_nacimiento"] = $this->date_format($row[11]);
+					
 					//Fecha Alta
 					$nuevo_afiliado["fecha_alta"]   = $this->date_format($row[13]);
+					$nuevo_afiliado["incapacidad"] = $row[12];
 					
-					
-					$nuevo_afiliado["incapcidad"] = $row[12];
 					//Me fijo si ya existe, si existe hago el update si no hago el create
 					$afiliado = $this->find("first",  array("conditions" => array("clave_numero" => $clave_numero ), "recursive" => -1));
 					
@@ -132,75 +135,9 @@
 		
 		}
 		
-		
-		
- 		// read each data row in the file
- 		/*
-        $i = 0;
- 		while (($row = fgetcsv($handle)) !== FALSE) {
- 			$i++;
- 			$data = array();
-
- 			// for each header field
- 			foreach ($header as $k=>$head) {
- 				// get the data field from Model.field
- 				if (strpos($head,'.')!==false) {
-	 				$h = explode('.',$head);
-	 				$data[$h[0]][$h[1]]=(isset($row[$k])) ? $row[$k] : '';
-				}
- 				// get the data field from field
-				else {
-	 				$data['Post'][$head]=(isset($row[$k])) ? $row[$k] : '';
-				}
- 			}
-
-			// see if we have an id
- 			$id = isset($data['Post']['id']) ? $data['Post']['id'] : 0;
-
-			// we have an id, so we update
- 			if ($id) {
- 				// there is 2 options here,
-
-				// option 1:
-				// load the current row, and merge it with the new data
-	 			//$this->recursive = -1;
-	 			//$post = $this->read(null,$id);
-	 			//$data['Post'] = array_merge($post['Post'],$data['Post']);
-
-				// option 2:
-	 			// set the model id
-	 			$this->id = $id;
-			}
-
-			// or create a new record
-			else {
-	 			$this->create();
-			}
-
-			// see what we have
-			// debug($data);
-
- 			// validate the row
-			$this->set($data);
-			if (!$this->validates()) {
-				$this->_flash('warning');
-				$return['errors'][] = __(sprintf('Post for Row %d failed to validate.',$i), true);
-			}
-
- 			// save the row
-			if (!$error && !$this->save($data)) {
-				$return['errors'][] = __(sprintf('Post for Row %d failed to save.',$i), true);
-			}
-
- 			// success message!
-			if (!$error) {
-				$return['messages'][] = __(sprintf('Post for Row %d was saved.',$i), true);
-			}
- 		}
 
  		// close the file
-		 
-		 */
+		
  		fclose($handle);
 
  		// return the messages
