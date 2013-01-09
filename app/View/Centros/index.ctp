@@ -1,4 +1,6 @@
 <!-- Formulario de Busqueda -->
+<div id = "listado_centros" class="listados">
+<h1>Listado de Centros de Salud</h1>
 <div id="formulario_centros">
 	<?php echo $this->Form->create("keys") ?>
 	<table>
@@ -15,7 +17,7 @@
 </div>
 
 
-<div id = "listado_centros">
+<div>
   <table class="list">
           <caption>Centros</caption>
           <thead>
@@ -49,17 +51,21 @@
 	                    <?php echo $centro['Localidad']['nombre']  ?>	
 	                 </td>
 	                 <td class="left">
-	                    
+	                    &nbsp;
 	                 </td>
+	                 <td class="left">
+	                    &nbsp;
+	                 </td>	                 
                      <td>
-                     	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $centro['Centro']['id']))?>
-	                 	
+                     	<?php echo $this->html->link("Ver", array("controller" => "centros", "action" => "show", $centro['Centro']['id']))?>
+                        <?php echo $this->html->link("Editar", array("controller" => "centros", "action" => "edit", $centro['Centro']['id']))?>	                 	
                      </td>	                 
 	                 
             </tr>
             <?php endforeach; ?>
             </tbody>
        </table>
+      </div>
       <div class="paging">
              <?php echo $this->Paginator->prev('<< '.__('Anteriores', true), array(), null, array('class'=>'off'));?>
              <?php echo $this->Paginator->numbers(array('tag' => 'div','separator' => ''));?>

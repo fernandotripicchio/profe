@@ -64,7 +64,7 @@
             throw new NotFoundException(__('Centro invalido'));
     }  	
 	
-   $this->set('Centro', $this->Centro->read());	
+   $this->set('centro', $this->Centro->read());	
 	
   }
 

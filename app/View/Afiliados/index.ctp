@@ -1,22 +1,23 @@
 <!-- Formulario de Busqueda -->
-<div id="formulario_afiliados">
-	<?php echo $this->Form->create("keys") ?>
-	<table>
-		<tr>
-			<td>				
-				<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"label" => "Datos a Buscar" )) ?>
-			</td>
-			<td>
-				<?php echo $this->Form->submit("Buscar")?>
-			</td>
-		</tr>
-	</table>
-	<?php echo $this->Form->end; ?>
-</div>
+<div id = "listado_afiliados" class="listados">
+	<h1>Listado de Afiliados</h1>
+	<div id="formulario_afiliados">
+		<?php echo $this->Form->create("keys") ?>
+		<table>
+			<tr>
+				<td>				
+					<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"label" => "Datos a Buscar" )) ?>
+				</td>
+				<td>
+					<?php echo $this->Form->submit("Buscar")?>
+				</td>
+			</tr>
+		</table>
+		<?php echo $this->Form->end; ?>
+	</div>
 
-
-<div id = "listado_afiliados">
-  <table class="list">
+    <div id="listado">
+       <table class="list">
           <caption>Afiliados</caption>
           <thead>
             <tr>
@@ -59,15 +60,17 @@
 	                 </td>
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $afiliado['Afiliado']['id']))?>
-	                 	
+                        <?php echo $this->html->link("Editar", array("controller" => "afiliados", "action" => "edit", $afiliado['Afiliado']['id']))?>	                 	
                      </td>	                 
 	                 
             </tr>
             <?php endforeach; ?>
             </tbody>
-       </table>
+          </table>
+      </div>
       <div class="paging">
              <?php echo $this->Paginator->prev('<< '.__('Anteriores', true), array(), null, array('class'=>'off'));?>
              <?php echo $this->Paginator->numbers(array('tag' => 'div','separator' => ''));?>
              <?php echo $this->Paginator->next(__('Siguientes', true).' >>', array(), array(), array('class' => 'off'));?>
        </div>
+</div>

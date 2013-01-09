@@ -64,5 +64,7 @@
 	</table>
    <div class="botonera">
         <?php echo $this->html->link('Volver',array("controller"=>"afiliados", "action" => "index"), array('class' => 'button'));?>
+        <?php echo $this->html->link('Editar',array("controller"=>"afiliados", "action" => "edit", $afiliado["Afiliado"]["id"]), array('class' => 'button'));?>
+        
    </div>	
 </div>

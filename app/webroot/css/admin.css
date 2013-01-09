@@ -28,3 +28,16 @@ margin:0 0 6px 7px;
 	margin-left: 20px;
 	padding: 10px;
 }
+
+
+.listados{
+	margin-left: 10px;
+}
+
+.listados h1{
+	font-size: 1.3em;
+    margin-left: 50px;
+    color: #184c77;	
+    left: 10px !important;	
+}
+

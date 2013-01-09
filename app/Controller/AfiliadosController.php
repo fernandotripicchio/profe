@@ -23,13 +23,15 @@
     $this->set('afiliados', $afiliados);	 
   }
   
-  
+  /*
   public function add(){
     if (!empty($this->data)) {
 	      $this->Afiliado->create();
         
 		if ($this->Cadete->save($this->data)) {
-			$this->Session->setFlash(__('Se guardo el Afiliado con éxito', true));
+			//$this->Session->setFlash(__('Se guardo el Afiliado con éxito', true));
+			$this->Session->setFlash("It's ok!", "success");
+			
 			$this->redirect(array('action'=>'index'));
 		} else {
 			$this->Session->setFlash(__('El Afiliado no se pudo guardar. Por favor intente de nuevo.', true));
@@ -38,6 +40,8 @@
 
     }  	
   }
+  
+  */
   
   public function edit($id){
     $this->Afiliado->id = $id;
@@ -48,11 +52,13 @@
         $this->request->data = $this->Afiliado->read();
 
     } else {
-        if ($this->Cadete->save($this->request->data)) {
-            $this->Session->setFlash('Se modifico el Afiliado con éxito');
+        if ($this->Afiliado->save($this->request->data)) {
+            //$this->Session->setFlash('Se modificó el Afiliado con éxito');
+            $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");			
             $this->redirect(array('action' => 'index'));
         } else {
-            $this->Session->setFlash('No se pudo modificar el Afiliado.');
+        	$this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
+            //$this->Session->setFlash('No se pudo modificar el Afiliado.');
         }
     }  	
   }

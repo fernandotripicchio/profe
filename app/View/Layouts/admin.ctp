@@ -18,6 +18,7 @@ $cakeDescription = __d('Profe', 'PROFE');
         echo $this->Html->css('colorbox/colorbox');
 		echo $this->Html->css('pagination');
 		echo $this->Html->css('admin');
+		echo $this->Html->css('flashmessage');
 		echo $this->Html->css(array('tabla'));
         echo $this->Html->script(array('jquery',
                                        'jquery.validate',
@@ -65,13 +66,15 @@ $cakeDescription = __d('Profe', 'PROFE');
 	<div id="tabContent">
 	    <div id="contentHolder">
 	        <!-- The AJAX fetched content goes here -->
-		<?php echo $this->Session->flash(); ?>
-		<?php echo $this->fetch('content'); ?>
+	        <div id="flashMessages">
+  		       <?php echo $this->Session->flash(); ?>
+		    </div
+     	<?php echo $this->fetch('content'); ?>
 	    </div>
 	</div>
 	<div class="clear"></div>
 	<div>
-	    <?php echo $this->element('sql_dump'); ?>
+	    <?//php echo $this->element('sql_dump'); ?>
 	</div>
    
 <!-- begin footer -->
