@@ -3,6 +3,7 @@
       public $name = 'Departamento';
 	  
 	  public $belongsTo = array("Provincia");	
+	  public $hasMany = array("Localidades");
 	    
       public $validate = array(
 		        'nombre' => array(

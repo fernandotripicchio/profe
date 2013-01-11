@@ -4,7 +4,7 @@
   var $name = 'Afiliados';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler");
-  var $uses = array('Afiliado');
+  var $uses = array('Afiliado', 'Provincia' ,'Departamento', 'Localidad');
   public $paginate = array(
                           'limit' => 50,
                                'order' => array(
@@ -60,7 +60,11 @@
         	$this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
             //$this->Session->setFlash('No se pudo modificar el Afiliado.');
         }
-    }  	
+    }
+	//Departamentos
+	$this->getDepartamentos();
+	$this->set('afiliado', $this->Afiliado->read());	
+	  	
   }
   
   
@@ -104,5 +108,37 @@
 	$this->set(compact("cantidad_afiliados")); 
 	   
   }
+  
+  
+  public function getDepartamentos($provincia_id = 19){
+  	$departamentos = $this->Departamento->find("all", 
+  	                                           array("conditions" => array( "provincia_id" => $provincia_id),
+  	                                                 "sort" => "Departamento.nombre ASC",
+  	                                                 "recursive" => -1
+											        )
+								              );
+    $new_departamentos = array();
+    foreach ($departamentos as $departamento){
+      $new_departamentos[$departamento["Departamento"]["id"]] = $departamento["Departamento"]["nombre"];
+    }
+    $departamentos = $new_departamentos;
+    $this->set(compact("departamentos"));	
+  }
  
+ 
+ 
+  public function getLocalidades($provincia_id = 19, $departamento_id){
+  	$departamentos = $this->Localidad->find("all", 
+  	                                           array("conditions" => array( "provincia_id" => $provincia_id, "departamento_id" => $departamento_id),
+  	                                                 "sort" => "Localidad.nombre ASC",
+  	                                                 "recursive" => -1
+											        )
+								              );
+    $new_departamentos = array();
+    foreach ($departamentos as $departamento){
+      $new_departamentos[$departamento["Departamento"]["id"]] = $departamento["Departamento"]["nombre"];
+    }
+    $departamentos = $new_departamentos;
+    $this->set(compact("departamentos"));	
+  } 
  }

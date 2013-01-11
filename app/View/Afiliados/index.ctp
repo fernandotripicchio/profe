@@ -42,8 +42,8 @@
 	                 <td class="left">
 	                    <?php echo $afiliado['Afiliado']['nombre']   ?>
  	                 </td>
-	                 <td>
-	                    <?php echo $afiliado['Afiliado']['documento']  ?>
+	                 <td class="left">
+	                    <?php echo $afiliado['Afiliado']['tipo_documento']."  ".$afiliado['Afiliado']['documento']  ?>
 	                 </td>
 	                 <td>
 	                      <?php echo $this->Time->format('d/m/Y', $afiliado['Afiliado']['fecha_nacimiento']); ?>

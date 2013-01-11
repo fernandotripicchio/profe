@@ -25,7 +25,8 @@ $cakeDescription = __d('Profe', 'PROFE');
                                        'jquery.colorbox',
                                        'jquery.ui',
                                        'jquery.buttons',
-                                       'calendar-spanish'));
+                                       'calendar-spanish',
+									   'afiliado/afiliado'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

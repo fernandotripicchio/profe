@@ -31,6 +31,13 @@
 			<td class="left" colspan="3"><?php echo $this->Html->sexo($afiliado["Afiliado"]["sexo"])?></td>
 		 </tr>
 		 
+		 <tr>
+		    <td class=" width-4 right">Fecha Alta: </td>
+	        <td class="left" >
+	                      <?php echo $this->Time->format('d/m/Y', $afiliado['Afiliado']['fecha_alta']); ?>
+	        </td>			
+		</tr>
+		 
          <tr>
 			<td class="with-4 right">Ley Aplicada: </td>
 			<td class="left" colspan="3"><?php echo $afiliado["Grupo"]["codigo"]." - ".$afiliado["Grupo"]["descripcion"]?></td>
