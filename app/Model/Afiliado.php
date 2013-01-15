@@ -80,12 +80,9 @@
             $provincia_id    = $row[19];
 			$departamento_id = $row[20];
 			$localidad_id    = $row[21];
-			$localidad = $this->Localidad->find("first", array("conditions" => 
-			                                              array("localidad_id " => $localidad_id,
-														        "provincia_id" => $provincia_id,
-																"departamento_id" => $departamento_id), 
-			                                               "recursive" => -1));
+			$localidad = $this->Localidad->findLocalidad($localidad_id, $departamento_id, $provincia_id = 19);
             			
+						
 			if (sizeof($grupo) > 0 && sizeof($localidad) > 0) {
 				    
 		            $clave_numero = $nuevo_afiliado["clave_numero"] = $row[2];
@@ -116,6 +113,7 @@
 					
 					//Me fijo si ya existe, si existe hago el update si no hago el create
 					$afiliado = $this->find("first",  array("conditions" => array("clave_numero" => $clave_numero ), "recursive" => -1));
+					
 					
 					if (empty($afiliado)) {
 						$this->create();

@@ -10,7 +10,9 @@
                                'order' => array(
                                'Afiliado.nombre' => 'asc'
         )
-    );
+        );
+	
+	
   function beforeFilter() {
      $this->layout = "admin";
   }
@@ -45,6 +47,7 @@
   
   public function edit($id){
     $this->Afiliado->id = $id;
+	
     if (!$this->Afiliado->exists()) {
             throw new NotFoundException(__('Afiliado invalido'));
     }
@@ -62,7 +65,9 @@
         }
     }
 	//Departamentos
+	$afiliado = $this->Afiliado->read();
 	$this->getDepartamentos();
+	$this->getLocalidades($afiliado["Localidad"]["provincia_id"], $afiliado["Localidad"]["departamento_id"] );
 	$this->set('afiliado', $this->Afiliado->read());	
 	  	
   }
@@ -128,17 +133,17 @@
  
  
   public function getLocalidades($provincia_id = 19, $departamento_id){
-  	$departamentos = $this->Localidad->find("all", 
+  	$localidades = $this->Localidad->find("all", 
   	                                           array("conditions" => array( "provincia_id" => $provincia_id, "departamento_id" => $departamento_id),
   	                                                 "sort" => "Localidad.nombre ASC",
   	                                                 "recursive" => -1
 											        )
 								              );
-    $new_departamentos = array();
-    foreach ($departamentos as $departamento){
-      $new_departamentos[$departamento["Departamento"]["id"]] = $departamento["Departamento"]["nombre"];
+    $new_localidades = array();
+    foreach ($localidades as $localidad){
+      $new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
     }
-    $departamentos = $new_departamentos;
-    $this->set(compact("departamentos"));	
+    $localidades = $new_localidades;
+    $this->set(compact("localidades"));	
   } 
  }

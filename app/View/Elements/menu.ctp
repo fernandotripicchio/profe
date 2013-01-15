@@ -19,6 +19,9 @@
             <?=$this->Html->link('<span>Centros de Salud</span>', array('controller' => 'centros', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
         </li>
         <li>
+            <?=$this->Html->link('<span>Reportes</span>', array('controller' => 'reportes', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+        </li>        
+        <li>
             <?=$this->Html->link('<span>Administración</span>', array('controller' => 'administraciones', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
         </li>
         

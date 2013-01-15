@@ -1,4 +1,4 @@
-<? 
+ <? 
  class LocalidadesController extends AppController {
   var $name = 'Localidades';
   public $helpers = array("Html","Form");
@@ -15,10 +15,12 @@
      if($this->RequestHandler->isAjax()) {
          Configure::write('debug', 2);
          $this->layout = 'ajax';
-         $localidades = $this->Localidad->find("all", array("limit" => 10,
+         $localidades = $this->Localidad->find("all", array("conditions" => array("departamento_id" => $departamento_id),
+                                                            "limit" => 10,
                                                             "recursive" => -1));
          $localidades = json_encode(compact('localidades'));
          $this->set(compact("localidades"));
      }
   } 
  }
+ ?>

@@ -21,4 +21,19 @@
             )) ,
        );
   
+     
+	 public function findLocalidad($localidad_id, $departamento_id, $provincia_id = 19){
+              $localidad =  $this->find("first", array("conditions" => 
+			                                              array("localidad_id " => $localidad_id,
+														        "provincia_id" => $provincia_id,
+																"departamento_id" => $departamento_id), 
+			                                               "recursive" => -1) );
+		      return $localidad; 
+														   	 	
+	 	
+	 }
+	 
+	 
+
+  
  }

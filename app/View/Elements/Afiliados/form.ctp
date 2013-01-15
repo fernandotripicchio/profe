@@ -39,37 +39,49 @@
 		
          <tr>
 			<td class="with-4 right">Sexo: </td>
-			<td class="left" colspan="3"><?php echo $this->Html->sexo($afiliado["Afiliado"]["sexo"])?></td>
+			<td class="left" ><?php echo $this->Html->sexo($afiliado["Afiliado"]["sexo"])?></td>
 		 </tr>
 		 
          <tr>
 			<td class="with-4 right">Ley Aplicada: </td>
-			<td class="left" colspan="3"><?php echo $afiliado["Grupo"]["codigo"]." - ".$afiliado["Grupo"]["descripcion"]?></td>
+			<td class="left" ><?php echo $afiliado["Grupo"]["codigo"]." - ".$afiliado["Grupo"]["descripcion"]?></td>
 		 </tr>
 		 
           <tr>
 	        <td class=" width-4 right">Incapacidad: </td>
-			<td class="left" colspan="3"><?php echo $afiliado["Afiliado"]["incapacidad"] ?></td>
+			<td class="left" ><?php echo $afiliado["Afiliado"]["incapacidad"] ?></td>
           </tr>	               
+               
+          <tr>
+          	<td class="with-4 right">Localidad</td>
+          	<td class="left">
+          	   <?php echo $afiliado["Localidad"]["nombre"]?>	
+          	</td>
+          </tr>     
+
+          <tr>
+          	<td class="with-4 right">Departamento</td>
+            <td class="left"><?php echo $afiliado["Departamento"]["nombre"] ?></td>
+          </tr> 
                 
-               <tr >
-                 <td class="right">Teléfono Particular:</td>
-                 <td class="last left">
+          <tr>
+             <td class="right">Teléfono Particular:</td>
+             <td class="last left">
                      <?php echo $this->form->input('telefono_particular',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
-                 </td>
-               </tr>
-               <tr >
+             </td>
+          </tr>
+          <tr >
                  <td class="right">Teléfono Celular:</td>
                  <td class="last left">
                      <?php echo $this->form->input('telefono_celular',    array('label'=> false,'type'=>'text', 'size'=>30,  'div' => array('tag' => '')));?>
                  </td>
-               </tr>
-               <tr >
+          </tr>
+          <tr>
                  <td class="right">Email:</td>
                  <td class="last left">
                      <?php echo $this->form->input('email',    array('label'=> false,'type'=>'text', 'size'=>30,  'div' => array('tag' => '')));?>
                  </td>
-               </tr>
+          </tr>
                
                
                
