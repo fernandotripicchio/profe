@@ -1,16 +1,13 @@
-<?
- 
+<? 
  class AfiliadosController extends AppController {
   var $name = 'Afiliados';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler");
-  var $uses = array('Afiliado', 'Provincia' ,'Departamento', 'Localidad');
+  var $uses = array('Afiliado', 'Provincia' ,'Departamento', 'Localidad', 'Centro');
   public $paginate = array(
                           'limit' => 50,
-                               'order' => array(
-                               'Afiliado.nombre' => 'asc'
-        )
-        );
+                               'order' => array('Afiliado.nombre' => 'asc')
+                           );
 	
 	
   function beforeFilter() {
@@ -18,132 +15,124 @@
   }
   
   
-  public function index(){
-  	
+  public function index() {
+
+	$filtros =  array("Todos" => "Todos", "Afiliado.nombre" => "Nombre", "Afiliado.documento" => "Documento");
+	$condition = " 1 ";
+  	if ( isset($this->params["data"]["keys"]) ){
+  		
+  		$condition .= $this->buildCondition( strtoupper( $this->params["data"]["keys"]["keys"] ) , $this->params["data"]["filters"], $filtros);
+
+  	};
 	
-    $afiliados = $this->paginate('Afiliado');
+	
+    $afiliados = $this->paginate('Afiliado', $condition);
     $this->set('afiliados', $afiliados);	 
+	$this->set('filtros', $filtros);	 
   }
   
-  /*
-  public function add(){
-    if (!empty($this->data)) {
-	      $this->Afiliado->create();
-        
-		if ($this->Cadete->save($this->data)) {
-			//$this->Session->setFlash(__('Se guardo el Afiliado con éxito', true));
-			$this->Session->setFlash("It's ok!", "success");
-			
-			$this->redirect(array('action'=>'index'));
-		} else {
-			$this->Session->setFlash(__('El Afiliado no se pudo guardar. Por favor intente de nuevo.', true));
-	
-		}
-
-    }  	
-  }
+ 
   
-  */
-  
-  public function edit($id){
-    $this->Afiliado->id = $id;
+  public function edit( $id ) {
+	    $this->Afiliado->id = $id;
+		
+	    if (!$this->Afiliado->exists()) {
+	            throw new NotFoundException(__('Afiliado invalido'));
+	    }
+	    if ($this->request->is('get')) {
+	        $this->request->data = $this->Afiliado->read();
 	
-    if (!$this->Afiliado->exists()) {
-            throw new NotFoundException(__('Afiliado invalido'));
-    }
-    if ($this->request->is('get')) {
-        $this->request->data = $this->Afiliado->read();
-
-    } else {
-        if ($this->Afiliado->save($this->request->data)) {
-            //$this->Session->setFlash('Se modificó el Afiliado con éxito');
-            $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");			
-            $this->redirect(array('action' => 'index'));
-        } else {
-        	$this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
-            //$this->Session->setFlash('No se pudo modificar el Afiliado.');
-        }
-    }
-	//Departamentos
-	$afiliado = $this->Afiliado->read();
-	$this->getDepartamentos();
-	$this->getLocalidades($afiliado["Localidad"]["provincia_id"], $afiliado["Localidad"]["departamento_id"] );
-	$this->set('afiliado', $this->Afiliado->read());	
+	    } else {
+	        if ($this->Afiliado->save($this->request->data)) {
+	            $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");			
+	            $this->redirect(array('action' => 'index'));
+	        } else {
+	        	$this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
+	        }
+	    }
+		//Departamentos
+		$afiliado        = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id)));
+		$departamento_id = $afiliado["Localidad"]["departamento_id"];
+		$departamento    = $this->Departamento->find("first", array("conditions" => array("Departamento.departamento_id" => $departamento_id, "Departamento.provincia_id" => 19)));
+		$this->getDepartamentos();
+		$this->getCentros();
+		$this->getLocalidades($afiliado["Localidad"]["provincia_id"], $departamento["Departamento"]["departamento_id"] );
+		$this->set('afiliado', $this->Afiliado->read());	
+		$this->set('departamento', $departamento);	
 	  	
   }
   
   
-  public function show($id){
-   $this->Afiliado->unbindModel(array(
-    'belongsTo' => array('Localidad')
-    ));
- 
-   $this->Afiliado->bindModel(array(
-    'hasOne' => array(
-        'Localidad' => array(
-            'foreignKey' => false,
-            'conditions' => array('Localidad.id = Afiliado.localidad_id and Localidad.provincia_id = 19 ')
-        ),
-        'Departamento' => array(
-            'foreignKey' => false,
-            'conditions' => array('Localidad.departamento_id = Departamento.departamento and Departamento.provincia_id = 19 ')
-        )    
-		
-    )
-   ));	   
-	      
-	
-   $afiliado = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id), 
-                                                    "contain" => array('Localidad', 'Departamento')
-								                 )
-				                 );
-   $this->set('afiliado', $afiliado);	
-	
-  }
-  
-  
-  public function importar(){
-    $cantidad_afiliados = 0; 
-    if (!empty($this->data))  {
-    	    set_time_limit ( 3000 );
-            $cantidad_afiliados = $this->Afiliado->import($this->data['field']['tmp_name']);
-            //$this->redirect('somecontroller/someaction');
-    }	 
+  public function show($id) {
+	   $this->Afiliado->unbindModel(array(
+	    'belongsTo' => array('Localidad')
+	    ));
 	 
-	$this->set(compact("cantidad_afiliados")); 
+	   $this->Afiliado->bindModel(array(
+	    'hasOne' => array(
+	        'Localidad' => array(
+	            'foreignKey' => false,
+	            'conditions' => array('Localidad.id = Afiliado.localidad_id and Localidad.provincia_id = 19 ')
+	        ),
+	        'Departamento' => array(
+	            'foreignKey' => false,
+	            'conditions' => array('Localidad.departamento_id = Departamento.departamento and Departamento.provincia_id = 19 ')
+	        )    
+			
+	    )
+	   ));	   
+		      
+		
+	   $afiliado = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id), 
+	                                                    "contain" => array('Localidad', 'Departamento')
+									                   )
+					                 );
+	   $this->set('afiliado', $afiliado);	
+		
+  }
+  
+
+  
+  
+    public function importar() {
+	    $cantidad_afiliados = 0; 
+	    if (!empty($this->data))  {
+	    	    set_time_limit ( 3000 );
+	            $cantidad_afiliados = $this->Afiliado->import($this->data['field']['tmp_name']);
+	            
+	    }	 	 
+		$this->set(compact("cantidad_afiliados"));	   
+  }
+
+
+
+  public function buildCondition($keyword, $filters, $filtros) {
+  	   $conditions = "Afiliado.activo = 1 and ";
 	   
+	    if ( $filters  == "Todos") {
+	   	    foreach ($filtros as $key => $value) {
+	   	    	    //echo " $key ----- $value <br>";
+	   	   	        $conditions .= $this->sql_condition($key, $keyword, 'or');
+			   }
+ 	   	    
+	    } else {
+	    	$conditions .= " and ".$this->sql_condition($filters, $keyword);
+	    	
+	    }
+  	  return $conditions;
   }
   
-  
-  public function getDepartamentos($provincia_id = 19){
-  	$departamentos = $this->Departamento->find("all", 
-  	                                           array("conditions" => array( "provincia_id" => $provincia_id),
-  	                                                 "sort" => "Departamento.nombre ASC",
-  	                                                 "recursive" => -1
-											        )
-								              );
-    $new_departamentos = array();
-    foreach ($departamentos as $departamento){
-      $new_departamentos[$departamento["Departamento"]["id"]] = $departamento["Departamento"]["nombre"];
-    }
-    $departamentos = $new_departamentos;
-    $this->set(compact("departamentos"));	
+  public function sql_condition($key, $keyword, $operator = ' and ' ) {
+  	   
+  	  $condition = ""; 
+      switch ($key) {
+			case 'Afiliado.nombre':							  
+				  $condition = " $key like \"%$keyword%\" $operator";
+			      break;
+		   case 'Afiliado.documento':							  
+		  	      $condition = " $key like \"%$keyword%\" $operator";
+				  break;
+	   }
+      return $condition;
   }
- 
- 
- 
-  public function getLocalidades($provincia_id = 19, $departamento_id){
-  	$localidades = $this->Localidad->find("all", 
-  	                                           array("conditions" => array( "provincia_id" => $provincia_id, "departamento_id" => $departamento_id),
-  	                                                 "sort" => "Localidad.nombre ASC",
-  	                                                 "recursive" => -1
-											        )
-								              );
-    $new_localidades = array();
-    foreach ($localidades as $localidad){
-      $new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
-    }
-    $localidades = $new_localidades;
-    $this->set(compact("localidades"));	
-  } 
  }

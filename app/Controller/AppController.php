@@ -32,6 +32,59 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+   
+ /*
+  * Funcion para obtener los departamentos de la provincia
+ */
+  
+  
+  public function getDepartamentos($provincia_id = 19) {
+	  	$departamentos = $this->Departamento->find("all", 
+	  	                                           array("conditions" => array( "provincia_id" => $provincia_id),
+	  	                                                 "sort" => "Departamento.nombre ASC",
+	  	                                                 "recursive" => -1
+												        )
+									              );
+	    $new_departamentos = array();
+	    foreach ($departamentos as $departamento) {
+	      $new_departamentos[$departamento["Departamento"]["id"]] = $departamento["Departamento"]["nombre"];
+	    }
+	    $departamentos = $new_departamentos;
+	    $this->set(compact("departamentos"));	
+  }
  
+ /*
+  * Funcion para obtener las localidades de ese departamento y de esa provincia pasadas como parametros
+  * 
+ */ 
+ 
+   public function getLocalidades($provincia_id = 19, $departamento_id) {
+	  	$localidades = $this->Localidad->find("all", 
+	  	                                           array("conditions" => array( "provincia_id" => $provincia_id, "departamento_id" => $departamento_id),
+	  	                                                 "sort" => "Localidad.nombre ASC",
+	  	                                                 "recursive" => -1
+												        )
+									              );
+	    $new_localidades = array();
+		
+	    foreach ($localidades as $localidad) {
+	      $new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
+	    }
+	    $localidades = $new_localidades;
+	    $this->set(compact("localidades"));	
+   } 
+  
+  
+  
+   public function getCentros($provincia_id = 19) {
+	  	$centros = $this->Centro->find("all");
+	    $new_centros = array();
+	    foreach ($centros as $centro) {
+	      $new_centros[$centro["Centro"]["id"]] = $centro["Centro"]["nombre"];
+	    }
+	    $centros = $new_centros;
+	    $this->set(compact("centros"));	
+   } 
+  
 	
 }

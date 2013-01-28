@@ -1,3 +1,4 @@
+    <? print_r($afiliado) ;?>
     <fieldset>  
         <legend><?php echo $title?> </legend>  
         <table class="full">
@@ -61,7 +62,7 @@
 
           <tr>
           	<td class="with-4 right">Departamento</td>
-            <td class="left"><?php echo $afiliado["Departamento"]["nombre"] ?></td>
+            <td class="left"><?php echo $departamento["Departamento"]["nombre"] ?></td>
           </tr> 
                 
           <tr>
@@ -82,16 +83,10 @@
                      <?php echo $this->form->input('email',    array('label'=> false,'type'=>'text', 'size'=>30,  'div' => array('tag' => '')));?>
                  </td>
           </tr>
-               
-               
-               
-                <tr>
-                 <td colspan="2">
-                   <hr />
-                 </td>
-               </tr>
-               
-              </table>
+          <tr>
+                 <td colspan="2">   <hr />    </td>
+          </tr>
+      </table>
               <table>
               	<tr>
               		<th colspan="6">
@@ -103,20 +98,21 @@
                      Departamento	
                    </td>
                    <td>
-                   <?php echo $this->form->select('departamento', $departamentos, array("class" => "")) ?>
+                   <?php echo $this->form->select('departamento', $departamentos, array("class" => "", "value" => $departamento["Departamento"]["id"], "empty" => "Seleccione un Departamento")) ?>
                    </td>
                    <td>
                    	Localidad
                    </td>
                    <td>
-                   	 <?php echo $this->form->select('localidad', array(), array("class" => "")) ?>
+                   	 <?php echo $this->form->select('localidad_id', $localidades, array("class" => "",  "empty" => "Seleccione una Localidad")) ?>
                    </td>
                    <td>	
                     Centros
                    </td>   
                    <td>
-                   	 <?php echo $this->form->select('centros', array(), array("class" => "")) ?>
+                   	 <?php echo $this->form->select('centro_id', $centros, array("class" => "", "empty" => "Seleccione un Centro")) ?>
                    </td>
+                   
                                	
                </tr>                
                

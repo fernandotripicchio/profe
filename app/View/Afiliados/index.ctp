@@ -5,11 +5,19 @@
 		<?php echo $this->Form->create("keys") ?>
 		<table>
 			<tr>
-				<td>				
+				<td class="with-4">				
 					<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"label" => "Datos a Buscar" )) ?>
 				</td>
 				<td>
+					<label for="keysKeys">Buscar por</label>
+					<?php echo $this->form->select('filters', $filtros,  array("empty" => false)) ?>
+  			    </td>                
+				
+				<td>
 					<?php echo $this->Form->submit("Buscar")?>
+				</td>
+				<td>	
+					<?php echo $this->Form->submit("Limpiar")?>
 				</td>
 			</tr>
 		</table>
