@@ -85,6 +85,52 @@ class AppController extends Controller {
 	    $centros = $new_centros;
 	    $this->set(compact("centros"));	
    } 
+   
+   
+   
   
+  public function all_condition($filtros, $keyword) {
+  	   $condition = "";
+	   
+	   
+  	   foreach ($filtros as $key => $keyvalue) {
+  	   	    
+	       $condition .= $this->sql_condition($key, $keyword, " or");		  
+	   }
+  	  
+	   //Limpio el ultimo or si es necesario
+	   // $char = "or";
+       // $pattern = "/[#{$char}]+$/i";
+       // $replacement = '';
+       // $condition = preg_replace($pattern, $replacement, $condition);
+       $condition = $this->cleanCondition("or", $condition);
+       $condition = "(". $condition.")";
+	   return $condition;
+  }
+  
+  public function sql_condition($key, $keyword, $operator = ' and' ) {
+  	   
+  	  $condition = ""; 
+      switch ($key) {
+			case 'Afiliado.nombre':							  
+				  $condition = " $key like \"%$keyword%\" $operator";
+			      break;
+		   case 'Afiliado.documento':						  
+		  	      $condition = " $key like \"%$keyword%\" $operator";
+				  break;
+	   }
+	  
+      $condition = $this->cleanCondition("and", $condition);
+      return $condition;
+  }   
+  
+  public function cleanCondition($char, $condition){
+   	   //$char = "and";
+       $pattern = "/[#{$char}]+$/i";
+       $replacement = '';
+       $cond = preg_replace($pattern, $replacement, $condition); 
+	   return $cond;	
+  }
+	 
 	
 }

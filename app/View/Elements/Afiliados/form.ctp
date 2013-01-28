@@ -1,4 +1,3 @@
-    <? print_r($afiliado) ;?>
     <fieldset>  
         <legend><?php echo $title?> </legend>  
         <table class="full">

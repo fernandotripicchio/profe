@@ -18,11 +18,10 @@
   public function index() {
 
 	$filtros =  array("Todos" => "Todos", "Afiliado.nombre" => "Nombre", "Afiliado.documento" => "Documento");
-	$condition = " 1 ";
-  	if ( isset($this->params["data"]["keys"]) ){
-  		
+	$condition = "";
+  	if ( isset($this->params["data"]["keys"]) ){  		
   		$condition .= $this->buildCondition( strtoupper( $this->params["data"]["keys"]["keys"] ) , $this->params["data"]["filters"], $filtros);
-
+        
   	};
 	
 	
@@ -107,32 +106,15 @@
 
 
   public function buildCondition($keyword, $filters, $filtros) {
-  	   $conditions = "Afiliado.activo = 1 and ";
+  	  $conditions = "Afiliado.activo = 1 and ";
 	   
-	    if ( $filters  == "Todos") {
-	   	    foreach ($filtros as $key => $value) {
-	   	    	    //echo " $key ----- $value <br>";
-	   	   	        $conditions .= $this->sql_condition($key, $keyword, 'or');
-			   }
- 	   	    
-	    } else {
-	    	$conditions .= " and ".$this->sql_condition($filters, $keyword);
-	    	
-	    }
-  	  return $conditions;
+	  if ( $filters  == "Todos") {
+   	    $conditions .= $this->all_condition($filtros, $keyword);
+	  } else {
+	   	$conditions .= $this->sql_condition($filters, $keyword);
+	  }
+   	  return $conditions;
   }
   
-  public function sql_condition($key, $keyword, $operator = ' and ' ) {
-  	   
-  	  $condition = ""; 
-      switch ($key) {
-			case 'Afiliado.nombre':							  
-				  $condition = " $key like \"%$keyword%\" $operator";
-			      break;
-		   case 'Afiliado.documento':							  
-		  	      $condition = " $key like \"%$keyword%\" $operator";
-				  break;
-	   }
-      return $condition;
-  }
+
  }
