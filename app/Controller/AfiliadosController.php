@@ -16,16 +16,14 @@
   
   
   public function index() {
-
 	$filtros =  array("Todos" => "Todos", "Afiliado.nombre" => "Nombre", "Afiliado.documento" => "Documento");
 	$condition = "";
   	if ( isset($this->params["data"]["keys"]) ){  		
   		$condition .= $this->buildCondition( strtoupper( $this->params["data"]["keys"]["keys"] ) , $this->params["data"]["filters"], $filtros);
         
-  	};
-	
-	
+  	};	
     $afiliados = $this->paginate('Afiliado', $condition);
+	$this->getDepartamentos();
     $this->set('afiliados', $afiliados);	 
 	$this->set('filtros', $filtros);	 
   }
@@ -33,14 +31,12 @@
  
   
   public function edit( $id ) {
-	    $this->Afiliado->id = $id;
-		
+	    $this->Afiliado->id = $id;		
 	    if (!$this->Afiliado->exists()) {
 	            throw new NotFoundException(__('Afiliado invalido'));
 	    }
 	    if ($this->request->is('get')) {
-	        $this->request->data = $this->Afiliado->read();
-	
+	        $this->request->data = $this->Afiliado->read();	
 	    } else {
 	        if ($this->Afiliado->save($this->request->data)) {
 	            $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");			
@@ -75,7 +71,7 @@
 	        ),
 	        'Departamento' => array(
 	            'foreignKey' => false,
-	            'conditions' => array('Localidad.departamento_id = Departamento.departamento and Departamento.provincia_id = 19 ')
+	            'conditions' => array('Localidad.departamento_id = Departamento.departamento_id and Departamento.provincia_id = 19 ')
 	        )    
 			
 	    )
@@ -106,8 +102,7 @@
 
 
   public function buildCondition($keyword, $filters, $filtros) {
-  	  $conditions = "Afiliado.activo = 1 and ";
-	   
+  	  $conditions = "Afiliado.activo = 1 and ";	   
 	  if ( $filters  == "Todos") {
    	    $conditions .= $this->all_condition($filtros, $keyword);
 	  } else {

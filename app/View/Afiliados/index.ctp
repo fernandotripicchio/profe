@@ -12,7 +12,10 @@
 					<label for="keysKeys">Buscar por</label>
 					<?php echo $this->form->select('filters', $filtros,  array("empty" => false)) ?>
   			    </td>                
-				
+				<td>
+					<label for="keysKeys">Departamento</label>
+					<?php echo $this->form->select('departamentos', $departamentos,  array("empty" => true)) ?>
+				</td>
 				<td>
 					<?php echo $this->Form->submit("Buscar")?>
 				</td>

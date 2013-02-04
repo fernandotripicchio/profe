@@ -105,6 +105,8 @@
 										
 					
 					//Fecha de Nacimiento
+					//Agregar para formatear fecha
+					
 					$nuevo_afiliado["fecha_nacimiento"] = $this->date_format($row[11]);
 					
 					//Fecha Alta
