@@ -1,6 +1,5 @@
 <!-- Formulario de Busqueda -->
 <div id = "listado_afiliados" class="listados">
-	Test Fecha <?php echo strtotime("19/02/1990")?>
 	<h1>Listado de Afiliados</h1>
 	<div id="formulario_afiliados">
 		<?php echo $this->Form->create("keys") ?>

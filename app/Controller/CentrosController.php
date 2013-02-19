@@ -12,6 +12,7 @@
         )
     );
   function beforeFilter() {
+  	 parent::beforeFilter();
      $this->layout = "admin";
   }
   

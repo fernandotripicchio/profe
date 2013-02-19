@@ -7,9 +7,9 @@
   
   
   function beforeFilter() {
-     //$this->layout = "admin";
-	 parent::beforeFilter();
-     $this->Auth->allow(array("logout", "login", "add", "index"));
+  	 parent::beforeFilter();
+     	 
+     $this->Auth->allow(array("logout", "login"));
   }
   
   
@@ -29,7 +29,8 @@
     if ($this->request->is('post')) {
     	
 		        
-        if ($this->Auth->login()) {       
+        if ($this->Auth->login()) {
+        	$this->Session->write("usuario_mail", $this->Auth->User("username") ); 
             return $this->redirect(array("controller" => "afiliados", "action" => "index"));
         } else {
             $this->Session->setFlash(__('Usuario or password es incorrecto'), 'default', array(), 'auth');

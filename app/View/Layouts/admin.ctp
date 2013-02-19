@@ -33,37 +33,16 @@ $cakeDescription = __d('Profe', 'PROFE');
 	?>
 </head>
 <body>
-     <div id="headerbg">
-       <div id="contenido">
-         <div class="left">
-           <?//=$this->Html->image("logo2.png",array("width"=>160, "height"=>90, "style" => "padding:5px;marging:10px"))?>
-           <br />
-         </div>
-         <div class="right">
-           <div>
-             <table style="float: right">
-                 <tr>
-                   <td>
-                        <strong> Usuario: Admin </strong>
-                   </td>
-                   <td>
-                       <?=$this->html->link('Salir' , array('controller' => 'Users', 'action' => 'logout'), array('div'=> false,'class'=> 'right')); ?>
-                   </td>
-                 </tr>
-               </table>
-           </div>
-           <div>
-             <?=$this->element("menu");?>
-           </div>
-           
-         </div>
-         
-       </div>
-     </div>
-
+   <div id="headerbg">
+      <div id="contenido">
+           <div>  <?=$this->element("menu", array("nombre_usuario" => $nombre_usuario));?>  </div>           
+       </div>         
+    </div>
 
     <div class="clear"></div>
+    
     <!-- CENTER CONTENT -->
+    
 	<div id="tabContent">
 	    <div id="contentHolder">
 	        <!-- The AJAX fetched content goes here -->
@@ -81,7 +60,7 @@ $cakeDescription = __d('Profe', 'PROFE');
 <!-- begin footer -->
 	<div id="footer">
 	     <div class="pinstripe">&nbsp;</div>
-	     <div id="copyrightSection">Profe San Luis </div>
+	     <div id="copyrightSection">Profe San Luis - <?php echo date("Y"); ?></div>
 	</div>   
 </body>
 </html>

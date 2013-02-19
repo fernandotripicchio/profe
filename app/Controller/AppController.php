@@ -34,7 +34,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
    
    public $components = array('RequestHandler',
-                              'Auth'=> array('autoRedirect' => array( 'controller' => 'usuarios', 'action' => 'login')),
+                              'Auth',
                               'Session');   
    
    
@@ -46,8 +46,9 @@ class AppController extends Controller {
                                  'fields' => array('username' => 'email')
                               ));
           
-          $this->Auth->loginAction = array( 'controller' => 'Usuarios', 'action' => 'login');
-          $this->Auth->loginRedirect = array('controller' => 'Afiliados', 'action' => 'index');
+          $this->Auth->loginAction = array( 'controller' => 'usuarios', 'action' => 'login');
+          $this->Auth->loginRedirect = array('controller' => 'afiliados', 'action' => 'index');
+		  $this->set('nombre_usuario', $this->Auth->User("email"));
    }  
  /*
   * Funcion para obtener los departamentos de la provincia
