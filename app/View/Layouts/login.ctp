@@ -29,14 +29,17 @@ $cakeDescription = __d('Profe', 'PROFE');
  <body>
      <!-- CENTER CONTENT -->
      <div id="container">
-			<?php echo $this->Session->flash(); ?>
+     		<div id="flashMessages">
+  		       <?php echo $this->Session->flash(); ?>
+		    </div>
+			
 			<?php echo $this->fetch('content'); ?>
 
      </div>
      <!--CLEAR FOOTER TO PREVENT BUNCHING-->
      <div class="clear"></div>
      <div id="footer"></div>  
-     <?php echo $this->element('sql_dump'); ?>
+     <?//php echo $this->element('sql_dump'); ?>
 </body>
 </html>
 <?=$this->Html->scriptBlock("var root = '".$this->Html->url('/')."';");?>

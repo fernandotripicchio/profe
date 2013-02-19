@@ -48,7 +48,7 @@ $cakeDescription = __d('Profe', 'PROFE');
 	        <!-- The AJAX fetched content goes here -->
 	        <div id="flashMessages">
   		       <?php echo $this->Session->flash(); ?>
-		    </div
+		    </div>
      	<?php echo $this->fetch('content'); ?>
 	    </div>
 	</div>
