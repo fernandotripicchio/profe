@@ -1,0 +1,64 @@
+body {
+   background: #FAFAFA;
+   font: 13px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   color: #000;
+}
+
+#container {
+   position: relative;
+   margin: 0 auto;
+   width: 90%;
+   margin-top: 100px;
+}
+
+#head{
+   height: 60px;
+}
+
+#body{
+   height: 400px;
+}
+
+.login {
+   margin-left: auto;
+   margin-right: auto;
+   width: 40%;
+}
+
+legend {
+  margin-right: -50px;
+  font-weight: bold;
+  color: #404040;
+}
+
+
+/* General Fields */
+input[type="text"], input[type="password"],
+textarea {
+    background: #dde7ed;
+    border: 1px solid #b2b7b9;
+    padding: 3px 5px 3px 5px;
+    font-size: 12px;
+    color: #535252;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    outline: none;
+    -webkit-box-shadow: 0px 0px 3px #cdcdcd, inset 0 0 5px #e2e1e1;
+    -moz-box-shadow: 0px 0px 3px #cdcdcd, inset 0 0 5px #e2e1e1; }
+    input[type="text"]:focus, input[type="password"]:focus,
+    textarea:focus {
+       outline: none;
+       border: 1px solid #85898A;
+       -webkit-box-shadow: 0px 0px 3px #cdcdcd, inset 0 0 5px #bfbfbf;
+       -moz-box-shadow: 0px 0px 3px #cdcdcd, inset 0 0 5px #bfbfbf; }
+    input[type="text"]:disabled, input[type="password"]:disabled,
+    textarea:disabled {
+        background: #DDD;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none; 
+    }
+    textarea {
+        resize: none;
+        overflow: auto; 
+    }
