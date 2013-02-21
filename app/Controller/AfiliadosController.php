@@ -90,7 +90,7 @@
 
   
   
-    public function importar() {
+ public function importar() {
 	    $cantidad_afiliados = 0; 
 	    if (!empty($this->data))  {
 	    	    set_time_limit ( 3000 );

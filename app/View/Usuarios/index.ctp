@@ -30,8 +30,8 @@
 	                 	<?php echo $usuario['Usuario']['email'];  ?>
 	                 </td>
                      <td>
-                     	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $usuario['Usuario']['id']))?>
-                        <?php echo $this->html->link("Editar", array("controller" => "afiliados", "action" => "edit", $usuario['Usuario']['id']))?>	                 	
+                     	<?php echo $this->html->link("Ver", array("controller" => "usuarios", "action" => "show", $usuario['Usuario']['id']))?>
+                        <?php echo $this->html->link("Editar", array("controller" => "usuarios", "action" => "edit", $usuario['Usuario']['id']))?>	                 	
                      </td>	                 
 	                 
             </tr>

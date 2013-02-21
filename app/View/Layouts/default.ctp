@@ -1,61 +1,67 @@
 <?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       Cake.View.Layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
-
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
+$cakeDescription = __d('Profe', 'PROFE');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
+		PROFE SAN LUIS
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
-		echo $this->Html->css('cake.generic');
-
+        echo $this->Html->css('grid');
+        echo $this->Html->css('theme/jquery-ui');
+        echo $this->Html->css('menu/menu');
+        echo $this->Html->css('popup');
+        echo $this->Html->css('buttons');
+        echo $this->Html->css('colorbox/colorbox');
+		echo $this->Html->css('pagination');
+		echo $this->Html->css('admin');
+		echo $this->Html->css('flashmessage');
+		echo $this->Html->css(array('tabla'));
+        echo $this->Html->script(array('jquery',
+                                       'jquery.validate',
+                                       'jquery.colorbox',
+                                       'jquery.ui',
+                                       'jquery.buttons',
+                                       'calendar-spanish',
+									   'afiliado/afiliado'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
-		<div id="content">
+   <div id="headerbg">
+      <div id="contenido">
+           <div>  <?=$this->element("menu", array("nombre_usuario" => $nombre_usuario));?>  </div>           
+       </div>         
+    </div>
 
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
+    <div class="clear"></div>
+    
+    <!-- CENTER CONTENT -->
+    
+	<div id="tabContent">
+	    <div id="contentHolder">
+	        <!-- The AJAX fetched content goes here -->
+	        <div id="flashMessages">
+  		       <?php echo $this->Session->flash(); ?>
+		    </div>
+     	<?php echo $this->fetch('content'); ?>
+	    </div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<div class="clear"></div>
+	<div>
+	    <?//php echo $this->element('sql_dump'); ?>
+	</div>
+   
+<!-- begin footer -->
+	<div id="footer">
+	     <div class="pinstripe">&nbsp;</div>
+	     <div id="copyrightSection">Profe San Luis - <?php echo date("Y"); ?></div>
+	</div>   
 </body>
 </html>
+<?=$this->Html->scriptBlock("var root = '".$this->Html->url('/')."';");?>

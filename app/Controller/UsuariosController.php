@@ -15,7 +15,6 @@
   
 
  function index() {
- 	$this->layout = "admin";
 	$usuarios = $this->paginate('Usuario');
     $this->set('usuarios', $usuarios);		
 	
@@ -46,7 +45,6 @@
  
  
  public function add() {
- 	$this->layout = "admin";
     if (!empty($this->data)) {
 			$this->Usuario->create();
 			if ($this->Usuario->save($this->data)) {
@@ -59,6 +57,19 @@
     } 	
  } // Del add
  
+ 
+public function edit($id = null) {
+    $this->Usuario->id = $id;
+    if ($this->request->is('get')) {
+        $this->request->data = $this->Usuario->read();
+    } else {
+        if ($this->Usuario->save($this->request->data)) {
+            $this->Session->setFlash('El usuario se modificó con éxito');
+            $this->redirect(array('action' => 'index'));
+        }
+    }
+}
+  
   
  }
  
