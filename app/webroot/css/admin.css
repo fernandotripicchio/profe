@@ -41,3 +41,8 @@ margin:0 0 6px 7px;
     left: 10px !important;	
 }
 
+
+.th_header {
+   background-color: #a9a9a9;
+   font: bold 1.0em/1.5em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+}

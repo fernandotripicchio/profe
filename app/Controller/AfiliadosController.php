@@ -17,6 +17,7 @@
   
   
   public function index() {
+  
 	$filtros =  array("Todos" => "Todos", "Afiliado.nombre" => "Nombre", "Afiliado.documento" => "Documento");
 	$condition = "";
   	if ( isset($this->params["data"]["keys"]) ){  		
@@ -41,9 +42,9 @@
 	    } else {
 	        if ($this->Afiliado->save($this->request->data)) {
 	            $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");			
-	            $this->redirect(array('action' => 'index'));
+	            $this->redirect(array("controller" => "afiliados", "action" => "show", $id));
 	        } else {
-	        	$this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
+	        	$this->Session->setFlash("No se pudo modificar el Afiliado S", "error");	
 	        }
 	    }
 		//Departamentos
@@ -73,6 +74,11 @@
 	        'Departamento' => array(
 	            'foreignKey' => false,
 	            'conditions' => array('Localidad.departamento_id = Departamento.departamento_id and Departamento.provincia_id = 19 ')
+	        ),
+	        'Centro' => array(
+	            'foreignKey' => false,
+	            'conditions' => array('Centro.id = Afiliado.centro_id ')
+	        	        
 	        )    
 			
 	    )
@@ -80,16 +86,14 @@
 		      
 		
 	   $afiliado = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id), 
-	                                                    "contain" => array('Localidad', 'Departamento')
+	                                                    "contain" => array('Localidad', 'Departamento', 'Centro')
 									                   )
 					                 );
 	   $this->set('afiliado', $afiliado);	
 		
   }
   
-
-  
-  
+ 
  public function importar() {
 	    $cantidad_afiliados = 0; 
 	    if (!empty($this->data))  {

@@ -1,9 +1,9 @@
 <?// print_r($afiliado)?>
 <div class="show_table">
 	<table>
-		<caption>
-			Datos del Afiliado
-		</caption>
+        <tr>
+          	<td class="width-4 th_header" colspan="4"> Datos del Afiliado </td>
+        </tr>		
 		<tr>
          <td class="with-4 right">Nombre: </td>
          <td class="left"><?php echo $afiliado["Afiliado"]["nombre"]?></td> 
@@ -48,7 +48,7 @@
 			<td class="left" colspan="3"><?php echo $afiliado["Afiliado"]["incapacidad"] ?></td>
           </tr>	
           <tr>
-          	<td class="width-4" colspan="4">Domicilio</td>
+          	<td class="width-4 th_header" colspan="4">Domicilio</td>
           </tr>
           <tr>
           	<td class="width-4 right">Calle</td>
@@ -68,6 +68,25 @@
           	<td class="width-4 right">Departamento:</td>
           	<td class="left"><?php echo $afiliado["Departamento"]["nombre"] ?></td>
           </tr>
+          <tr>
+          	<td class="width-4 th_header" colspan="4" > Centro de Salud      </td>
+          </tr>          
+          <tr>
+          	<td class="width-4 right">Nombre</td>
+          	<td class="left"> <?php echo $afiliado["Centro"]["nombre"] ?>   </td>
+          	<td class="width-4 right">Direccion:</td>
+          	<td class="left"><?php echo $afiliado["Centro"]["direccion"] ?> </td>
+          	
+          </tr>
+          <tr>
+          	<td class="width-4 th_header" colspan="4"> Diagnosticos </td>
+          </tr>		
+                
+          <tr>
+          	<td class="width-4" colspan="4">TBI</td>
+          </tr>
+
+          
 	</table>
    <div class="botonera">
         <?php echo $this->html->link('Volver',array("controller"=>"afiliados", "action" => "index"), array('class' => 'button'));?>

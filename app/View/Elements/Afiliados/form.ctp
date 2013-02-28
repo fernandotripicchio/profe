@@ -19,7 +19,7 @@
 				 <tr>
 				    <td class=" width-4 right">Fecha Alta: </td>
 			        <td class="left" >
-			                      <?php echo $this->Time->format('d/m/Y', $afiliado['Afiliado']['fecha_alta']); ?>
+			             <?php echo $this->Time->format('d/m/Y', $afiliado['Afiliado']['fecha_alta']); ?>
 			        </td>			
 				</tr>
 				 				

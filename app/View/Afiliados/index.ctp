@@ -38,7 +38,7 @@
                 <th scope="col">Fecha Nacimiento</th>
                 <th scope="col">Fecha Alta</th>                
                 <th scope="col">Localidad</th>
-                <th scope="col">Domicilio</th>   
+                <th scope="col">Centro de Salud</th>   
                 <th>&nbsp;</th>             
             </tr>
         </thead>
@@ -67,8 +67,9 @@
 	                    <?php echo $afiliado['Localidad']['nombre']  ?>	
 	                 </td>
 	                 <td class="left">
-	                    <?php echo $afiliado['Afiliado']['domicilio_calle'] ?>
+	                    Centro de Salud
 	                 </td>
+	                 
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $afiliado['Afiliado']['id']))?>
                         <?php echo $this->html->link("Editar", array("controller" => "afiliados", "action" => "edit", $afiliado['Afiliado']['id']))?>	                 	
