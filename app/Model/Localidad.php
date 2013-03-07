@@ -1,12 +1,17 @@
-<?php
+<?php                          
  class Localidad extends AppModel {
       public $name = 'Localidad';
 	  
-	  public $belongsTo = array('Departamento'=> array(
-	                                             'conditions' => array('Departamento.provincia_id' => '19' ) 
-							    	            ), 
-	                            'Provincia' 
-								);
+
+      public $belongsTo = array('Departamento' => array(
+			                         'className' => 'Departamento',
+			                         'foreignKey' => 'departamento',
+		                             ),
+		                          'Provincia' => array(
+		                             'className' => 'Provincia',
+		                             'foreignKey' => 'provincia',
+								  )   
+							    );								
 	  
       public $validate = array(
         'nombre' => array(
@@ -24,9 +29,9 @@
      
 	 public function findLocalidad($localidad_id, $departamento_id, $provincia_id = 19){
               $localidad =  $this->find("first", array("conditions" => 
-			                                              array("localidad_id " => $localidad_id,
-														        "provincia_id" => $provincia_id,
-																"departamento_id" => $departamento_id), 
+			                                              array("localidad " => $localidad_id,
+														        "provincia" => $provincia_id,
+																"departamento" => $departamento_id), 
 			                                               "recursive" => -1) );
 		      return $localidad; 
 														   	 	

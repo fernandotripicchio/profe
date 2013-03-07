@@ -3,10 +3,21 @@
  class Afiliado extends AppModel {
       public $name = 'Afiliado';
 	  
-	  public $belongsTo = array('Grupo',	                             
+	  public $belongsTo = array('Grupo',	
+	                            'Centro',                             
 	                            'Localidad' => array(
                                    'className'  => 'Localidad',
-                                 ) 
+                                   'foreignKey' => 'localidad_id'
+                                 ) ,
+	                            'Departamento' => array(
+                                   'className'  => 'Departamento',
+                                   'foreignKey' => 'departamento'
+                                 ) ,
+	                            'Provincia' => array(
+                                   'className'  => 'Provincia',
+                                   'foreignKey' => 'provincia'
+                                 ) ,
+                                 
 	                            );
 	  
 	  
@@ -65,7 +76,9 @@
             $provincia_id    = $row[19];
 			$departamento_id = $row[20];
 			$localidad_id    = $row[21];
-			$localidad = $this->Localidad->findLocalidad($localidad_id, $departamento_id, $provincia_id = 19);
+			$localidad    = $this->Localidad->findLocalidad($localidad_id, $departamento_id, $provincia_id);
+			$departamento = $this->Departamento->findDepartamento($departamento_id, $provincia_id);
+			$provincia    = 19; #$this->Provincia->findProvincia($provincia_id);
 			if (sizeof($grupo) > 0 && sizeof($localidad) > 0) {
 		            $clave_numero = $nuevo_afiliado["clave_numero"] = $row[2];
 					$nuevo_afiliado["tipo_documento"] = strtoupper( $row[9] );
@@ -76,6 +89,10 @@
 					$nuevo_afiliado["grupo_id"]   = $grupo["Grupo"]["id"];
 					//Localidad
 					$nuevo_afiliado["localidad_id"]    = $localidad["Localidad"]["id"];
+					$nuevo_afiliado["localidad"]    = $localidad_id;
+					$nuevo_afiliado["departamento"]    = $departamento["Departamento"]["id"];
+					$nuevo_afiliado["provincia"]    = $provincia;
+					
 					$nuevo_afiliado["domicilio_calle"] = strtoupper( $row[14] );
 					$nuevo_afiliado["domicilio_nro"]   = strtoupper( $row[15] );
 					$nuevo_afiliado["domicilio_piso"]  = strtoupper( $row[16] );					

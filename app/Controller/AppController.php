@@ -57,7 +57,7 @@ class AppController extends Controller {
   
   public function getDepartamentos($provincia_id = 19) {
 	  	$departamentos = $this->Departamento->find("all", 
-	  	                                           array("conditions" => array( "provincia_id" => $provincia_id),
+	  	                                           array("conditions" => array( "provincia" => $provincia_id),
 	  	                                                 "sort" => "Departamento.nombre ASC",
 	  	                                                 "recursive" => -1
 												        )
@@ -77,7 +77,7 @@ class AppController extends Controller {
  
    public function getLocalidades($provincia_id = 19, $departamento_id) {
 	  	$localidades = $this->Localidad->find("all", 
-	  	                                           array("conditions" => array( "provincia_id" => $provincia_id, "departamento_id" => $departamento_id),
+	  	                                           array("conditions" => array( "provincia" => $provincia_id, "departamento" => $departamento_id),
 	  	                                                 "sort" => "Localidad.nombre ASC",
 	  	                                                 "recursive" => -1
 												        )

@@ -33,87 +33,59 @@
  
   
   public function edit( $id ) {
-	    $this->Afiliado->id = $id;		
-	    if (!$this->Afiliado->exists()) {
+	$this->Afiliado->id = $id;		
+	if (!$this->Afiliado->exists()) {
 	            throw new NotFoundException(__('Afiliado invalido'));
-	    }
-	    if ($this->request->is('get')) {
+	}
+	if ($this->request->is('get')) {
 	        $this->request->data = $this->Afiliado->read();	
-	    } else {
+	} else {
 	        if ($this->Afiliado->save($this->request->data)) {
 	            $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");			
 	            $this->redirect(array("controller" => "afiliados", "action" => "show", $id));
 	        } else {
-	        	$this->Session->setFlash("No se pudo modificar el Afiliado S", "error");	
+	        	$this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
 	        }
-	    }
-		//Departamentos
-		$afiliado        = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id)));
-		$departamento_id = $afiliado["Localidad"]["departamento_id"];
-		$departamento    = $this->Departamento->find("first", array("conditions" => array("Departamento.departamento_id" => $departamento_id, "Departamento.provincia_id" => 19)));
-		$this->getDepartamentos();
-		$this->getCentros();
-		$this->getLocalidades($afiliado["Localidad"]["provincia_id"], $departamento["Departamento"]["departamento_id"] );
-		$this->set('afiliado', $this->Afiliado->read());	
-		$this->set('departamento', $departamento);	
-	  	
+	}
+	//Departamentos
+	$afiliado        = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id)));
+	$departamento_id = $afiliado["Localidad"]["departamento"];
+	$departamento    = $this->Departamento->find("first", array("conditions" => array("Departamento.departamento" => $departamento_id, "Departamento.provincia" => 19)));
+	$this->getDepartamentos();
+	$this->getCentros();
+	$this->getLocalidades($afiliado["Localidad"]["provincia"], $departamento["Departamento"]["departamento"] );
+	$this->set('afiliado', $this->Afiliado->read());	
+	$this->set('departamento', $departamento);	
   }
   
   
   public function show($id) {
-	   $this->Afiliado->unbindModel(array(
-	    'belongsTo' => array('Localidad')
-	    ));
-	 
-	   $this->Afiliado->bindModel(array(
-	    'hasOne' => array(
-	        'Localidad' => array(
-	            'foreignKey' => false,
-	            'conditions' => array('Localidad.id = Afiliado.localidad_id and Localidad.provincia_id = 19 ')
-	        ),
-	        'Departamento' => array(
-	            'foreignKey' => false,
-	            'conditions' => array('Localidad.departamento_id = Departamento.departamento_id and Departamento.provincia_id = 19 ')
-	        ),
-	        'Centro' => array(
-	            'foreignKey' => false,
-	            'conditions' => array('Centro.id = Afiliado.centro_id ')
-	        	        
-	        )    
-			
-	    )
-	   ));	   
-		      
-		
-	   $afiliado = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id), 
-	                                                    "contain" => array('Localidad', 'Departamento', 'Centro')
-									                   )
-					                 );
-	   $this->set('afiliado', $afiliado);	
-		
+   $afiliado = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id)));
+   $this->set('afiliado', $afiliado);	
+	   		
   }
   
  
  public function importar() {
-	    $cantidad_afiliados = 0; 
-	    if (!empty($this->data))  {
+    $cantidad_afiliados = 0; 
+    if (!empty($this->data))  {
 	    	    set_time_limit ( 3000 );
 	            $cantidad_afiliados = $this->Afiliado->import($this->data['field']['tmp_name']);
 	            
-	    }	 	 
-		$this->set(compact("cantidad_afiliados"));	   
+    }	 	 
+	$this->set(compact("cantidad_afiliados"));	   
   }
 
 
 
   public function buildCondition($keyword, $filters, $filtros) {
-  	  $conditions = "Afiliado.activo = 1 and ";	   
-	  if ( $filters  == "Todos") {
+  	$conditions = "Afiliado.activo = 1 and ";	   
+	if ( $filters  == "Todos") {
    	    $conditions .= $this->all_condition($filtros, $keyword);
-	  } else {
+	} else {
 	   	$conditions .= $this->sql_condition($filters, $keyword);
-	  }
-   	  return $conditions;
+	}
+   	return $conditions;
   }
   
 

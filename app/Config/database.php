@@ -65,7 +65,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => '3833105m',
-		'database' => 'profe_dev2',
+		'database' => 'profe_dev',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
