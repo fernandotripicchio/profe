@@ -79,7 +79,8 @@
 
 
   public function buildCondition($keyword, $filters, $filtros) {
-  	$conditions = "Afiliado.activo = 1 and ";	   
+  	//$conditions = "Afiliado.activo = true and ";	   
+  	$conditions = "Afiliado.activo = 1 and";
 	if ( $filters  == "Todos") {
    	    $conditions .= $this->all_condition($filtros, $keyword);
 	} else {
