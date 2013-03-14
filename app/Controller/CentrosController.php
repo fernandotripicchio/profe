@@ -49,10 +49,10 @@
 
     } else {
         if ($this->Centro->save($this->request->data)) {
-            $this->Session->setFlash('Se modifico el Centro con éxito');
+            $this->Session->setFlash('Se modifico el Centro con éxito', "sucess");
             $this->redirect(array('action' => 'index'));
         } else {
-            $this->Session->setFlash('No se pudo modificar el Centro.');
+            $this->Session->setFlash('No se pudo modificar el Centro', "error");
         }
     }  	
   }
