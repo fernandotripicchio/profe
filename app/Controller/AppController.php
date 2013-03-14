@@ -49,6 +49,7 @@ class AppController extends Controller {
           $this->Auth->loginAction = array( 'controller' => 'usuarios', 'action' => 'login');
           $this->Auth->loginRedirect = array('controller' => 'afiliados', 'action' => 'index');
 		  $this->set('nombre_usuario', $this->Auth->User("email"));
+		  $this->set('id_usuario', $this->Auth->User("id"));
    }  
  /*
   * Funcion para obtener los departamentos de la provincia

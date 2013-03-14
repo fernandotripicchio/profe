@@ -1,5 +1,4 @@
-<?
- 
+<? 
  class CentrosController extends AppController {
   var $name = 'Centros';
   public $helpers = array("Html","Form");

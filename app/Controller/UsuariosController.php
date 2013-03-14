@@ -30,6 +30,7 @@
 		        
         if ($this->Auth->login()) {
         	$this->Session->write("usuario_mail", $this->Auth->User("username") ); 
+			$this->Session->write("usuario_id", $this->Auth->User("id") );
 			$this->Session->setFlash( __('Bienvenido '.$this->Auth->User("username") ), "success");
             return $this->redirect(array("controller" => "afiliados", "action" => "index"));
         } else {
@@ -51,7 +52,7 @@
 				$this->Session->setFlash(__('Se guardo el usuario con éxito', true));
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('El usurio no se pudo guardar. Por favor intente de nuevo.', true));
+				$this->Session->setFlash(__('El usurio no se pudo guardar. Por favor intente de nuevo.', "success"));
 		        //$this->redirect(array('action'=>'add'));        
 			}
     } 	
@@ -66,8 +67,13 @@ public function edit($id = null) {
         if ($this->Usuario->save($this->request->data)) {
             $this->Session->setFlash('El usuario se modificó con éxito');
             $this->redirect(array('action' => 'index'));
+        } else {
+        	 $this->Session->setFlash("No se pudo modificar el Usuario", "error");	
+                     	
         }
     }
+	
+	
 }
   
   
