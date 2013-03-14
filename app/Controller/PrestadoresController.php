@@ -31,5 +31,31 @@
     } 	
  } // Del add  
 	
+	
+public function edit($id = null) {
+    $this->Prestador->id = $id;
+    if ($this->request->is('get')) {
+        $this->request->data = $this->Prestador->read();
+    } else {
+        if ($this->Prestador->save($this->request->data)) {
+            $this->Session->setFlash('El prestador se modificó con éxito', "success");
+            $this->redirect(array('action' => 'index'));
+        } else {
+        	 $this->Session->setFlash("No se pudo modificar el Prestador", "error");	
+                     	
+        }
+    }
+}
+  
+  public function show($id){
+    $this->Prestador->id = $id;
+    if (!$this->Prestador->exists()) {
+            throw new NotFoundException(__('Prestador invalido'));
+    }  	
+	
+   $this->set('prestador', $this->Prestador->read());	
+	
+  }	
+	
  }
 ?>

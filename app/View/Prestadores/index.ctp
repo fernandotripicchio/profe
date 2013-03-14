@@ -11,9 +11,10 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>                
+                <th scope="col">Telefono</th>                
                 <th scope="col">Documento</th>
                 <th scope="col">Email</th>
-                <th scope="col">Telefono</th>                
+                                
                 <th>&nbsp;</th>             
             </tr>
         </thead>
@@ -29,10 +30,10 @@
 	                    <?php echo $prestador['Prestador']['nombre']   ?>
  	                 </td>
 	                 <td class="left">
-	                    <?php echo $prestador['Prestador']['documento']  ?>
+	                    <?php echo $prestador['Prestador']['telefono']  ?>
 	                 </td>
 	                 <td class="left">
-	                    <?php echo $prestador['Prestador']['email']  ?>	
+	                    <?php echo $prestador['Prestador']['email']     ?>	
 	                 </td>
                  
                      <td>

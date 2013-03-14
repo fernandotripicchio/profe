@@ -11,7 +11,7 @@
                <tr >
                  <td>Télefono:</td>
                  <td class="last">
-                     <?=$this->form->input('apellido',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
+                     <?=$this->form->input('telefono',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
                <tr >
@@ -20,6 +20,14 @@
                      <?=$this->form->input('email',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'email', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
+               
+               <tr >
+                 <td>Observaciones:</td>
+                 <td class="last">
+                     <?=$this->form->input('observaciones',    array('label'=> false, 'div' => array('tag' => '')));?>
+                 </td>
+               </tr>
+               
 
 
                <tr>
