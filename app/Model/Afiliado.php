@@ -53,7 +53,9 @@
 
        );
 	   
-	   
+	 function bajas($filename){
+	 	
+	 }  
 	   
  
 	 //Funcion para importar usuarios desde un archivo CSV y generar un nuevo listado  

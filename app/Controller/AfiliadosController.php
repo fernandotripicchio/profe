@@ -112,6 +112,18 @@
     }	 	 
 	$this->set(compact("cantidad_afiliados"));	   
   }
+ 
+ 
+ public function bajas(){
+    $cantidad_afiliados = 0; 
+    if (!empty($this->data))  {
+	    	    set_time_limit ( 3000 );
+	            $cantidad_afiliados = $this->Afiliado->bajas($this->data['field']['tmp_name']);
+	            
+    }	 	 
+	$this->set(compact("cantidad_afiliados"));	   
+ 	
+ }
 
 
 
