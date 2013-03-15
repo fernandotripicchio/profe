@@ -14,7 +14,12 @@
   			    </td>                
 				<td>
 					<label for="keysKeys">Departamento</label>
-					<?php echo $this->form->select('departamentos', $departamentos,  array("empty" => true)) ?>
+			        <select name="data[departamentos]">
+			                 <option value="0"></option>
+                             <?php foreach($departamentos as $key=>$value) { ?>
+                                   <option value="<?=$key?>" <?=(($afiliadosSession["departamentos"] == $key) ? "selected": "")?>><?=$value?></option>                             	
+                             <?php } ?>
+			        </select>					
 				</td>
 				<td>
 					<?php echo $this->Form->submit("Buscar")?>
@@ -36,7 +41,8 @@
                 <th scope="col">Nombre</th>                
                 <th scope="col">Documento</th>
                 <th scope="col">Fecha Nacimiento</th>
-                <th scope="col">Fecha Alta</th>                
+                <th scope="col">Fecha Alta</th>  
+                <th scope="col">Departamento</th>                              
                 <th scope="col">Localidad</th>
                 <th scope="col">Centro de Salud</th>   
                 <th>&nbsp;</th>             
@@ -47,7 +53,6 @@
             <?php foreach ($afiliados as $afiliado): ?>
                <tr>
 	                 <td class="left">
-
 	                 	<?php echo $afiliado['Afiliado']['clave_numero'];      ?>
 	                 </td>
 	                 <td class="left">
@@ -62,14 +67,16 @@
 	                 <td>                      
 	                    <?php echo $this->Time->format('d/m/Y', $afiliado['Afiliado']['fecha_alta']); ?>
 	                 </td>
+	                 <td class="left">
+	                    <?php echo $afiliado['Departamento']['nombre']  ?>	
+	                 </td>
 	                 
 	                 <td class="left">
 	                    <?php echo $afiliado['Localidad']['nombre']  ?>	
 	                 </td>
 	                 <td class="left">
-	                    Centro de Salud
-	                 </td>
-	                 
+	                    <?php echo $afiliado['Centro']['nombre']  ?>
+	                 </td>	                 
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $afiliado['Afiliado']['id']))?>
                         <?php echo $this->html->link("Editar", array("controller" => "afiliados", "action" => "edit", $afiliado['Afiliado']['id']))?>	                 	

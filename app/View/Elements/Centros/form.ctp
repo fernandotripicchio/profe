@@ -23,25 +23,10 @@
                <tr >
                  <td>Voz IP:</td>
                  <td class="last">
-                     <?=$this->form->input('voz_ip', array('label'=>false, 'type'=>'password', 'size'=>30, 'class' => 'required', 'value' => "", 'id' => 'password', 'div' => array('tag' => '')));?>
+                     <?=$this->form->input('voz_ip', array('label'=>false, 'type'=>'text', 'size'=>30, 'class' => 'required', 'value' => "", 'id' => 'password', 'div' => array('tag' => '')));?>
                  </td>
                </tr>
 
-
-
-               <tr>
-                 <td colspan="2">
-                   <hr />
-                 </td>
-               </tr>
-               
-               <tr>
-                 <td colspan="2" style="text-align: center">
-                     <?=$this->form->submit("Enviar" , array('div' => false,'class' => 'button left' ) )?>
-                     <?=$this->html->link('Listado','/centros/', array('class' => 'button left'));?>
-                 </td>
-               </tr>
-                
                
              </tbody>
 

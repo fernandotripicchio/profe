@@ -2,6 +2,7 @@
  class Prestador extends AppModel {
       public $name = 'Prestador';
 	  
+	  public $belongsTo = array("Prestacion");
       public $validate = array(
         'nombre' => array(
             'required' => array(

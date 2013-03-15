@@ -22,13 +22,11 @@
           <caption>Centros</caption>
           <thead>
             <tr>
+            	<th scope="col">ID</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Direccion</th>                
                 <th scope="col">Telefonos</th>
-                <th scope="col">Ciudad</th>
-                <th scope="col">Departamento</th>                
-                <th scope="col">Afiliados</th>
-   
+                <th scope="col">Localidad</th>                                
                 <th>&nbsp;</th>             
             </tr>
         </thead>
@@ -37,7 +35,10 @@
             <?php foreach ($centros as $centro): ?>
                <tr>
 	                 <td class="left">
-
+	                 	<?php echo $centro['Centro']['id'];      ?>
+	                 </td>
+               	
+	                 <td class="left">
 	                 	<?php echo $centro['Centro']['nombre'];      ?>
 	                 </td>
 	                 <td class="left">
@@ -46,19 +47,13 @@
 	                 <td>
 	                    <?php echo $centro['Centro']['telefonos']  ?>
 	                 </td>
-	                 
 	                 <td class="left">
 	                    <?php echo $centro['Localidad']['nombre']  ?>	
 	                 </td>
-	                 <td class="left">
-	                    &nbsp;
-	                 </td>
-	                 <td class="left">
-	                    &nbsp;
-	                 </td>	                 
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "centros", "action" => "show", $centro['Centro']['id']))?>
-                        <?php echo $this->html->link("Editar", array("controller" => "centros", "action" => "edit", $centro['Centro']['id']))?>	                 	
+                        <?php echo $this->html->link("Editar", array("controller" => "centros", "action" => "edit", $centro['Centro']['id']))?>
+ 	                 	<?php echo $this->html->link("Afiliados", array("controller" => "centros", "action" => "edit", $centro['Centro']['id']))?>
                      </td>	                 
 	                 
             </tr>

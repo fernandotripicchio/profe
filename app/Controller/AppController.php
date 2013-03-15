@@ -136,6 +136,10 @@ class AppController extends Controller {
 		   case 'Afiliado.documento':						  
 		  	      $condition = " $key like \"%$keyword%\" $operator";
 				  break;
+		   case 'Departamento.id':
+		  	      $condition = " $key = \"%$keyword%\" $operator";
+				  break;
+			   	  
 	   }
 	  
       $condition = $this->cleanCondition("and", $condition);

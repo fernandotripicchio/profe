@@ -2,7 +2,7 @@
  class AfiliadosController extends AppController {
   var $name = 'Afiliados';
   public $helpers = array("Html","Form");
-  var $components = array("RequestHandler");
+  var $components = array("RequestHandler", 'Session');
   var $uses = array('Afiliado', 'Provincia' ,'Departamento', 'Localidad', 'Centro');
   public $paginate = array(
                           'limit' => 50,
@@ -16,21 +16,58 @@
   }
   
   
-  public function index() {
-  
+  public function index() {  
 	$filtros =  array("Todos" => "Todos", "Afiliado.nombre" => "Nombre", "Afiliado.documento" => "Documento");
 	$condition = "";
-  	if ( isset($this->params["data"]["keys"]) ){  		
-  		$condition .= $this->buildCondition( strtoupper( $this->params["data"]["keys"]["keys"] ) , $this->params["data"]["filters"], $filtros);
-        
-  	};	
+	
+     //Set Session variables
+     if ($this->request->is('post') ) {
+                    if (isset($this->params["data"]["keys"])) {
+				         $this->Session->write('Afiliados.keys', strtoupper( $this->params["data"]["keys"]["keys"] ));
+						 $this->Session->write('Afiliados.filters', $this->params["data"]["filters"]);
+ 						 $this->Session->write('Afiliados.departamentos', $this->params["data"]["departamentos"]);
+                         $afiliadosSession = $this->Session->read("Afiliados");                          
+                    } else {
+                        die("Error en la busqueda");
+                    }
+     } else {
+         $afiliadosSession = $this->Session->read("Afiliados");
+         if (!isset($afiliadosSession)){
+              $afiliadosSession = $this->resetForm();   
+         }
+     }     
+
+     if ($this->request->is('post')  && isset($this->data["Limpiar"])){
+     	
+         $afiliadosSession = $this->resetForm();
+         
+     } 	
+	
+
+   
+   $condition .= $this->buildCondition( strtoupper( $afiliadosSession["keys"] ) , $afiliadosSession["filters"] , $filtros);
+   if (!empty( $afiliadosSession["departamentos"] )){
+			$condition .= " and Afiliado.departamento = ". $afiliadosSession["departamentos"];
+    }
+
+	
     $afiliados = $this->paginate('Afiliado', $condition);
 	$this->getDepartamentos();
+	$this->set('afiliadosSession', $afiliadosSession);
     $this->set('afiliados', $afiliados);	 
 	$this->set('filtros', $filtros);	 
   }
   
  
+  public function resetForm(){
+     $this->Session->write('Afiliados.keys', "" );
+	 $this->Session->write('Afiliados.filters', "");
+     $this->Session->write('Afiliados.departamentos', "");
+     $afiliadosSession = $this->Session->read("Afiliados");
+     return $afiliadosSession;
+  }
+   
+  
   
   public function edit( $id ) {
 	$this->Afiliado->id = $id;		
@@ -79,14 +116,22 @@
 
 
   public function buildCondition($keyword, $filters, $filtros) {
+  	
+  	
   	//$conditions = "Afiliado.activo = true and ";	   
-  	$conditions = "Afiliado.activo = 1 and";
+  	$initial_conditions = "Afiliado.activo = 1 ";
+  	$conditions = "";
 	if ( $filters  == "Todos") {
-   	    $conditions .= $this->all_condition($filtros, $keyword);
+		
+   	    $conditions .=  $this->all_condition($filtros, $keyword);
 	} else {
 	   	$conditions .= $this->sql_condition($filters, $keyword);
 	}
-   	return $conditions;
+	
+	if (!empty( $conditions )) {
+		$initial_conditions = $initial_conditions . " and " . $conditions;
+	}
+   	return $initial_conditions;
   }
   
 
