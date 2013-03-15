@@ -54,7 +54,18 @@
        );
 	   
 	 function bajas($filename){
-	 	
+ 		$handle = fopen($filename, "r");
+ 		$header = fgetcsv($handle);
+		$return = array(
+			'messages' => array(),
+			'errors' => array(),
+		);
+        $nuevo_afiliado = array();
+		$i = 0;
+		$cantidad_afiliados = $no_insertados = 0;
+        while (($row = fgetcsv($handle)) !== FALSE) {
+        	
+		}	 	
 	 }  
 	   
  
