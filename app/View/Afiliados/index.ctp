@@ -6,7 +6,7 @@
 		<table>
 			<tr>
 				<td class="with-4">				
-					<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"label" => "Datos a Buscar" )) ?>
+					<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"value" => $afiliadosSession["keys"],"label" => "Datos a Buscar" )) ?>
 				</td>
 				<td>
 					<label for="keysKeys">Buscar por</label>
