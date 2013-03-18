@@ -79,7 +79,8 @@
 	                 </td>	                 
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $afiliado['Afiliado']['id']))?>
-                        <?php echo $this->html->link("Editar", array("controller" => "afiliados", "action" => "edit", $afiliado['Afiliado']['id']))?>	                 	
+                        <?php echo $this->html->link("Editar", array("controller" => "afiliados", "action" => "edit", $afiliado['Afiliado']['id']))?>
+                        <?php echo $this->html->link("Carnet", array("controller" => "afiliados", "action" => "carnet", $afiliado['Afiliado']['id']))?>                        	                 	
                      </td>	                 
 	                 
             </tr>
