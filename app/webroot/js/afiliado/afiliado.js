@@ -100,7 +100,7 @@ optionsJson = function(selectID, elements, textSelect, objectName){
 	//Limpio el select
 	select_tag.html("");
 	//Asign empty value for the first element for the options
-    options = "<option>"+ textSelect+"</option>";
+    options = "<option value='0'>"+ textSelect+"</option>";
      $.each(elements, function(i,row){     	
      	jsonObject = eval("elements[i]."+ objectName);
      	options += '<option value="' + jsonObject.id + '">' + jsonObject.nombre + '</option>';

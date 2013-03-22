@@ -12,8 +12,9 @@
   }
   
   public function getLocalidades($provincia_id, $departamento_id ){
-
-     //if($this->RequestHandler->isAjax()) {
+     $localidades = array();
+	 
+     if($this->RequestHandler->isAjax()) {
          //Configure::write('debug', 2);
          $new_localidades = array();
          $this->layout = 'ajax';
@@ -23,8 +24,10 @@
                                                             "recursive" => -1));
 															
          $localidades = json_encode(compact('localidades'));
-         $this->set(compact("localidades"));
-     //}
+     
+     }
+	 
+	 $this->set(compact("localidades"));
   } 
  }
  ?>

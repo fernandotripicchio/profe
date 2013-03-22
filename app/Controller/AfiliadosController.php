@@ -46,17 +46,26 @@
      } 	
 	
 
-   
+   print_r($afiliadosSession);
    $condition .= $this->buildCondition( strtoupper( $afiliadosSession["keys"] ) , $afiliadosSession["filters"] , $filtros);
-   if (!empty( $afiliadosSession["departamentos"] )){
+   
+   if (!empty( $afiliadosSession["departamentos"] )) {
 			$condition .= " and Afiliado.departamento = ". $afiliadosSession["departamentos"];
     }
+
+   if (!empty( $afiliadosSession["localidades"] )) {
+			$condition .= " and Afiliado.localidad_id = ". $afiliadosSession["localidades"];
+    }
+
 
 	
     $afiliados = $this->paginate('Afiliado', $condition);
 	$this->getDepartamentos();
-	$this->getLocalidades();
+	//Cambiar esta!!!!!!!!!!!!!!!
+	$this->getLocalidades(19,$afiliadosSession["departamentos"]);
 	$this->getCentros();
+	
+	//Hasta ACA
 	$this->set('afiliadosSession', $afiliadosSession);
     $this->set('afiliados', $afiliados);	 
 	$this->set('filtros', $filtros);	 
@@ -69,8 +78,7 @@
      $this->Session->write('Afiliados.departamentos', "");
      $this->Session->write('Afiliados.departamentos', "");
  	 $this->Session->write('Afiliados.localidades', "");
-	 $this->Session->write('Afiliados.centros', "");
-	 
+	 $this->Session->write('Afiliados.centros', "");	 
      $afiliadosSession = $this->Session->read("Afiliados");
      return $afiliadosSession;
   }
@@ -148,9 +156,7 @@
 	        } else {
 	        	$this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
 	        }
-	}				
-				
-				
+	}			
 	$afiliado        = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id)));
 	$departamento_id = $afiliado["Localidad"]["departamento"];
 	$departamento    = $this->Departamento->find("first", array("conditions" => array("Departamento.departamento" => $departamento_id, "Departamento.provincia" => 19)));
@@ -160,9 +166,7 @@
 	$this->set('departamento', $departamento);	
  }
 
-  public function buildCondition($keyword, $filters, $filtros) {
-  	
-  	
+ public function buildCondition($keyword, $filters, $filtros) {
   	//$conditions = "Afiliado.activo = true and ";	   
   	$initial_conditions = "Afiliado.activo = 1 ";
   	$conditions = "";
@@ -178,6 +182,37 @@
 	}
    	return $initial_conditions;
   }
+ 
+ 
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////
+  //     FUNCTION para SQL
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  public function sql_condition($key, $keyword, $operator = ' and' ) {
+  	   
+  	  $condition = ""; 
+      switch ($key) {
+			case 'Afiliado.nombre':							  
+				  $condition = " $key like \"%$keyword%\" $operator";
+			      break;
+		   case 'Afiliado.documento':						  
+		  	      $condition = " $key like \"%$keyword%\" $operator";
+				  break;
+		   case 'Departamento.id':
+		  	      $condition = " $key = $keyword $operator";
+				  break;
+		   case 'Localidad.id':
+		  	      $condition = " $key = $keyword $operator";
+				  break;				  
+		   case 'Centro.id':
+		  	      $condition = " $key = $keyword $operator";
+				  break;
+	   }
+	  
+      $condition = $this->cleanCondition("and", $condition);
+      return $condition;
+  }   
+    
   
 
  }

@@ -54,7 +54,7 @@ $cakeDescription = __d('Profe', 'PROFE');
 	</div>
 	<div class="clear"></div>
 	<div>
-	    <?//php echo $this->element('sql_dump'); ?>
+	    <?php echo $this->element('sql_dump'); ?>
 	</div>
    
 <!-- begin footer -->

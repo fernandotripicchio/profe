@@ -78,21 +78,23 @@ class AppController extends Controller {
  
    public function getLocalidades($provincia_id = 19, $departamento_id =  false) {
    	    $new_localidades = array();
-		
-		//Si no esta vacio retorno departamento
-		if (!empty($departamento_id)) { 
-			  	$localidades = $this->Localidad->find("all", 
-			  	                                           array("conditions" => array( "provincia" => $provincia_id, "departamento" => $departamento_id),
-			  	                                                 "sort" => "Localidad.nombre ASC",
-			  	                                                 "recursive" => -1
-														        )
-											              );
-			    
-				
-			    foreach ($localidades as $localidad) {
-			      $new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
-			    }
+
+		$condition = "Localidad.provincia = 19";
+		if (!empty($departamento_id)) {
+			   $departamento = $this->Departamento->find("first", 
+			                                             array("conditions" => array("id" => $departamento_id),
+														       "recursive" => -1));
+														  
+               $condition .= " and Localidad.departamento =  " + $departamento["Departamento"]["departamento"]; 
 		}
+		
+		$localidades = $this->Localidad->find("all", 
+		                                          array("conditions" => $condition,
+		                                                "sort" => "Localidad.nombre ASC",
+		                                                "recursive" => -1));
+		foreach ($localidades as $localidad) {
+		     $new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
+	    }
 	    $localidades = $new_localidades;
 	    $this->set(compact("localidades"));	
    } 
@@ -122,43 +124,17 @@ class AppController extends Controller {
   
   public function all_condition($filtros, $keyword) {
   	   $condition = "";
-	   
-	   
-  	   foreach ($filtros as $key => $keyvalue) {
-  	   	    
+  	   foreach ($filtros as $key => $keyvalue) {  	   	    
 	       $condition .= $this->sql_condition($key, $keyword, " or");		  
 	   }
   	  
 	   //Limpio el ultimo or si es necesario
-	   // $char = "or";
-       // $pattern = "/[#{$char}]+$/i";
-       // $replacement = '';
-       // $condition = preg_replace($pattern, $replacement, $condition);
        $condition = $this->cleanCondition("or", $condition);
        $condition = "(". $condition.")";
 	   return $condition;
   }
   
-  public function sql_condition($key, $keyword, $operator = ' and' ) {
-  	   
-  	  $condition = ""; 
-      switch ($key) {
-			case 'Afiliado.nombre':							  
-				  $condition = " $key like \"%$keyword%\" $operator";
-			      break;
-		   case 'Afiliado.documento':						  
-		  	      $condition = " $key like \"%$keyword%\" $operator";
-				  break;
-		   case 'Departamento.id':
-		  	      $condition = " $key = \"%$keyword%\" $operator";
-				  break;
-			   	  
-	   }
-	  
-      $condition = $this->cleanCondition("and", $condition);
-      return $condition;
-  }   
-  
+
   public function cleanCondition($char, $condition){
    	   //$char = "and";
        $pattern = "/[#{$char}]+$/i";

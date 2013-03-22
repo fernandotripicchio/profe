@@ -18,7 +18,7 @@
   				<td><label for="keysKeys">Departamento</label></td>
 				<td>					
 			        <select name="data[departamentos]" id="afiliadosFilterDepartamento" class="select-filter-afiliados">
-			                 <option value="0">Seleccione un Departamento</option>
+			                 <option value="">Seleccione un Departamento</option>
                              <?php foreach($departamentos as $key=>$value) { ?>
                                    <option value="<?=$key?>" <?=(($afiliadosSession["departamentos"] == $key) ? "selected": "")?>><?=$value?></option>                             	
                              <?php } ?>
@@ -29,7 +29,7 @@
 				</td>
 				<td>					
 			        <select name="data[localidades]" id="afiliadosFilterLocalidades" class="select-filter-afiliados">
-			                 <option value="0">Seleccione una Localidad</option>
+			                 <option value="">Seleccione una Localidad</option>
                              <?php foreach($localidades as $key=>$value) { ?>
                                    <option value="<?=$key?>" <?=(($afiliadosSession["localidades"] == $key) ? "selected": "")?>><?=$value?></option>                             	
                              <?php } ?>
@@ -42,7 +42,7 @@
 				<td>
 					
 			        <select name="data[centros]" id="afiliadosFilterCentros" class="select-filter-afiliados">
-			                 <option value="0">Seleccione un Centro</option>
+			                 <option value="">Seleccione un Centro</option>
                              <?php foreach($centros as $key=>$value) { ?>
                                    <option value="<?=$key?>" <?=(($afiliadosSession["centros"] == $key) ? "selected": "")?>><?=$value?></option>                             	
                              <?php } ?>
