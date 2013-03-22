@@ -7,21 +7,21 @@ div.pinstripe{
 }
 
 div#footerLegendControl{
-font-style:italic;
-padding:9px 0 0 0;
-margin:0 13px 0 9px;
-border:0 solid #CCC;
+	font-style:italic;
+	padding:9px 0 0 0;
+	margin:0 13px 0 9px;
+	border:0 solid #CCC;
 }
 
 div#copyrightSection{
-padding:9px 0 0 0;
-text-align: center;
-color:  #a9a9a9;
+	padding:9px 0 0 0;
+	text-align: center;
+	color:  #a9a9a9;
 }
 
 div#footerLegendTitle{
-padding:0;
-margin:0 0 6px 7px;
+	padding:0;
+	margin:0 0 6px 7px;
 }
 
 .botonera{
@@ -44,5 +44,18 @@ margin:0 0 6px 7px;
 
 .th_header {
    background-color: #a9a9a9;
-   font: bold 1.0em/1.5em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+   font: bold 0.9em/1.1em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+   text-align: left;
+   margin-left: 30px;
+}
+
+
+.btn-form { 
+      float: right; 
+      margin-right : 50px;
+ }
+ 
+.select-filter-afiliados{
+	width: 200px;
+	float: left;
 }

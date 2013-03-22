@@ -1,21 +1,19 @@
 <?php
- class Centro extends AppModel {
-      public $name = 'Centro';
+ class Medico extends AppModel {
+      public $name = 'Medico';
 	  
-	  public $belongsTo = array("Localidad");
-	  public $hasMany = array("Afiliados"); 
+     public $hasAndBelongsToMany = array('Centro'=>array('className'=>'Centro'));
 	  
-     public $hasAndBelongsToMany = array('Medico'=>array('className'=>'Medico'));
 	  
       public $validate = array(
         'nombre' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'Nombre es requerido'
-            ))    
+            ))
        );
-	   
-	   
+  
+  
 	 //Funcion para importar usuarios desde un archivo CSV y generar un nuevo listado  
 	 function import($filename)  {
 		// open the file
@@ -29,11 +27,11 @@
 			'errors' => array(),
 		);
 
-        $nuevo_centro = array();
+        $nuevo_medico = array();
 		
 		
 		$i = 0;
-		$cantidad_centros = 0;
+		$cantidad_medicos = 0;
         while (($row = fgetcsv($handle)) !== FALSE) {
 			
         	if ( $i > -1 ) {
@@ -69,20 +67,20 @@
 					 if (empty($centro)) {
 						 $this->create();
 						 $this->save($nuevo_centro);
-						 $cantidad_centros++;
+						 $cantidad_medicos++;
 						 $centro_id = $this->id;
 					 } else {
 					 	 $centro_id = $centro["Centro"]["id"];
 						 $this->id  = $centro["Centro"]["id"];
 						 $this->save($nuevo_centro);
 						 $this->id = -1;
-						 $cantidad_centros++;
+						 $cantidad_medicos++;
 					 }
 					 //Afiliado
 					  
 					  $afiliado = $this->query("SELECT afiliados.id FROM afiliados WHERE afiliados.documento = '" . $afiliado_documento . "' limit 1");
 					  $afiliados_id = "";
-					  print_r($afiliado);
+					  
 					  if (!empty($afiliado) && !empty($afiliado[0])) {
 					  	    $afiliado_id = $afiliado[0]["afiliados"]["id"];
                             $this->query("UPDATE afiliados set centro_id = " . $centro_id . "  where afiliados.id = ".$afiliado_id);
@@ -99,8 +97,7 @@
  		fclose($handle);
 
  		// return the messages
- 		return $cantidad_centros;
+ 		return $cantidad_medicos;
 
-	}	   
-  
+	}  
  }

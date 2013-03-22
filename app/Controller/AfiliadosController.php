@@ -26,6 +26,8 @@
 				         $this->Session->write('Afiliados.keys', strtoupper( $this->params["data"]["keys"]["keys"] ));
 						 $this->Session->write('Afiliados.filters', $this->params["data"]["filters"]);
  						 $this->Session->write('Afiliados.departamentos', $this->params["data"]["departamentos"]);
+ 						 $this->Session->write('Afiliados.localidades', $this->params["data"]["localidades"]);
+						 $this->Session->write('Afiliados.centros', $this->params["data"]["centros"]);
                          $afiliadosSession = $this->Session->read("Afiliados");                          
                     } else {
                         die("Error en la busqueda");
@@ -53,6 +55,8 @@
 	
     $afiliados = $this->paginate('Afiliado', $condition);
 	$this->getDepartamentos();
+	$this->getLocalidades();
+	$this->getCentros();
 	$this->set('afiliadosSession', $afiliadosSession);
     $this->set('afiliados', $afiliados);	 
 	$this->set('filtros', $filtros);	 
@@ -63,6 +67,10 @@
      $this->Session->write('Afiliados.keys', "" );
 	 $this->Session->write('Afiliados.filters', "");
      $this->Session->write('Afiliados.departamentos', "");
+     $this->Session->write('Afiliados.departamentos', "");
+ 	 $this->Session->write('Afiliados.localidades', "");
+	 $this->Session->write('Afiliados.centros', "");
+	 
      $afiliadosSession = $this->Session->read("Afiliados");
      return $afiliadosSession;
   }

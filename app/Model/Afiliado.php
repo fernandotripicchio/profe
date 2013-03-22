@@ -17,10 +17,15 @@
                                    'className'  => 'Provincia',
                                    'foreignKey' => 'provincia'
                                  ) ,
+	                            'Medico' => array(
+                                   'className'  => 'Medico',
+                                   'foreignKey' => 'medico_id'
+                                 )                                 
                                  
 	                            );
-	  
-	  
+	  #Un Afiliado tiene un centro en el carnet
+	  #Pero a su vez guardo la relacion entre centro y 
+	  public $hasMany = array("AfiliadoCentroMedico");
 	  
       public $validate = array(
         'nombre' => array(

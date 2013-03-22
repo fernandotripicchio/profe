@@ -31,13 +31,6 @@
 			<td class="left" colspan="3"><?php echo $this->Html->sexo($afiliado["Afiliado"]["sexo"])?></td>
 		 </tr>
 		 
-		 <tr>
-		    <td class=" width-4 right">Fecha Alta: </td>
-	        <td class="left" >
-	                      <?php echo $this->Time->format('d/m/Y', $afiliado['Afiliado']['fecha_alta']); ?>
-	        </td>			
-		</tr>
-		 
          <tr>
 			<td class="with-4 right">Ley Aplicada: </td>
 			<td class="left" colspan="3"><?php echo $afiliado["Grupo"]["codigo"]." - ".$afiliado["Grupo"]["descripcion"]?></td>
@@ -68,6 +61,19 @@
           	<td class="width-4 right">Departamento:</td>
           	<td class="left"><?php echo $afiliado["Departamento"]["nombre"] ?></td>
           </tr>
+          
+          <tr>
+          	<td class="width-4 th_header" colspan="4">Carnet</td>
+          </tr>
+          <tr>
+          	<td class="width-4 right">Teléfonos</td>
+          	<td class="left"><?php echo $afiliado["Afiliado"]["telefonos"] ?></td>
+          	<td class="width-4 right">Celular:</td>
+          	<td class="left"><?php echo $afiliado["Afiliado"]["celular"] ?></td>
+
+          </tr>          
+          
+          
           <tr>
           	<td class="width-4 th_header" colspan="4" > Centro de Salud      </td>
           </tr>          
@@ -78,6 +84,9 @@
           	<td class="left"><?php echo $afiliado["Centro"]["direccion"] ?> </td>
           	
           </tr>
+
+          
+          
           <tr>
           	<td class="width-4 th_header" colspan="4"> Diagnosticos </td>
           </tr>		

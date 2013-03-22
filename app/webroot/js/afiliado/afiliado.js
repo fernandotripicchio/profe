@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	
+	//Funciones para asiganar un centro a un afiliado en la pagina de edicion
 	$("#AfiliadoDepartamento").change(function(){
 		       var key = $(this).val();
 		       var key_provincia = 19;
@@ -29,34 +31,81 @@ $(document).ready(function(){
                    }); 
 	})
 	
+	// Funciones para filtrar los afiliados
 	
-	$("#AfiliadoLocalidadId").change(function(){
-		       var key = $(this).val();
-		       $.ajax({
-                     url: root +'centros/getCentros/'+key,            
+	$("#afiliadosFilterDepartamento").change(function(){
+		var key = $(this).val();
+		             //Obtengo las localidades
+				     $.ajax({
+                     url: root +'localidades/getLocalidades/19/'+key+'/',            
                      error: function(jqXHR, textStatus, errorThrown){
-                           alert( "Error en la busqueda del centro "+textStatus);
+                           alert( "Error en la busqueda de datos "+textStatus);
                      },
                      beforeSend: function(data){
                      	//alert("anda");
-                     	$("#AfiliadoCentroId").html("");
+                     	$("#afiliadosFilterLocalidades").html("");
+                     },
+                     success: function(data) {                
+                       var localidades = jQuery.parseJSON(data);
+                       localidades = localidades.localidades;
+                       //alert(localidades.length);
+                       optionsJson("afiliadosFilterLocalidades", localidades, "Seleccione una Localidad", "Localidad");
+                     }
+                   });
+                   
+                    //Obtengo los centros de ese departamento
+				     $.ajax({
+                     url: root +'centros/getCentrosByDepartamento/'+key+'/',            
+                     error: function(jqXHR, textStatus, errorThrown){
+                           alert( "Error en la busqueda de datos "+textStatus);
                      },
                      success: function(data) {                
                        var centros = jQuery.parseJSON(data);
                        centros = centros.centros;
-                       //alert(localidades.length);
-                       centro = $("#AfiliadoCentroId");
-                       centro.html("");
-                       var options = "<option>Seleccione un Centro</option>";
-                       
-                       for (var i = 0; i < centros.length; i++) {
-                       	//alert(localidades[i]);
-                         options += '<option value="' + centros[i].Centro.id + '">' + centros[i].Centro.nombre + '</option>';
-                       }                       
-                       centro.html(options);
-                       
+                       optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
+                       //alert(localidades.length);                       
+                     }
+                   });                   
+                   
+	});
+	
+	//Busca el centro y la loclidad y me trae todos los centros de esos dos parametros
+    $("#afiliadosFilterLocalidades").change(function(){
+		       var localidad_id = $(this).val();
+		       var departamento_id = $("#afiliadosFilterDepartamento").val();
+		       $.ajax({
+                     url: root +'centros/getCentrosByDepartamentoLocalidad/' + departamento_id+ '/'+ localidad_id,            
+                     error: function(jqXHR, textStatus, errorThrown){
+                           alert( "Error en la busqueda del centro "+textStatus);
+                     },
+                     beforeSend: function(data){
+                     	$("#AfiliadoCentroId").html("");
+                     },
+                     success: function(data) {
+                       var centros = jQuery.parseJSON(data);
+                       centros = centros.centros;
+                       optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
+                     	                
                      }
                    }); 
 		
-	})
+		
+	});
+	
 });
+
+optionsJson = function(selectID, elements, textSelect, objectName){
+	var select_tag = $("#"+selectID);
+	var options    = "";
+	//Limpio el select
+	select_tag.html("");
+	//Asign empty value for the first element for the options
+    options = "<option>"+ textSelect+"</option>";
+     $.each(elements, function(i,row){     	
+     	jsonObject = eval("elements[i]."+ objectName);
+     	options += '<option value="' + jsonObject.id + '">' + jsonObject.nombre + '</option>';
+     	//console.log ( jsonObject ); //console.log(  row );
+      });    
+    select_tag.html(options);
+	
+}

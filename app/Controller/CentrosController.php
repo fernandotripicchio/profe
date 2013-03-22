@@ -82,15 +82,67 @@
   }
   
   
+  public function getCentrosByDepartamento($departamento_id ){
+    $this->layout = 'ajax';
+    $centros = $this->Centro->find("all", 
+                                        array('joins' => array(
+                                                              array('table' =>'localidades', 
+                                                                        'alias' => "Localidad",
+                                                                        'foreignKey' => false,
+                                                                        'conditions'=> array('Localidad.id = Centro.localidad_id')
+																    ),
+                                        
+                                                              array('table' =>'departamentos', 
+                                                                        'alias' => "Departamento",
+                                                                        'foreignKey' => false,
+                                                                         'conditions'=> array('Localidad.departamento = Departamento.departamento')
+																    )
+										             ),
+                                                     "conditions" => array("Departamento.id" => $departamento_id),
+                                                     "order" => "Centro.nombre ASC",                                                            
+                                                     "recursive" => -1));
+    $centros = json_encode(compact('centros'));
+    $this->set(compact("centros"));
+     //}
+  }    
+
+
+  public function getCentrosByDepartamentoLocalidad($departamento_id, $localidad_id) {
+    $this->layout = 'ajax';
+    $centros = $this->Centro->find("all", 
+                                        array('joins' => array(
+                                                              array('table' =>'localidades', 
+                                                                        'alias' => "Localidad",
+                                                                        'foreignKey' => false,
+                                                                        'conditions'=> array('Localidad.id = Centro.localidad_id')
+																    ),
+                                        
+                                                              array('table' =>'departamentos', 
+                                                                        'alias' => "Departamento",
+                                                                        'foreignKey' => false,
+                                                                         'conditions'=> array('Localidad.departamento = Departamento.departamento')
+																    )
+										             ),
+                                                     "conditions" => array("Departamento.id" => $departamento_id, "Localidad.id" => $localidad_id),
+                                                     "order" => "Centro.nombre ASC",                                                            
+                                                     "recursive" => -1));
+    $centros = json_encode(compact('centros'));
+    $this->set(compact("centros"));
+  	
+  }
+  
+  
+  
   public function getCentros($localidad_id ){
 
      //if($this->RequestHandler->isAjax()) {
          //Configure::write('debug', 2);
          $this->layout = 'ajax';
 
-         $centros = $this->Centro->find("all", array("conditions" => array("localidad_id" => $localidad_id),
-                                                            "order" => "Centro.nombre ASC",                                                            
-                                                            "recursive" => -1));
+         $centros = $this->Centro->find("all", array('contain' => array('Departamento'),
+                                                     "conditions" => array("localidad_id" => $localidad_id), "Centro.centro" => 34,
+                                                     "order" => "Centro.nombre ASC",                                                            
+                                                     "recursive" => -1));
          $centros = json_encode(compact('centros'));
          $this->set(compact("centros"));
      //}

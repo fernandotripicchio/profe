@@ -29,7 +29,8 @@
                </ul>
             </div>            
             
-        </li>        
+        </li>
+                
         <li>
             <?=$this->Html->link('<span>Reportes</span>', array('controller' => 'reportes', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
             

@@ -5,35 +5,61 @@
 		<?php echo $this->Form->create("keys") ?>
 		<table>
 			<tr>
+				<td><label for="keysKeys">Buscar por</label></td>
 				<td class="with-4">				
-					<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"value" => $afiliadosSession["keys"],"label" => "Datos a Buscar" )) ?>
+					<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"value" => $afiliadosSession["keys"],"label" => false )) ?>
 				</td>
-				<td>
-					<label for="keysKeys">Buscar por</label>
-					<?php echo $this->form->select('filters', $filtros,  array("empty" => false)) ?>
-  			    </td>                
-				<td>
-					<label for="keysKeys">Departamento</label>
-			        <select name="data[departamentos]">
-			                 <option value="0"></option>
+				<td><label for="keysKeys">Filtros</label></td>
+				<td colspan="5">					
+					<?php echo $this->form->select('filters', $filtros,  array("class" => "select-filter-afiliados", "empty" => false)) ?>
+  			    </td>       
+  			</tr>
+  			<tr>             
+  				<td><label for="keysKeys">Departamento</label></td>
+				<td>					
+			        <select name="data[departamentos]" id="afiliadosFilterDepartamento" class="select-filter-afiliados">
+			                 <option value="0">Seleccione un Departamento</option>
                              <?php foreach($departamentos as $key=>$value) { ?>
                                    <option value="<?=$key?>" <?=(($afiliadosSession["departamentos"] == $key) ? "selected": "")?>><?=$value?></option>                             	
                              <?php } ?>
 			        </select>					
 				</td>
 				<td>
-					<?php echo $this->Form->submit("Buscar")?>
+				   <label for="keysKeys">Localidad</label>	
 				</td>
-				<td>	
-					<?php echo $this->Form->submit("Limpiar")?>
+				<td>					
+			        <select name="data[localidades]" id="afiliadosFilterLocalidades" class="select-filter-afiliados">
+			                 <option value="0">Seleccione una Localidad</option>
+                             <?php foreach($localidades as $key=>$value) { ?>
+                                   <option value="<?=$key?>" <?=(($afiliadosSession["localidades"] == $key) ? "selected": "")?>><?=$value?></option>                             	
+                             <?php } ?>
+			        </select>					
+				</td>				
+				<td>
+					<label for="keysKeys">Centros</label>
 				</td>
+
+				<td>
+					
+			        <select name="data[centros]" id="afiliadosFilterCentros" class="select-filter-afiliados">
+			                 <option value="0">Seleccione un Centro</option>
+                             <?php foreach($centros as $key=>$value) { ?>
+                                   <option value="<?=$key?>" <?=(($afiliadosSession["centros"] == $key) ? "selected": "")?>><?=$value?></option>                             	
+                             <?php } ?>
+			        </select>					
+				</td>	
+				<tr>
+					<td colspan="6">
+						<?php echo $this->Form->submit("Buscar", array("class" => "btn-form"))?>
+						<?php echo $this->Form->submit("Limpiar", array("class" => "btn-form"))?>
+					</td>
 			</tr>
 		</table>
 		<?php echo $this->Form->end; ?>
 	</div>
 
     <div id="listado">
-       <table class="list">
+       <table class="list" >
           <caption>Afiliados</caption>
           <thead>
             <tr>

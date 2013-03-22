@@ -76,29 +76,42 @@ class AppController extends Controller {
   * 
  */ 
  
-   public function getLocalidades($provincia_id = 19, $departamento_id) {
-	  	$localidades = $this->Localidad->find("all", 
-	  	                                           array("conditions" => array( "provincia" => $provincia_id, "departamento" => $departamento_id),
-	  	                                                 "sort" => "Localidad.nombre ASC",
-	  	                                                 "recursive" => -1
-												        )
-									              );
-	    $new_localidades = array();
+   public function getLocalidades($provincia_id = 19, $departamento_id =  false) {
+   	    $new_localidades = array();
 		
-	    foreach ($localidades as $localidad) {
-	      $new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
-	    }
+		//Si no esta vacio retorno departamento
+		if (!empty($departamento_id)) { 
+			  	$localidades = $this->Localidad->find("all", 
+			  	                                           array("conditions" => array( "provincia" => $provincia_id, "departamento" => $departamento_id),
+			  	                                                 "sort" => "Localidad.nombre ASC",
+			  	                                                 "recursive" => -1
+														        )
+											              );
+			    
+				
+			    foreach ($localidades as $localidad) {
+			      $new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
+			    }
+		}
 	    $localidades = $new_localidades;
 	    $this->set(compact("localidades"));	
    } 
   
   
   
-   public function getCentros($provincia_id = 19) {
-	  	$centros = $this->Centro->find("all");
+   public function getCentros($provincia_id = 19, $departamento = false, $localidad =  false) {
 	    $new_centros = array();
+		if (empty($departamento) && empty($localidad)) {   	
+	  	    $centros = $this->Centro->find("all", array("sort" => "Centro.nombre ASC"));
+		}
+		elseif ( !empty($departamento) ) {
+			$centros = $this->Centro->find("all" ,  array("sort" => "Centro.nombre ASC"));			
+		} elseif ( !empty($localidad)) {
+			$centros = $this->Centro->find("all",  array("sort" => "Centro.nombre ASC"));
+		}
+
 	    foreach ($centros as $centro) {
-	      $new_centros[$centro["Centro"]["id"]] = $centro["Centro"]["nombre"];
+	         $new_centros[$centro["Centro"]["id"]] = $centro["Centro"]["nombre"];
 	    }
 	    $centros = $new_centros;
 	    $this->set(compact("centros"));	

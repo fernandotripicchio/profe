@@ -12,7 +12,8 @@
 		                             'foreignKey' => 'provincia',
 								  )   
 							    );								
-	  
+      public $hasMany = array("Afiliados");
+	   	  
       public $validate = array(
         'nombre' => array(
             'required' => array(
