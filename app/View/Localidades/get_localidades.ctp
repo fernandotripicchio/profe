@@ -1,3 +1,2 @@
-<?
-echo $localidades;
-?>
+<? echo $localidades; ?>
+

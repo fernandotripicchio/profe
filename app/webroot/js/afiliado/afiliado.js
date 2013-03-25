@@ -37,34 +37,32 @@ $(document).ready(function(){
 		var key = $(this).val();
 		             //Obtengo las localidades
 				     $.ajax({
-                     url: root +'localidades/getLocalidades/19/'+key+'/',            
-                     error: function(jqXHR, textStatus, errorThrown){
-                           alert( "Error en la busqueda de datos "+textStatus);
-                     },
-                     beforeSend: function(data){
-                     	//alert("anda");
-                     	$("#afiliadosFilterLocalidades").html("");
-                     },
-                     success: function(data) {                
-                       var localidades = jQuery.parseJSON(data);
-                       localidades = localidades.localidades;
-                       //alert(localidades.length);
-                       optionsJson("afiliadosFilterLocalidades", localidades, "Seleccione una Localidad", "Localidad");
-                     }
+	                     url: root +'localidades/getLocalidades/19/'+key+'/',            
+	                     error: function(jqXHR, textStatus, errorThrown){
+	                           alert( "Error en la busqueda de datos "+textStatus);
+	                     },
+	                     beforeSend: function(data){
+	                     	$("#afiliadosFilterLocalidades").html("");
+	                     },
+	                     success: function(data) {  
+	                     	console.log(data);              
+	                       var localidades = jQuery.parseJSON(data);
+	                       localidades = localidades.localidades;                       
+	                       optionsJson("afiliadosFilterLocalidades", localidades, "Seleccione una Localidad", "Localidad");
+	                     }
                    });
                    
                     //Obtengo los centros de ese departamento
 				     $.ajax({
-                     url: root +'centros/getCentrosByDepartamento/'+key+'/',            
-                     error: function(jqXHR, textStatus, errorThrown){
-                           alert( "Error en la busqueda de datos "+textStatus);
-                     },
-                     success: function(data) {                
-                       var centros = jQuery.parseJSON(data);
-                       centros = centros.centros;
-                       optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
-                       //alert(localidades.length);                       
-                     }
+	                     url: root +'centros/getCentrosByDepartamento/'+key+'/',            
+	                     error: function(jqXHR, textStatus, errorThrown){
+	                           alert( "Error en la busqueda de datos "+textStatus);
+	                     },
+	                     success: function(data) {                
+	                       var centros = jQuery.parseJSON(data);
+	                       centros = centros.centros;
+	                       optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
+	                     }
                    });                   
                    
 	});
@@ -104,7 +102,6 @@ optionsJson = function(selectID, elements, textSelect, objectName){
      $.each(elements, function(i,row){     	
      	jsonObject = eval("elements[i]."+ objectName);
      	options += '<option value="' + jsonObject.id + '">' + jsonObject.nombre + '</option>';
-     	//console.log ( jsonObject ); //console.log(  row );
       });    
     select_tag.html(options);
 	

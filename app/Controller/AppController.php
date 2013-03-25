@@ -77,45 +77,20 @@ class AppController extends Controller {
  */ 
  
    public function getLocalidades($provincia_id = 19, $departamento_id =  false) {
-   	    $new_localidades = array();
-
-		$condition = "Localidad.provincia = 19";
-		if (!empty($departamento_id)) {
-			   $departamento = $this->Departamento->find("first", 
-			                                             array("conditions" => array("id" => $departamento_id),
-														       "recursive" => -1));
-														  
-               $condition .= " and Localidad.departamento =  " + $departamento["Departamento"]["departamento"]; 
-		}
-		
-		$localidades = $this->Localidad->find("all", 
-		                                          array("conditions" => $condition,
-		                                                "sort" => "Localidad.nombre ASC",
-		                                                "recursive" => -1));
-		foreach ($localidades as $localidad) {
-		     $new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
-	    }
-	    $localidades = $new_localidades;
+  	    $localidades = $this->Localidad->getLocalidadesLocation($provincia_id = 19, $departamento_id);
+		$new_localidades = array();
+	    foreach ($localidades as $localidad) {
+	      	 	$new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
+	    }			
+		$localidades = $new_localidades;
 	    $this->set(compact("localidades"));	
+
    } 
   
   
   
    public function getCentros($provincia_id = 19, $departamento = false, $localidad =  false) {
-	    $new_centros = array();
-		if (empty($departamento) && empty($localidad)) {   	
-	  	    $centros = $this->Centro->find("all", array("sort" => "Centro.nombre ASC"));
-		}
-		elseif ( !empty($departamento) ) {
-			$centros = $this->Centro->find("all" ,  array("sort" => "Centro.nombre ASC"));			
-		} elseif ( !empty($localidad)) {
-			$centros = $this->Centro->find("all",  array("sort" => "Centro.nombre ASC"));
-		}
-
-	    foreach ($centros as $centro) {
-	         $new_centros[$centro["Centro"]["id"]] = $centro["Centro"]["nombre"];
-	    }
-	    $centros = $new_centros;
+   	    $centros = $this->Centro->getCentrosLocation($provincia_id = 19, $departamento, $localidad);
 	    $this->set(compact("centros"));	
    } 
    
