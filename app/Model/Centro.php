@@ -29,22 +29,27 @@
 	//Geolocation centros
     public function getCentrosLocation($provincia_id = 19, $departamento = false, $localidad =  false) {
 		$new_centros = array();
-		if (!empty($departamento)){
-    	    $centros = $this->find("all", array("sort" => "Centro.nombre ASC"));
+		
+		
+		//Cuando muestro todos los centros?
+		$condition = "Localidad.provincia = $provincia_id";	
+		
+		if ( !empty($departamento) && !empty($localidad) ) {
+			
 		}
 		
-		
+    	$centros = $this->find("all", array("conditions" => $conditions,
+    	                                        "sort" => "Centro.nombre ASC"));
+				
 		//Le doy formato al centro
-		if (!empty($centros)) {
-	    	foreach ($centros as $centro) {
-	      	 	$new_centros[$centro["Centro"]["id"]] = $centro["Centro"]["nombre"];
-	    	}			
-		}
 		
         return $new_centros;
    } 
-	   
+	
+	
+   ////////////////////////////////////////////////////////////////////////////////////////	   
    //Funcion para importar usuarios desde un archivo CSV y generar un nuevo listado  
+   ////////////////////////////////////////////////////////////////////////////////////////
    function import($filename)  {
 		// open the file
  		$handle = fopen($filename, "r");

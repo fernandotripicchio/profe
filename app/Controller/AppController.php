@@ -91,11 +91,18 @@ class AppController extends Controller {
   
    public function getCentros($provincia_id = 19, $departamento = false, $localidad =  false) {
    	    $centros = $this->Centro->getCentrosLocation($provincia_id = 19, $departamento, $localidad);
-	    $this->set(compact("centros"));	
+
+		if (!empty($centros)) {
+	    	foreach ($centros as $centro) {
+	      	 	$new_centros[$centro["Centro"]["id"]] = $centro["Centro"]["nombre"];
+	    	}			
+		}
+		$this->set(compact("centros"));	
+		
    } 
    
    
-   
+  //Obtener los filtros 
   
   public function all_condition($filtros, $keyword) {
   	   $condition = "";
