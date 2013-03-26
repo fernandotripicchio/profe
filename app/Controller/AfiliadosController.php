@@ -45,8 +45,6 @@
          
      } 	
 	
-
-   print_r($afiliadosSession);
    $condition .= $this->buildCondition( strtoupper( $afiliadosSession["keys"] ) , $afiliadosSession["filters"] , $filtros);
    
    if (!empty( $afiliadosSession["departamentos"] )) {
@@ -61,7 +59,6 @@
 	
     $afiliados = $this->paginate('Afiliado', $condition);
 	$this->getDepartamentos();
-	//Cambiar esta!!!!!!!!!!!!!!!
 	$this->getLocalidades(19,$afiliadosSession["departamentos"]);
 	$this->getCentros();
 	
@@ -141,31 +138,32 @@
  	
  }
 
- public function carnet($id){
-	$this->Afiliado->id = $id;
-	if (!$this->Afiliado->exists()) {
-	            throw new NotFoundException(__('Afiliado invalido'));
-	}	
-			 	
-	if ($this->request->is('get')) {
-	        $this->request->data = $this->Afiliado->read();	
-	} else {
-	        if ($this->Afiliado->save($this->request->data)) {
-	            $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");			
-	            $this->redirect(array("controller" => "afiliados", "action" => "show", $id));
-	        } else {
-	        	$this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
-	        }
-	}			
-	$afiliado        = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id)));
-	$departamento_id = $afiliado["Localidad"]["departamento"];
-	$departamento    = $this->Departamento->find("first", array("conditions" => array("Departamento.departamento" => $departamento_id, "Departamento.provincia" => 19)));
-	$this->getDepartamentos();
-	$this->getCentros();
-	$this->getLocalidades($afiliado["Localidad"]["provincia"], $departamento["Departamento"]["departamento"] );
-	$this->set('departamento', $departamento);	
- }
+ // public function carnet($id) {
+	// $this->Afiliado->id = $id;
+	// if (!$this->Afiliado->exists()) {
+	            // throw new NotFoundException(__('Afiliado invalido'));
+	// }	
+// 			 	
+	// if ($this->request->is('get')) {
+	        // $this->request->data = $this->Afiliado->read();	
+	// } else {
+	        // if ($this->Afiliado->save($this->request->data)) {
+	            // $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");			
+	            // $this->redirect(array("controller" => "afiliados", "action" => "show", $id));
+	        // } else {
+	        	// $this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
+	        // }
+	// }			
+	// $afiliado        = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id)));
+	// $departamento_id = $afiliado["Localidad"]["departamento"];
+	// $departamento    = $this->Departamento->find("first", array("conditions" => array("Departamento.departamento" => $departamento_id, "Departamento.provincia" => 19)));
+	// $this->getDepartamentos();
+	// $this->getCentros();
+	// $this->getLocalidades($afiliado["Localidad"]["provincia"], $departamento["Departamento"]["departamento"] );
+	// $this->set('departamento', $departamento);	
+ // }
 
+ 
  public function buildCondition($keyword, $filters, $filtros) {
   	//$conditions = "Afiliado.activo = true and ";	   
   	$initial_conditions = "Afiliado.activo = 1 ";

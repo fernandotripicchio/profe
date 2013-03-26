@@ -28,22 +28,32 @@
 	
 	//Geolocation centros
     public function getCentrosLocation($provincia_id = 19, $departamento = false, $localidad =  false) {
-		$new_centros = array();
-		
-		
-		//Cuando muestro todos los centros?
 		$condition = "Localidad.provincia = $provincia_id";	
-		
-		if ( !empty($departamento) && !empty($localidad) ) {
-			
+		if ( empty($departamento) && empty($localidad) ) {
+      	    $centros = $this->find("all", array("conditions" => $condition, "sort" => "Centro.nombre ASC"));			
+		} else {
+			$conditions = "Departamento.id = $departamento ";
+			if (!empty($localidad)) {
+			   $conditions .= " and Localidad.id = $localidad ";	
+			}
+            $centros = $this->find("all", array('joins' => array(
+                                                         array('table' =>'localidades', 
+                                                                         'alias' => "Localidad",
+                                                                         'foreignKey' => false,
+                                                                         'conditions'=> array('Localidad.id = Centro.localidad_id')
+								 						       ),
+                                                              array('table' =>'departamentos', 
+                                                                        'alias' => "Departamento",
+                                                                        'foreignKey' => false,
+                                                                         'conditions'=> array('Localidad.departamento = Departamento.departamento')
+																    )
+										             ),
+                                                     "conditions" => $conditions,
+                                                     "order" => "Centro.nombre ASC",
+				                                     "recursive" => -1));
 		}
-		
-    	$centros = $this->find("all", array("conditions" => $condition,
-    	                                        "sort" => "Centro.nombre ASC"));
-				
 		//Le doy formato al centro
-		
-        return $new_centros;
+        return $centros;
    } 
 	
 	

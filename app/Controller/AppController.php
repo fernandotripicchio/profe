@@ -92,13 +92,17 @@ class AppController extends Controller {
   
   
    public function getCentros($provincia_id = 19, $departamento = false, $localidad =  false) {
-   	    $centros = $this->Centro->getCentrosLocation($provincia_id = 19, $departamento, $localidad);
-
+ 	    //si departamento y localidad son falsos traigo todos
+	    //si departamento o localidad tienen valores, traigo los centros usando esos filtros
+	    $new_centros = array();
+        $centros = $this->Centro->getCentrosLocation($provincia_id = 19, $departamento, $localidad);
 		if (!empty($centros)) {
-	    	foreach ($centros as $centro) {
+	     	   foreach ($centros as $centro) {
 	      	 	$new_centros[$centro["Centro"]["id"]] = $centro["Centro"]["nombre"];
-	    	}			
-		}
+	    	}	
+ 	        $centros = $new_centros;
+		};
+		
 		$this->set(compact("centros"));	
 		
    } 

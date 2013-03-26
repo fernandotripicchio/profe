@@ -13,14 +13,16 @@
   
   public function getLocalidades($provincia_id, $departamento_id ){
      $localidades = array();
-	 
+     $new_localidades = array();
+     $localidades = $this->Localidad->getLocalidadesLocation($provincia_id, $departamento_id);
      if( $this->RequestHandler->isAjax() ) {
-         $new_localidades = array();
-         $this->layout = 'ajax';
-		 $localidades = $this->Localidad->getLocalidadesLocation($provincia_id, $departamento_id);
-         $localidades = json_encode(compact('localidades'));
-     }	 
+     	 $this->layout = 'ajax';
+		 $localidades = json_encode(compact('localidades'));
+	 }
+	 	 
 	 $this->set(compact("localidades"));
-  } // getLocalidades 
+  } // getLocalidades
+  
+   
  }
  ?>

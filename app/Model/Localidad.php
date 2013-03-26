@@ -52,7 +52,7 @@
 	           $condition .= " and Localidad.departamento =  " . $departamento["Departamento"]["departamento"];
 		    }			 
 			$localidades = $this->find("all",array("conditions" => $condition,
-			                                       "sort" => "Localidad.nombre ASC",
+			                                       "order" => "Localidad.nombre ASC",
 			                                       "recursive" => -1));
 			                                       														
 		} // Of departamento

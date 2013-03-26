@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+	/*
 	//Funciones para asiganar un centro a un afiliado en la pagina de edicion
 	$("#AfiliadoDepartamento").change(function(){
 		       var key = $(this).val();
@@ -30,23 +30,21 @@ $(document).ready(function(){
                      }
                    }); 
 	})
+	*/
 	
 	// Funciones para filtrar los afiliados
 	
 	$("#afiliadosFilterDepartamento").change(function(){
 		var key = $(this).val();
-		alert(key);
+		
+		if (key != "") {
 		//Obtengo las localidades
 		$.ajax({
 	         url: root +'localidades/getLocalidades/19/'+key+'/',            
 	         error: function(jqXHR, textStatus, errorThrown){
 	            alert( "Error en la busqueda de datos "+textStatus);
 	         },
-	         beforeSend: function(data){
-	           	$("#afiliadosFilterLocalidades").html("");
-	         },
 	         success: function(data) {  
-	           	console.log(data);              
 	            var localidades = jQuery.parseJSON(data);
 	            localidades = localidades.localidades;                       
 	            optionsJson("afiliadosFilterLocalidades", localidades, "Seleccione una Localidad", "Localidad");
@@ -59,33 +57,52 @@ $(document).ready(function(){
 	          error: function(jqXHR, textStatus, errorThrown){
 	              alert( "Error en la busqueda de datos "+textStatus);
 	          },
-	          success: function(data) {                
+	          success: function(data) {
+	          	                
 	              var centros = jQuery.parseJSON(data);
 	              centros = centros.centros;
 	              optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
 	          }
         });                   
-                   
+       } else {
+       	optionsJson("afiliadosFilterLocalidades", [], "Seleccione una Localidad", "Localidad");
+       	optionsJson("afiliadosFilterCentros", [], "Seleccione un Centro", "Centro");       	
+       }            
 	});
 	
 	//Busca el centro y la loclidad y me trae todos los centros de esos dos parametros
     $("#afiliadosFilterLocalidades").change(function(){
 		var localidad_id = $(this).val();
 		var departamento_id = $("#afiliadosFilterDepartamento").val();
-		$.ajax({
-              url: root +'centros/getCentrosByDepartamentoLocalidad/' + departamento_id+ '/'+ localidad_id,            
-              error: function(jqXHR, textStatus, errorThrown){
-                   alert( "Error en la busqueda del centro "+textStatus);
-              },
-              beforeSend: function(data){
-                  	$("#AfiliadoCentroId").html("");
-              },
-              success: function(data) {
-                   var centros = jQuery.parseJSON(data);
-                   centros = centros.centros;
-                   optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
-              }
-        }); 
+		if (localidad_id != "" ) {
+				$.ajax({
+		              url: root +'centros/getCentrosByDepartamentoLocalidad/' + departamento_id+ '/'+ localidad_id,            
+		              error: function(jqXHR, textStatus, errorThrown){
+		                   alert( "Error en la busqueda del centro "+textStatus);
+		              },
+		              success: function(data) {
+		                   var centros = jQuery.parseJSON(data);
+		                   centros = centros.centros;
+		                   optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
+		              }
+		        }); 
+      } else  {
+      	 if (departamento_id == "") {
+      	    optionsJson("afiliadosFilterCentros", [], "Seleccione un Centro", "Centro");
+      	 }  else {
+				$.ajax({
+			          url: root +'centros/getCentrosByDepartamento/'+key+'/',            
+			          error: function(jqXHR, textStatus, errorThrown){
+			              alert( "Error en la busqueda de datos "+textStatus);
+			          },
+			          success: function(data) {                
+			              var centros = jQuery.parseJSON(data);
+			              centros = centros.centros;
+			              optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
+			          }
+		        });                  
+      	 }
+      }
 		
 		
 	});
