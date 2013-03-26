@@ -48,8 +48,6 @@
 		    $departamento = $this->Departamento->find("first", 
 			                                          array("conditions" => array("id" => $departamento_id),
 			  	 									        "recursive" => -1));
-	
-	         
 		    if (!empty($departamento)) {
 	           $condition .= " and Localidad.departamento =  " . $departamento["Departamento"]["departamento"];
 		    }			 
@@ -58,7 +56,7 @@
 			                                       "recursive" => -1));
 			                                       														
 		} // Of departamento
-	    return $Localidades;	
+	    return $localidades;	
 	 }
 	 
 	 

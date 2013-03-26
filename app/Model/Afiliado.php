@@ -58,7 +58,7 @@
 
        );
 	   
-	 function bajas($filename){
+	 function bajas($filename) {
  		$handle = fopen($filename, "r");
  		$header = fgetcsv($handle);
 		$return = array(

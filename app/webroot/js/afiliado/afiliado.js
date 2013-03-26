@@ -35,57 +35,57 @@ $(document).ready(function(){
 	
 	$("#afiliadosFilterDepartamento").change(function(){
 		var key = $(this).val();
-		             //Obtengo las localidades
-				     $.ajax({
-	                     url: root +'localidades/getLocalidades/19/'+key+'/',            
-	                     error: function(jqXHR, textStatus, errorThrown){
-	                           alert( "Error en la busqueda de datos "+textStatus);
-	                     },
-	                     beforeSend: function(data){
-	                     	$("#afiliadosFilterLocalidades").html("");
-	                     },
-	                     success: function(data) {  
-	                     	console.log(data);              
-	                       var localidades = jQuery.parseJSON(data);
-	                       localidades = localidades.localidades;                       
-	                       optionsJson("afiliadosFilterLocalidades", localidades, "Seleccione una Localidad", "Localidad");
-	                     }
-                   });
+		alert(key);
+		//Obtengo las localidades
+		$.ajax({
+	         url: root +'localidades/getLocalidades/19/'+key+'/',            
+	         error: function(jqXHR, textStatus, errorThrown){
+	            alert( "Error en la busqueda de datos "+textStatus);
+	         },
+	         beforeSend: function(data){
+	           	$("#afiliadosFilterLocalidades").html("");
+	         },
+	         success: function(data) {  
+	           	console.log(data);              
+	            var localidades = jQuery.parseJSON(data);
+	            localidades = localidades.localidades;                       
+	            optionsJson("afiliadosFilterLocalidades", localidades, "Seleccione una Localidad", "Localidad");
+	         }
+        });
                    
-                    //Obtengo los centros de ese departamento
-				     $.ajax({
-	                     url: root +'centros/getCentrosByDepartamento/'+key+'/',            
-	                     error: function(jqXHR, textStatus, errorThrown){
-	                           alert( "Error en la busqueda de datos "+textStatus);
-	                     },
-	                     success: function(data) {                
-	                       var centros = jQuery.parseJSON(data);
-	                       centros = centros.centros;
-	                       optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
-	                     }
-                   });                   
+        //Obtengo los centros de ese departamento
+		$.ajax({
+	          url: root +'centros/getCentrosByDepartamento/'+key+'/',            
+	          error: function(jqXHR, textStatus, errorThrown){
+	              alert( "Error en la busqueda de datos "+textStatus);
+	          },
+	          success: function(data) {                
+	              var centros = jQuery.parseJSON(data);
+	              centros = centros.centros;
+	              optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
+	          }
+        });                   
                    
 	});
 	
 	//Busca el centro y la loclidad y me trae todos los centros de esos dos parametros
     $("#afiliadosFilterLocalidades").change(function(){
-		       var localidad_id = $(this).val();
-		       var departamento_id = $("#afiliadosFilterDepartamento").val();
-		       $.ajax({
-                     url: root +'centros/getCentrosByDepartamentoLocalidad/' + departamento_id+ '/'+ localidad_id,            
-                     error: function(jqXHR, textStatus, errorThrown){
-                           alert( "Error en la busqueda del centro "+textStatus);
-                     },
-                     beforeSend: function(data){
-                     	$("#AfiliadoCentroId").html("");
-                     },
-                     success: function(data) {
-                       var centros = jQuery.parseJSON(data);
-                       centros = centros.centros;
-                       optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
-                     	                
-                     }
-                   }); 
+		var localidad_id = $(this).val();
+		var departamento_id = $("#afiliadosFilterDepartamento").val();
+		$.ajax({
+              url: root +'centros/getCentrosByDepartamentoLocalidad/' + departamento_id+ '/'+ localidad_id,            
+              error: function(jqXHR, textStatus, errorThrown){
+                   alert( "Error en la busqueda del centro "+textStatus);
+              },
+              beforeSend: function(data){
+                  	$("#AfiliadoCentroId").html("");
+              },
+              success: function(data) {
+                   var centros = jQuery.parseJSON(data);
+                   centros = centros.centros;
+                   optionsJson("afiliadosFilterCentros", centros, "Seleccione un Centro", "Centro");
+              }
+        }); 
 		
 		
 	});

@@ -79,10 +79,12 @@ class AppController extends Controller {
    public function getLocalidades($provincia_id = 19, $departamento_id =  false) {
   	    $localidades = $this->Localidad->getLocalidadesLocation($provincia_id = 19, $departamento_id);
 		$new_localidades = array();
-	    foreach ($localidades as $localidad) {
-	      	 	$new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
-	    }			
-		$localidades = $new_localidades;
+		if (!empty($localidades)) {
+		    foreach ($localidades as $localidad) {
+		      	 	$new_localidades[$localidad["Localidad"]["id"]] = $localidad["Localidad"]["nombre"];
+		    }			
+  		    $localidades = $new_localidades;
+		}
 	    $this->set(compact("localidades"));	
 
    } 

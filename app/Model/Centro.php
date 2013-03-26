@@ -38,7 +38,7 @@
 			
 		}
 		
-    	$centros = $this->find("all", array("conditions" => $conditions,
+    	$centros = $this->find("all", array("conditions" => $condition,
     	                                        "sort" => "Centro.nombre ASC"));
 				
 		//Le doy formato al centro
