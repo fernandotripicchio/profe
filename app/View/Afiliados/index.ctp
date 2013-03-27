@@ -1,4 +1,5 @@
 <!-- Formulario de Busqueda -->
+<? $params_paginator = $this->Paginator->params() ?>
 <div id = "listado_afiliados" class="listados">
 	<h1>Listado de Afiliados</h1>
 	<div id="formulario_afiliados">
@@ -59,6 +60,11 @@
 	</div>
 
     <div id="listado">
+    	<div>
+    		<strong>
+    			Cantidad de Afiliados: <?=$params_paginator["count"] ?>
+    		</strong>
+    	</div>
        <table class="list" >
           <caption>Afiliados</caption>
           <thead>

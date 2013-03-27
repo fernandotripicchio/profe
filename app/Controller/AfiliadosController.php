@@ -66,7 +66,10 @@
 	//Hasta ACA
 	$this->set('afiliadosSession', $afiliadosSession);
     $this->set('afiliados', $afiliados);	 
-	$this->set('filtros', $filtros);	 
+	$this->set('filtros', $filtros);	
+
+
+	 
   }
   
  
