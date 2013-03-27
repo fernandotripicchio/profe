@@ -39,10 +39,8 @@
          }
      }     
 
-     if ($this->request->is('post')  && isset($this->data["Limpiar"])){
-     	
-         $afiliadosSession = $this->resetForm();
-         
+     if ($this->request->is('post')  && isset($this->data["Limpiar"])) {     	
+         $afiliadosSession = $this->resetForm();         
      } 	
 	
    $condition .= $this->buildCondition( strtoupper( $afiliadosSession["keys"] ) , $afiliadosSession["filters"] , $filtros);
@@ -55,12 +53,15 @@
 			$condition .= " and Afiliado.localidad_id = ". $afiliadosSession["localidades"];
     }
 
+   if (!empty( $afiliadosSession["centros"] )) {
+			$condition .= " and Afiliado.centro_id = ". $afiliadosSession["centros"];
+    }
 
 	
     $afiliados = $this->paginate('Afiliado', $condition);
 	$this->getDepartamentos();
 	$this->getLocalidades(19,$afiliadosSession["departamentos"]);
-	$this->getCentros();
+	$this->getCentros(19,$afiliadosSession["departamentos"] ,$afiliadosSession["localidades"]);
 	
 	//Hasta ACA
 	$this->set('afiliadosSession', $afiliadosSession);
