@@ -3,7 +3,8 @@
 <div id = "listado_afiliados" class="listados">
 	<h1>Listado de Afiliados</h1>
 	<div id="formulario_afiliados">
-		<?php echo $this->Form->create("keys") ?>
+		<?php echo $this->Form->create("keys", array("afiliadoSearchForm")) ?>
+		<?php echo $this->Form->hidden('submit_action', array("id" => 'submit_action', 'value' => "")); ?>
 		<table>
 			<tr>
 				<td><label for="keysKeys">Buscar por</label></td>
@@ -51,8 +52,8 @@
 				</td>	
 				<tr>
 					<td colspan="6">
-						<?php echo $this->Form->submit("Buscar", array("class" => "btn-form"))?>
-						<?php echo $this->Form->submit("Limpiar", array("class" => "btn-form"))?>
+						<?php echo $this->Form->submit("Reset", array("class" => "btn-form", "id" => "buttonReset"))?>		
+						<?php echo $this->Form->submit("Buscar", array("class" => "btn-form"))?>                        				
 					</td>
 			</tr>
 		</table>

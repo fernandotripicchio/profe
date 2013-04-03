@@ -34,6 +34,15 @@ $(document).ready(function(){
 	
 	// Funciones para filtrar los afiliados
 	
+	$("#buttonReset").on("click", function(){
+       var form = $("#afiliadoSearchForm").attr("value");
+       $("#submit_action").attr("value", "reset"); 
+       
+       // Submit the form
+       form.submit();
+	    return false;
+	})
+	
 	$("#afiliadosFilterDepartamento").change(function(){
 		var key = $(this).val();
 		
