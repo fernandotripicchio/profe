@@ -1,4 +1,3 @@
-<?// print_r($afiliado)?>
 <div class="show_table">
 	<table>
         <tr>

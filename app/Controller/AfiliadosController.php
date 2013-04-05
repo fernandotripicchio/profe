@@ -77,8 +77,6 @@
   
  
   public function resetForm(){
-
-
      $this->Session->write('Afiliados.keys', false );
 	 $this->Session->write('Afiliados.filters',false);
      $this->Session->write('Afiliados.departamentos', false);
@@ -140,8 +138,7 @@
     $cantidad_afiliados = 0; 
     if (!empty($this->data))  {
 	    	    set_time_limit ( 3000 );
-	            $cantidad_afiliados = $this->Afiliado->bajas($this->data['field']['tmp_name']);
-	            
+	            $cantidad_afiliados = $this->Afiliado->bajas($this->data['field']['tmp_name']);	            
     }	 	 
 	$this->set(compact("cantidad_afiliados"));	   
  	
@@ -179,6 +176,9 @@ public function carnet_show($id){
 	if (!$this->Afiliado->exists()) {
 	            throw new NotFoundException(__('Afiliado invalido'));
 	}		
+	$afiliado  = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id)));
+	$this->set('afiliado', $afiliado);	 
+	
 }
 
  

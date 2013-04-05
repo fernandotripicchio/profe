@@ -58,24 +58,9 @@
 
        );
 	   
-	 function bajas($filename) {
- 		$handle = fopen($filename, "r");
- 		$header = fgetcsv($handle);
-		$return = array(
-			'messages' => array(),
-			'errors' => array(),
-		);
-        $nuevo_afiliado = array();
-		$i = 0;
-		$cantidad_afiliados = $no_insertados = 0;
-        while (($row = fgetcsv($handle)) !== FALSE) {
-        	
-		}	 	
-	 }  
-	   
  
 	 //Funcion para importar usuarios desde un archivo CSV y generar un nuevo listado  
-	 function import($filename)  {
+	 function import($filename, $activo =  1)  {
  		$handle = fopen($filename, "r");
  		$header = fgetcsv($handle);
 		$return = array(
@@ -98,31 +83,14 @@
 			$departamento = $this->Departamento->findDepartamento($departamento_id, $provincia_id);
 			$provincia    = 19; #$this->Provincia->findProvincia($provincia_id);
 			if (sizeof($grupo) > 0 && sizeof($localidad) > 0) {
-		            $clave_numero = $nuevo_afiliado["clave_numero"] = $row[2];
-					$nuevo_afiliado["tipo_documento"] = strtoupper( $row[9] );
-					$nuevo_afiliado["documento"] = strtoupper( $row[10] );
-					$nuevo_afiliado["nombre"] = strtoupper( $row[6] ); 
-					$nuevo_afiliado["sexo"]   = strtoupper( $row[7] ); 
-					$nuevo_afiliado["estado_civil"]   = strtoupper( $row[8] );
-					$nuevo_afiliado["grupo_id"]   = $grupo["Grupo"]["id"];
-					//Localidad
-					$nuevo_afiliado["localidad_id"]    = $localidad["Localidad"]["id"];
-					$nuevo_afiliado["localidad"]    = $localidad_id;
-					$nuevo_afiliado["departamento"]    = $departamento["Departamento"]["id"];
-					$nuevo_afiliado["provincia"]    = $provincia;
-					
-					$nuevo_afiliado["domicilio_calle"] = strtoupper( $row[14] );
-					$nuevo_afiliado["domicilio_nro"]   = strtoupper( $row[15] );
-					$nuevo_afiliado["domicilio_piso"]  = strtoupper( $row[16] );					
-					$nuevo_afiliado["domicilio_depto"] = strtoupper( $row[17] );
-					$nuevo_afiliado["codigo_postal"]   = strtoupper( $row[18] );
-					//Fecha de Nacimiento
-					//Agregar para formatear fecha
-					$nuevo_afiliado["fecha_nacimiento"] = $this->date_format($row[11]);
-					//Fecha Alta
-					$nuevo_afiliado["fecha_alta"]   = $this->date_format($row[13]);
-					$nuevo_afiliado["incapacidad"] = $row[12];
-					$nuevo_afiliado["activo"] = 1;
+				    $nuevo_afiliado = $this->construirAfiliado($row);
+				    $clave_numero = $nuevo_afiliado["clave_numero"];
+					$nuevo_afiliado["activo"] = $activo;
+       		        $nuevo_afiliado["localidad_id"]    = $localidad["Localidad"]["id"];
+		            $nuevo_afiliado["localidad"]       = $localidad_id;
+		            $nuevo_afiliado["departamento"]    = $departamento["Departamento"]["id"];
+		            $nuevo_afiliado["provincia"]       = $provincia;	
+		            $nuevo_afiliado["grupo_id"]       = $grupo["Grupo"]["id"];									
 					//Me fijo si ya existe, si existe hago el update si no hago el create
 					$afiliado = $this->find("first",  array("conditions" => array("clave_numero" => $clave_numero ), "recursive" => -1));
 					if (empty($afiliado)) {
@@ -149,5 +117,30 @@
  		// return the messages
  		return $cantidad_afiliados;
 	}
+
+    function construirAfiliado($row){
+    	 $nuevo_afiliado = array();
+		 $nuevo_afiliado["clave_numero"] = $row[2];
+		 $nuevo_afiliado["tipo_documento"] = strtoupper( $row[9] );
+		 $nuevo_afiliado["documento"]      = strtoupper( $row[10] );
+		 $nuevo_afiliado["nombre"] = strtoupper( $row[6] ); 
+		 $nuevo_afiliado["sexo"]   = strtoupper( $row[7] ); 
+		 $nuevo_afiliado["estado_civil"]   = strtoupper( $row[8] );
+
+		 //Localidad
+		 $nuevo_afiliado["domicilio_calle"] = strtoupper( $row[14] );
+		 $nuevo_afiliado["domicilio_nro"]   = strtoupper( $row[15] );
+		 $nuevo_afiliado["domicilio_piso"]  = strtoupper( $row[16] );					
+		 $nuevo_afiliado["domicilio_depto"] = strtoupper( $row[17] );
+		 $nuevo_afiliado["codigo_postal"]   = strtoupper( $row[18] );
+		 //Fecha de Nacimiento
+		 //Agregar para formatear fecha
+		 $nuevo_afiliado["fecha_nacimiento"] = $this->date_format($row[11]);
+		 //Fecha Alta
+		 $nuevo_afiliado["fecha_alta"]   = $this->date_format($row[13]);
+		 $nuevo_afiliado["incapacidad"] = $row[12];
+		 return $nuevo_afiliado;
+    	
+    }
 	
  }

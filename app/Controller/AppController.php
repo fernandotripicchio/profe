@@ -37,7 +37,7 @@ class AppController extends Controller {
                               'Auth',
                               'Session');   
    
-   
+   public $helpers = array('AjaxMultiUpload.Upload');
    
    public function beforeFilter() {
           $this->Auth->authenticate = array(

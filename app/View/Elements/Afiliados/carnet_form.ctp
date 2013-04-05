@@ -5,7 +5,7 @@
                 <tr >
                  <td class="right with-4">Nombre:</td>
                  <td class="last left">
-                     <?php echo $this->form->input('nombre',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
+                     <?php echo $this->form->input('nombre',    array('label'=> false,'type'=>'text', 'size'=>30, 'class' => 'required', 'disabled' => true,'div' => array('tag' => '')));?>
                  </td>
                 </tr>
              	

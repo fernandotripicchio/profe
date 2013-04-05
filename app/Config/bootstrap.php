@@ -164,7 +164,7 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
  //CakePlugin::loadAll(); // Loads all plugins at once
-
+  CakePlugin::load('AjaxMultiUpload'); 
 /**
  * You can attach event listeners to the request lifecyle as Dispatcher Filter . By Default CakePHP bundles two filters:
  *
