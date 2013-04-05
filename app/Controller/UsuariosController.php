@@ -26,8 +26,6 @@
     $this->layout = "login";
 
     if ($this->request->is('post')) {
-    	
-		        
         if ($this->Auth->login()) {
         	$this->Session->write("usuario_mail", $this->Auth->User("username") ); 
 			$this->Session->write("usuario_id", $this->Auth->User("id") );

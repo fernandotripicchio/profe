@@ -98,8 +98,16 @@
 	        $this->request->data = $this->Afiliado->read();	
 	} else {
 	        if ($this->Afiliado->save($this->request->data)) {
+	        	
+				//Foto de Perfil
+				//print_r($this->data["Afiliado"]["perfil"]);
+				print_r( $this->data["Afiliado"]["field"] );
+				$handle = fopen($this->data["Afiliado"]["field"]["tmp_name"], "r");
+				 //move_uploaded_file($this->data["Afiliado"]["field"]["tmp_name"], 'Afiliados/perfiles');
+				//die;
+				
 	            $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");			
-	            $this->redirect(array("controller" => "afiliados", "action" => "show", $id));
+	            //$this->redirect(array("controller" => "afiliados", "action" => "show", $id));
 	        } else {
 	        	$this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
 	        }

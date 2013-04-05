@@ -1,7 +1,7 @@
 <?echo $this->Html->script('/afiliado/afiliado');?>
 
 <div id="afiliados_edit">
-    <?=$this->form->create('Afiliado',array('action'=>'edit', 'id' => 'afiliadoForm'));?>
+    <?=$this->form->create('Afiliado',array('action'=>'edit', 'type' => 'file', 'id' => 'afiliadoForm'));?>
     <?=$this->element("Afiliados/form", array("title"=>"Editar Afiliado"));?>
     <div class="full center_image botonera">
        <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button' ) )?>

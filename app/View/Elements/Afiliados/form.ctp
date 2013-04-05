@@ -36,7 +36,7 @@
 		 <tr>
 		 	<td class="width-4 right"> Foto Perfil</td>
 		 	<td>
-		 		<? echo $this->Html->image('perfil.png', array('alt' => 'Perfil')); ?>
+		 		<? echo $this->Html->image('/files/Afiliado/'.$afiliado['Afiliado']['id'].'/perfil.jpg', array('width'=> 90,'alt' => 'Perfil')); ?>
 		 	</td>
 		 	<td>
 		 	    <?php echo $this->form->input("field", array('type' => 'file', 'label' => false)); ?>	 
