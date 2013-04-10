@@ -1,5 +1,8 @@
 <div id="menu">
     <ul class="menu">
+    	<li>
+    		 <?=$this->Html->link('<span>Búsqueda Rápida</span>', array('controller' => 'busqueda', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+    	</li>
         <li>
           <?=$this->Html->link('<span>Afiliados</span>', array('controller' => 'afiliados', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
             <div>
@@ -7,6 +10,7 @@
                 <li>
                     <?=$this->Html->link('<span>Listado</span>', array('controller' => 'afiliados', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
+                
                	
                 <li>
                     <?=$this->Html->link('<span>Actualizar Afiliados</span>', array('controller' => 'afiliados', 'action' => 'importar'), array('class' => 'parent', 'escape' => false)); ?>
@@ -52,14 +56,9 @@
             
         </li>
 
-        
-        
-        
-    
                 
         <li>
             <?=$this->Html->link('<span>Consultas</span>', array('controller' => 'reportes', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
-            
         </li>
         
         <li>

@@ -11,7 +11,7 @@
                                  ) ,
 	                            'Departamento' => array(
                                    'className'  => 'Departamento',
-                                   'foreignKey' => 'departamento'
+                                   'foreignKey' => 'departamento_id'
                                  ) ,
 	                            'Provincia' => array(
                                    'className'  => 'Provincia',
@@ -70,27 +70,54 @@
         $nuevo_afiliado = array();
 		$i = 0;
 		$cantidad_afiliados = $no_insertados = 0;
+		
+		$no_localidad = $this->Localidad->find("first", array("conditions" => array("nombre" => "NO TIENE LOCALIDAD"), "recursive" => -1));
+		$no_departamento = $this->Departamento->find("first", array("conditions" => array("nombre" => "NO TIENE DEPARTAMENTO"), "recursive" => -1));
+		
         while (($row = fgetcsv($handle)) !== FALSE) {
-        	if ( 1 ) {
+        	$codigo = "";
+			
+
 			//Grupo
 			$codigo = $row[5];
 			$grupo = $this->Grupo->find("first" , array("conditions" => array("codigo" =>  $codigo), "recursive" => -1));
             //Localidad
-            $provincia_id    = $row[19];
-			$departamento_id = $row[20];
-			$localidad_id    = $row[21];
-			$localidad    = $this->Localidad->findLocalidad($localidad_id, $departamento_id, $provincia_id);
-			$departamento = $this->Departamento->findDepartamento($departamento_id, $provincia_id);
-			$provincia    = 19; #$this->Provincia->findProvincia($provincia_id);
-			if (sizeof($grupo) > 0 && sizeof($localidad) > 0) {
+            $provincia    = $row[19];
+			$departamento = $row[20];
+			$localidad    = $row[21];
+			$loca        = $this->Localidad->findLocalidad($localidad, $departamento, $provincia);
+			$depto       = $this->Departamento->findDepartamento($departamento, $provincia); 
+			// $nuevo_afiliado = $this->construirAfiliado($row);
+		    // $this->create();
+			// $this->save($nuevo_afiliado);			
+			
+			//if (sizeof($loca) > 0) {
 				    $nuevo_afiliado = $this->construirAfiliado($row);
 				    $clave_numero = $nuevo_afiliado["clave_numero"];
 					$nuevo_afiliado["activo"] = $activo;
-       		        $nuevo_afiliado["localidad_id"]    = $localidad["Localidad"]["id"];
-		            $nuevo_afiliado["localidad"]       = $localidad_id;
-		            $nuevo_afiliado["departamento"]    = $departamento["Departamento"]["id"];
-		            $nuevo_afiliado["provincia"]       = $provincia;	
-		            $nuevo_afiliado["grupo_id"]       = $grupo["Grupo"]["id"];									
+					
+					if (!empty( $loca )) {
+					    $nuevo_afiliado["localidad_id"]    = $loca["Localidad"]["id"];	
+					} else {
+						$nuevo_afiliado["localidad_id"]    = $no_localidad["Localidad"]["id"];
+					}
+					
+					if (!empty( $depto )) {
+					    $nuevo_afiliado["departamento_id"]    = $depto["Departamento"]["id"];	
+					} else {
+						$nuevo_afiliado["departamento_id"]    = $no_departamento["Departamento"]["id"];
+					}					
+					
+       		        //Datos basicos del excel
+		            $nuevo_afiliado["localidad"]       = $localidad;
+		            $nuevo_afiliado["departamento"]    = $departamento;
+		            $nuevo_afiliado["provincia"]       = $provincia;
+
+		            if ( !empty($grupo)) {
+					    $nuevo_afiliado["grupo_id"]       = $grupo["Grupo"]["id"];	
+					}
+					
+		            									
 					//Me fijo si ya existe, si existe hago el update si no hago el create
 					$afiliado = $this->find("first",  array("conditions" => array("clave_numero" => $clave_numero ), "recursive" => -1));
 					if (empty($afiliado)) {
@@ -104,11 +131,11 @@
 						$cantidad_afiliados++;
 					}
 			
-			} else {
-				$no_insertados++;
-			}
 			
-			}
+			//} else {
+			//	$no_insertados++;
+				//print_r($codigo." -  ".$row[2]. " - ". $row[10]."<br>");
+			//}
             $i++;
 		
 		}
@@ -120,6 +147,9 @@
 
     function construirAfiliado($row){
     	 $nuevo_afiliado = array();
+		 $nuevo_afiliado["clave_excaja"] = $row[0];
+		 $nuevo_afiliado["clave_tipo"] = $row[1];
+		 
 		 $nuevo_afiliado["clave_numero"] = $row[2];
 		 $nuevo_afiliado["tipo_documento"] = strtoupper( $row[9] );
 		 $nuevo_afiliado["documento"]      = strtoupper( $row[10] );

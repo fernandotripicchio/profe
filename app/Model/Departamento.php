@@ -16,10 +16,10 @@
 				);
   
   
-	public function findDepartamento($departamento_id, $provincia_id = 19){
+	public function findDepartamento($departamento, $provincia = 19){
     	$departamento =  $this->find("first", array("conditions" => 
-		                                              array("provincia" => $provincia_id,
-															"departamento" => $departamento_id), 
+		                                              array("provincia" => $provincia,
+															"departamento" => $departamento), 
 		   	                                                "recursive" => -1) );
 		return $departamento;
 	 }  
