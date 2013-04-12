@@ -65,27 +65,40 @@
       	        <tr>
           	<td class="width-4 th_header" colspan="7"> Ubicación y Centro de Salud </td>
         </tr>	
+       	
+         	<tr>
+				<td>
+				   Domicilio:	
+				</td>
+				<td class="last left">		
+				    <?php echo $afiliado["Afiliado"]["domicilio_calle"];?>
+				</td>
+				<td>
+				   Domicilio Nro:	
+				</td>
+				<td class="last left">		
+				    <?php echo $afiliado["Afiliado"]["domicilio_nro"];?>
+				</td>
+				
+         		
+         	</tr>          
         	<tr>
   				<td>Departamento:</td>
-				<td>
+				<td class="last left">
 					<?php echo $afiliado["Departamento"]["nombre"];?>					
 				</td>
 				<td>
 				   Localidad:	
 				</td>
-				<td >
+				<td class="last left" colspan="3">
                     <?php echo $afiliado["Localidad"]["nombre"];?>										
-				</td>
-				<td>Dirección</td>
-				<td >
-                    <?php echo $afiliado["Afiliado"]["domicilio_calle"];?>										
-				</td>
+				</td >
 								
 
          	</tr>
        	<tr>
        		<td >Centro de Salud:</td>
-				<td>
+				<td class="last left">
                  <?php echo $afiliado["Centro"]["nombre"];?>					
 				</td>
 				<td>
@@ -103,23 +116,7 @@
 				</td>
 				
        	</tr>
-       	
-         	<tr>
-				<td>
-				   Domicilio:	
-				</td>
-				<td class="last left">		
-				    <?php echo $afiliado["Afiliado"]["domicilio_calle"];?>
-				</td>
-				<td>
-				   Domicilio Nro:	
-				</td>
-				<td class="last left">		
-				    <?php echo $afiliado["Afiliado"]["domicilio_nro"];?>
-				</td>
-				
-         		
-         	</tr>       	
+     	
          	
        </table>
        

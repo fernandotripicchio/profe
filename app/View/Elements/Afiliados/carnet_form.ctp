@@ -63,7 +63,24 @@
       	        <tr>
           	<td class="width-4 th_header" colspan="7"> Ubicación y Centro de Salud </td>
           	
-        </tr>	
+        </tr>
+         	<tr>
+				<td>
+				   Domicilio:	
+				</td>
+				<td class="last left">		
+								 <?php echo $this->form->input('domicilio_calle',    array('label'=> false,'type'=>'text', 'size'=>40,  'div' => array('tag' => '')));?>
+				</td>
+				<td>
+				   Domicilio Nro:	
+				</td>
+				<td class="last left">		
+								 <?php echo $this->form->input('domicilio_nro',    array('label'=> false,'type'=>'text', 'size'=>2,  'div' => array('tag' => '')));?>
+				</td>
+				
+         		
+         	</tr>
+        	
         	<tr>
   				<td>Departamento:</td>
 				<td>					
@@ -85,22 +102,6 @@
                              <?php } ?>
 			        </select>					
 				</td>				
-         	</tr>
-         	<tr>
-				<td>
-				   Domicilio:	
-				</td>
-				<td class="last left">		
-								 <?php echo $this->form->input('domicilio_calle',    array('label'=> false,'type'=>'text', 'size'=>40,  'div' => array('tag' => '')));?>
-				</td>
-				<td>
-				   Domicilio Nro:	
-				</td>
-				<td class="last left">		
-								 <?php echo $this->form->input('domicilio_nro',    array('label'=> false,'type'=>'text', 'size'=>2,  'div' => array('tag' => '')));?>
-				</td>
-				
-         		
          	</tr>
        	<tr>
        		<td >Centro de Salud:</td>

@@ -26,7 +26,8 @@ $cakeDescription = __d('Profe', 'PROFE');
                                        'jquery.ui',
                                        'jquery.buttons',
                                        'calendar-spanish',
-									   'afiliado/afiliado'));
+									   'afiliado/afiliado',
+									   'afiliado/afiliado_form'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

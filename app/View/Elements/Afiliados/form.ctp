@@ -98,17 +98,17 @@
 	         <tr>  
 	            <td> Departamento </td>
 	            <td>
-	               <?php echo $this->form->select('departamento_id', $departamentos, array("class" => "", "value" => $afiliado["Afiliado"]["departamento_id"], "empty" => "Seleccione un Departamento")) ?>
+	               <?php echo $this->form->select('departamento_id', $departamentos, array("class" => "", "id" => "departamentoAfiliadoForm", "value" => $afiliado["Afiliado"]["departamento_id"], "empty" => "Seleccione un Departamento")) ?>
 	            </td>
 	            <td> Localidad  </td>
                 <td>
-                   	 <?php echo $this->form->select('localidad_id', $localidades, array("class" => "", "value" => $afiliado["Afiliado"]["localidad_id"],  "empty" => "Seleccione una Localidad")) ?>
+                   	 <?php echo $this->form->select('localidad_id', $localidades, array("class" => "", "id" => "localidadesAfiliadoForm","value" => $afiliado["Afiliado"]["localidad_id"],  "empty" => "Seleccione una Localidad")) ?>
                 </td>
                 <td>	
 	                    Centros
 	            </td>   
 	            <td>
-	              	 <?php echo $this->form->select('centro_id', $centros, array("class" => "", "empty" => "Seleccione un Centro")) ?>
+	              	 <?php echo $this->form->select('centro_id', $centros, array("class" => "",  "id" => "centrosAfiliadoForm" , "empty" => "Seleccione un Centro")) ?>
 	            </td>
 	         </tr>                
              </tbody>
