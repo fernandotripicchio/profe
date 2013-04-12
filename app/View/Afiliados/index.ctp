@@ -15,46 +15,10 @@
 				<td colspan="5">					
 					<?php echo $this->form->select('filters', $filtros,  array("class" => "select-filter-afiliados", "empty" => false)) ?>
   			    </td>       
-  			</tr>
-  			<tr>             
-  				<td><label for="keysKeys">Departamento</label></td>
-				<td>					
-			        <select name="data[departamentos]" id="afiliadosFilterDepartamento" class="select-filter-afiliados">
-			                 <option value="">Seleccione un Departamento</option>
-                             <?php foreach($departamentos as $key=>$value) { ?>
-                                   <option value="<?=$key?>" <?=(($afiliadosSession["departamentos"] == $key) ? "selected": "")?>><?=$value?></option>                             	
-                             <?php } ?>
-			        </select>					
-				</td>
-				<td>
-				   <label for="keysKeys">Localidad</label>	
-				</td>
-				<td>					
-			        <select name="data[localidades]" id="afiliadosFilterLocalidades" class="select-filter-afiliados">
-			                 <option value="">Seleccione una Localidad</option>
-                             <?php foreach($localidades as $key=>$value) { ?>
-                                   <option value="<?=$key?>" <?=(($afiliadosSession["localidades"] == $key) ? "selected": "")?>><?=$value?></option>                             	
-                             <?php } ?>
-			        </select>					
-				</td>				
-				<td>
-					<label for="keysKeys">Centros</label>
-				</td>
-
-				<td>
-					
-			        <select name="data[centros]" id="afiliadosFilterCentros" class="select-filter-afiliados">
-			                 <option value="">Seleccione un Centro</option>
-                             <?php foreach($centros as $key=>$value) { ?>
-                                   <option value="<?=$key?>" <?=(($afiliadosSession["centros"] == $key) ? "selected": "")?>><?=$value?></option>                             	
-                             <?php } ?>
-			        </select>					
-				</td>	
-				<tr>
-					<td colspan="6">
-						<?php echo $this->Form->submit("Reset", array("class" => "btn-form", "id" => "buttonReset"))?>		
-						<?php echo $this->Form->submit("Buscar", array("class" => "btn-form"))?>                        				
-					</td>
+				<td>								
+					<?php echo $this->Form->submit("Buscar", array("class" => "btn-form"))?>    
+					<?php echo $this->Form->submit("Limpiar", array("class" => "btn-form", "id" => "buttonReset"))?>                    				
+			    </td>
 			</tr>
 		</table>
 		<?php echo $this->Form->end; ?>

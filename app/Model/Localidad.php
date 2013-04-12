@@ -28,11 +28,11 @@
        );
   
      
-	 public function findLocalidad($localidad_id, $departamento_id, $provincia_id = 19){
+	 public function findLocalidad($localidad, $departamento, $provincia = 19){
               $localidad =  $this->find("first", array("conditions" => 
-			                                              array("localidad " => $localidad_id,
-														        "provincia" => $provincia_id,
-																"departamento" => $departamento_id), 
+			                                              array("localidad " => $localidad,
+														        "provincia" => $provincia,
+																"departamento" => $departamento), 
 			                                               "recursive" => -1) );
 		      return $localidad; 
 														   	 	

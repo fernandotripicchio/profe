@@ -2,7 +2,11 @@
 	<table>
         <tr>
           	<td class="width-4 th_header" colspan="4"> Datos del Afiliado </td>
-        </tr>		
+        </tr>	
+		<tr>
+			<td class="with-4 right">Nro de Pensión: </td>
+			<td class="left" colspan="3"><?php echo $nro_pension?></td>
+		</tr>        	
 		<tr>
          <td class="with-4 right">Nombre: </td>
          <td class="left"><?php echo $afiliado["Afiliado"]["nombre"]?></td> 
@@ -12,10 +16,7 @@
 	        </td>
          
 		</tr>
-		<tr>
-			<td class="with-4 right">Clave: </td>
-			<td class="left" colspan="3"><?php echo $afiliado["Afiliado"]["clave_numero"]?></td>
-		</tr>
+
 		<tr>
 			<td class="with-4 right">Documento: </td>
 			<td class="left" ><?php echo $afiliado["Afiliado"]["tipo_documento"]." - ".$afiliado["Afiliado"]["documento"]?></td>
@@ -43,36 +44,37 @@
           	<td class="width-4 th_header" colspan="4">Domicilio</td>
           </tr>
           <tr>
-          	<td class="width-4 right">Calle</td>
+          	<td class="width-4 right">Calle:</td>
           	<td class="left"><?php echo $afiliado["Afiliado"]["domicilio_calle"] ?></td>
           	<td class="width-4 right">Número:</td>
           	<td class="left"><?php echo $afiliado["Afiliado"]["domicilio_nro"] ?></td>
           </tr>
           <tr>
-          	<td class="width-4 right">Piso</td>
+          	<td class="width-4 right">Piso:</td>
           	<td class="left"><?php echo $afiliado["Afiliado"]["domicilio_piso"] ?></td>
           	<td class="width-4 right">Dpto:</td>
           	<td class="left"><?php echo $afiliado["Afiliado"]["domicilio_depto"] ?></td>
           </tr>
           <tr>
-          	<td class="width-4 right">Localidad</td>
+          	<td class="width-4 right">Localidad:</td>
           	<td class="left"><?php echo $afiliado["Localidad"]["nombre"] ?></td>
           	<td class="width-4 right">Departamento:</td>
           	<td class="left"><?php echo $afiliado["Departamento"]["nombre"] ?></td>
           </tr>
           
           <tr>
-          	<td class="width-4 th_header" colspan="4">Carnet</td>
+          	<td class="width-4 th_header" colspan="4">Contacto</td>
           </tr>
           <tr>
-          	<td class="width-4 right">Teléfonos</td>
+          	<td class="width-4 right">Teléfonos:</td>
           	<td class="left"><?php echo $afiliado["Afiliado"]["telefonos"] ?></td>
-          	<td class="width-4 right">Celular:</td>
+          	<td class="width-4 right">Celular(s):</td>
           	<td class="left"><?php echo $afiliado["Afiliado"]["celular"] ?></td>
-
-          </tr>          
-          
-          
+          </tr>
+          <tr>
+          	<td class="width-4 right">Email(s):</td>
+          	<td class="left" colspan="3"><?php echo $afiliado["Afiliado"]["email"] ?></td>
+          </tr>                    
           <tr>
           	<td class="width-4 th_header" colspan="4" > Centro de Salud      </td>
           </tr>          
@@ -84,15 +86,19 @@
           	
           </tr>
 
-          
-          
+      <table>
           <tr>
-          	<td class="width-4 th_header" colspan="4"> Diagnosticos </td>
-          </tr>		
-                
-          <tr>
-          	<td class="width-4" colspan="4">TBI</td>
-          </tr>
+          	<td class="width-4 th_header" colspan="4"> Archivos </td>
+          </tr>          
+      	
+		 <tr>
+		 	<td>
+		 		<?php echo $this->Upload->view('Afiliado', $afiliado['Afiliado']['id']); ?>
+		 	</td>
+		 </tr>         	
+
+      </table>
+           	
 
           
 	</table>

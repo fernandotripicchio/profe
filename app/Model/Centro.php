@@ -90,23 +90,12 @@
             $centro_medico     = strtoupper( $row[26] );			
 			$centro_localidad  = strtoupper( $row[28] );
 			
-			//echo "$centro_nombre ------ $centro_localidad <br> ";
-		//	$voz_ip      = strtoupper( $row[5] );
-		
-		
 		    
 			$localidad = $this->Localidad->find("first" , array("conditions" => array("Localidad.nombre" =>  $centro_localidad, "Localidad.provincia" => 19), "recursive" => 0));
             			
 			 if (sizeof($localidad) > 0) {
-// 				    
-// 		            
 					 $nuevo_centro["nombre"]       = $centro_nombre;
 					 $nuevo_centro["localidad_id"] = $localidad["Localidad"]["id"];
-					 //$nuevo_centro["direccion"]    = $direccion;
-					// $nuevo_centro["telefonos"]    = $telefonos; 
-					// $nuevo_centro["voz_ip"]       = $voz_ip;
-// 									
-// 					
 					// //Me fijo si ya existe, si existe hago el update si no hago el create
 					$centro = $this->find("first",  array("conditions" => array("nombre" => $centro_nombre ), "recursive" => -1));
 					 if (empty($centro)) {
@@ -135,10 +124,6 @@
 		 }
         $i++;
 		}
-		
-
- 		// close the file
-		
  		fclose($handle);
 
  		// return the messages

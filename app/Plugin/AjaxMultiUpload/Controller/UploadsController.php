@@ -60,12 +60,12 @@ class UploadsController extends AjaxMultiUploadAppController {
 		$file = base64_decode($file);
 		if(file_exists($file)) {
 			if(unlink($file)) {
-				$this->Session->setFlash(__('File deleted!'));				
+				$this->Session->setFlash(__('Archivo Borrado!'));				
 			} else {
-				$this->Session->setFlash(__('Unable to delete File'));					
+				$this->Session->setFlash(__('No se puede eliminar el archivo'));					
 			}
 		} else {
-			$this->Session->setFlash(__('File does not exist!'));					
+			$this->Session->setFlash(__('El archivo no es valido!'));					
 		}
 		
 		$this->redirect($this->referer());	

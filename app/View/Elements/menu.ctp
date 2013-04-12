@@ -1,14 +1,11 @@
 <div id="menu">
     <ul class="menu">
-    	<li>
-    		 <?=$this->Html->link('<span>Búsqueda Rápida</span>', array('controller' => 'busqueda', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
-    	</li>
         <li>
           <?=$this->Html->link('<span>Afiliados</span>', array('controller' => 'afiliados', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
             <div>
                <ul>
                 <li>
-                    <?=$this->Html->link('<span>Listado</span>', array('controller' => 'afiliados', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+                    <?=$this->Html->link('<span>Listados</span>', array('controller' => 'afiliados', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
                 
                	

@@ -68,7 +68,9 @@ class AppController extends Controller {
 	      $new_departamentos[$departamento["Departamento"]["id"]] = $departamento["Departamento"]["nombre"];
 	    }
 	    $departamentos = $new_departamentos;
-	    $this->set(compact("departamentos"));	
+	
+	    $this->set(compact("departamentos"));
+	    	
   }
  
  /*

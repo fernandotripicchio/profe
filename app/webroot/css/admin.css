@@ -51,11 +51,28 @@ div#footerLegendTitle{
 
 
 .btn-form { 
-      float: right; 
+      float: left; 
+      margin-right : 50px;
+ }
+ 
+ .btn-form-left { 
+      float: left !important; 
       margin-right : 50px;
  }
  
 .select-filter-afiliados{
 	width: 200px;
 	float: left;
+}
+
+
+a:link {color:#184c77;}      /* unvisited link */
+a:visited {color:#184c77}  /* visited link */
+a:hover {color:#184c77}  /* mouse over link */
+a:active {color:#184c77}  /* selected link */
+
+
+.btn-right{
+	float: right;
+	margin-right:50px;
 }
