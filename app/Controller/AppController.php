@@ -110,6 +110,25 @@ class AppController extends Controller {
    } 
    
    
+   
+
+  
+  
+  
+   public function getCentrosByCodigo($provincia = 19, $departamento = false, $localidad =  false) {
+	    $new_centros = array();
+        $centros = $this->Centro->getCentrosLocation($provincia = 19, $departamento, $localidad);
+		if (!empty($centros)) {
+	     	   foreach ($centros as $centro) {
+	      	 	$new_centros[$centro["Centro"]["id"]] = $centro["Centro"]["nombre"];
+	    	}	
+ 	        $centros = $new_centros;
+		};
+		
+		$this->set(compact("centros"));	
+		
+   }    
+   
   //Obtener los filtros 
   
   public function all_condition($filtros, $keyword) {

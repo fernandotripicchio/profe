@@ -98,13 +98,28 @@
 		 </tr>         	
 
       </table>
+      
+       <table >
+          <tr>
+          	<td class="width-4 th_header" colspan="4"> Observaciones </td>
+          </tr>          
+  	        <tr>
+                 <td class="last left">
+                     <td class="left"><?php echo $afiliado["Afiliado"]["observaciones"] ?> </td>
+                 </td>
+              </tr>
+
+
+
+       </table>      
+      
            	
 
           
 	</table>
    <div class="botonera">
-        <?php echo $this->html->link('Volver',array("controller"=>"afiliados", "action" => "index"), array('class' => 'button'));?>
-        <?php echo $this->html->link('Editar',array("controller"=>"afiliados", "action" => "edit", $afiliado["Afiliado"]["id"]), array('class' => 'button'));?>
+        <?php echo $this->html->link('Listado',array("controller"=>"afiliados", "action" => "index"), array('class' => 'button btn-right'));?>
+        <?php echo $this->html->link('Editar',array("controller"=>"afiliados", "action" => "edit", $afiliado["Afiliado"]["id"]), array('class' => 'button btn-right'));?>
         
    </div>	
 </div>

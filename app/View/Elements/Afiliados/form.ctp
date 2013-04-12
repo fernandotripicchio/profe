@@ -81,13 +81,10 @@
                      <?php echo $this->form->input('email',    array('label'=> false,'type'=>'text', 'size'=>40,  'div' => array('tag' => '')));?>
                  </td>
            </tr>
-          
-          
-          
           <tr>
-                 <td colspan="2">   
+               <td colspan="2">   
                  	<hr />    
-                 </td>
+               </td>
           </tr>
          </tbody> 
       </table>
@@ -124,4 +121,20 @@
 		 </tr>         	
 
       </table>
+       <table class="full">
+	       	<tr>
+	      		<th >
+	        		   Observaciones 
+	             </th>
+	         </tr>       	
+  	        <tr>
+                 <td class="last left">
+                     <?php echo $this->form->input('observaciones',    array('label'=> false,'type'=>'textarea', 'style' => 'width:99%', 'div' => array('tag' => '')));?>
+                 </td>
+              </tr>
+
+
+
+       </table>      
+      
     </fieldset>  

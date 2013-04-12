@@ -60,10 +60,9 @@
 
 	
     $afiliados = $this->paginate('Afiliado', $condition);
-	$this->getDepartamentos(19);
-	
+	$this->getDepartamentos(19);	
 	$this->getLocalidades(19,$reportesSession["departamentos"]);
-	$this->getCentros(19,$reportesSession["departamentos"] ,$reportesSession["localidades"]);
+	$this->getCentrosByCodigo(19,$reportesSession["departamentos"] ,$reportesSession["localidades"]);
 	
 	//Hasta ACA
 	$this->set('reportesSession', $reportesSession);

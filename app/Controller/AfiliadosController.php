@@ -65,7 +65,8 @@
 	        $this->request->data = $this->Afiliado->read();	
 	} else {
 	        if ($this->Afiliado->save($this->request->data)) {
-	            $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");			
+	            $this->Session->setFlash("Se modificó el Afiliado con éxito", "success");	
+				$this->redirect("/afiliados/show/".$id);		
 	        } else {
 	        	$this->Session->setFlash("No se pudo modificar el Afiliado", "error");	
 	        }

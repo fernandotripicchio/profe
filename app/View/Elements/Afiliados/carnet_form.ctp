@@ -131,15 +131,5 @@
          	
        </table>
        
-       <table class="full">
-  	        <tr>
-                 <td class="right with-4">Observaciones:</td>
-                 <td class="last left">
-                     <?php echo $this->form->input('observaciones',    array('label'=> false,'type'=>'textarea', 'style' => 'width:90%', 'div' => array('tag' => '')));?>
-                 </td>
-              </tr>
 
-
-
-       </table>
     </fieldset>  

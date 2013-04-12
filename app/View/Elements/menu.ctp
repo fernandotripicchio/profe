@@ -10,10 +10,10 @@
                 
                	
                 <li>
-                    <?=$this->Html->link('<span>Actualizar Afiliados</span>', array('controller' => 'afiliados', 'action' => 'importar'), array('class' => 'parent', 'escape' => false)); ?>
+                    <?=$this->Html->link('<span>Actualizar Afiliados </span>', array('controller' => 'afiliados', 'action' => 'importar'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
                 <li>
-                    <?=$this->Html->link('<span>Baja Afiliados</span>', array('controller' => 'afiliados', 'action' => 'bajas'), array('class' => 'parent', 'escape' => false)); ?>
+                    <?=$this->Html->link('<span>Actualizar Baja Afiliados</span>', array('controller' => 'afiliados', 'action' => 'bajas'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
 
                 
@@ -21,37 +21,43 @@
             </div>
         </li>
         
-        <li>
-           <?=$this->Html->link('<span>Auditoria</span>', array('controller' => 'centros', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
-            <div>
-               <ul>
-                <li>
-                    <?=$this->Html->link('<span>Nueva Auditoria</span>', array('controller' => 'prestadores', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
-                </li>
-               </ul>
-            </div>            
-                   	
-        </li>
 
         <li>
             <?=$this->Html->link('<span>Prestaciones</span>', array('controller' => 'prestadores', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
             <div>
                <ul>
                 <li>
-                    <?=$this->Html->link('<span>Listado</span>', array('controller' => 'prestadores', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+                    <?=$this->Html->link('<span>Listado Prestaciones</span>', array('controller' => 'prestadores', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
+                </li>
+                <li>
+                    <?=$this->Html->link('<span>Nueva Prestación</span>', array('controller' => 'prestadores', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
+                </li>               	
+                <li>
+                    <?=$this->Html->link('<span>Listado Prestadores</span>', array('controller' => 'prestadores', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
                	
                 <li>
                     <?=$this->Html->link('<span>Nuevo Prestador</span>', array('controller' => 'prestadores', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
-                <li>
-                    <?=$this->Html->link('<span>Nuevo Prestación</span>', array('controller' => 'prestadores', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
-                </li>
+
                 
                </ul>
             </div>            
             
         </li>
+
+        <li>
+           <?=$this->Html->link('<span>Expedientes</span>', array('controller' => 'centros', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+            <div>
+               <ul>
+                <li>
+                    <?=$this->Html->link('<span>Nuevo Expediente</span>', array('controller' => 'prestadores', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
+                </li>
+               </ul>
+            </div>            
+                   	
+        </li>
+
 
                 
         <li>
