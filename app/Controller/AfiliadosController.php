@@ -3,7 +3,7 @@
   var $name = 'Afiliados';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler", 'Session');
-  var $uses = array('Afiliado', 'Provincia' ,'Departamento', 'Localidad', 'Centro');
+  var $uses = array('Afiliado', 'Provincia' ,'Departamento', 'Localidad', 'Centro', 'Prestacion', "Prestador", "Diagnostico", "Clinica");
   public $paginate = array(
                           'limit' => 50,
                                'order' => array('Afiliado.nombre' => 'asc')
@@ -89,10 +89,26 @@
    $afiliado = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id)));
    $this->set('afiliado', $afiliado);	
    $nro_pension  = $this->Afiliado->nro_pension($afiliado);	 	
+   $prestaciones = $this->Prestacion->find("all", array("conditions" => array("afiliado_id" => $id), "recursive" => 0 ));
+   
    $this->set('nro_pension', $nro_pension);   
-	   		
+   $this->set('prestaciones', $prestaciones);	   		
   }
   
+  
+  public function historial($id) {
+   $afiliado = $this->Afiliado->find("first", array("conditions" => array("Afiliado.id" => $id)));
+   
+   $this->set('afiliado', $afiliado);	
+   $nro_pension  = $this->Afiliado->nro_pension($afiliado);
+   	 	
+   $prestaciones = $this->Prestacion->find("all", array("conditions" => array("afiliado_id" => $id), "recursive" => 0 ));
+   $clinicas = $this->Clinica->find("all", array("conditions" => array("afiliado_id" => $id), "recursive" => 0 ));   
+   $this->set('nro_pension', $nro_pension);   
+   $this->set('prestaciones', $prestaciones);
+   $this->set('clinicas', $clinicas);   	   		
+   
+  }  
  
  public function importar() {
     $cantidad_afiliados = 0; 

@@ -152,5 +152,10 @@ class AppController extends Controller {
 	   return $cond;	
   }
 	 
+	 
+ public function fechaSpanishDB($fecha){
+     $new_fecha = explode("/", $fecha);
+     return $new_fecha[2]."-".$new_fecha[1]."-".$new_fecha[0];
+ }	 
 	
 }

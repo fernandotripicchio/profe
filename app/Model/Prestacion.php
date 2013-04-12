@@ -1,9 +1,12 @@
 <?php
  class Prestacion extends AppModel {
       public $name = 'Prestacion';
-      public $hasMany = array("Prestadores" => array(
-	                                 'foreignKey' => 'prestacion_id'
-	                            )       
+      public $belongsTo = array("Prestador" => array(
+	                                 'foreignKey' => 'prestador_id'
+	                            ),
+	                            "Afiliado" => array(
+	                                 'foreignKey' => 'afiliado_id'
+								)       
 							 );	  	  
       public $validate = array(
         'nombre' => array(
@@ -13,5 +16,10 @@
             )),
             
        );
+	   
+	   
+	   function dateFormat($prestacion, $date){
+	   	
+	   }
   
  }

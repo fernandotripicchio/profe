@@ -1,5 +1,15 @@
 $(document).ready(function(){
 	// Funciones para filtrar los afiliados
+    $("#datepickerDesde" ).datepicker({
+                  changeMonth: true,
+                  changeYear: true,
+                  dateformat: 'dd/mm/yy',
+                  firstDay: 1
+    });
+    //$("#datepickerDesde" ).datepicker($.datepicker.regional['es']);
+    	
+	
+	
 	
 	$("#buttonReset").on("click", function(){
        var form = $("#afiliadoSearchForm").attr("value");

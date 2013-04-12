@@ -1,4 +1,16 @@
 <div class="show_table">
+	
+	<table>
+		<tr>
+			<td>
+		      <?php echo $this->html->link('Nueva Prestacion',array("controller"=>"prestaciones", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right', 'target' => '_blank'));?>
+         	  <?php echo $this->html->link('Nueva Diagnostico',array("controller"=>"clinicas", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right','target' => '_blank'));?>		      				
+              <?php echo $this->html->link('Historial',array("controller"=>"afiliados", "action" => "historial", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>				
+		
+			</td>
+		</tr>
+		
+	</table>
 	<table>
         <tr>
           	<td class="width-4 th_header" colspan="4"> Datos del Afiliado </td>
@@ -86,6 +98,9 @@
           	
           </tr>
 
+
+
+
       <table>
           <tr>
           	<td class="width-4 th_header" colspan="4"> Archivos </td>
@@ -98,6 +113,38 @@
 		 </tr>         	
 
       </table>
+
+   <!-- 
+      <table>
+          <tr>
+          	<td class="width-4 th_header" colspan="5"> Prestaciones </td>
+          </tr>
+          <tr>
+          	<td colspan="5">
+          	   <?php echo $this->html->link('Nueva Prestacion',array("controller"=>"prestaciones", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>
+          	</td>
+          </tr>
+          <tr>
+          	<td> ID </td>
+          	<td> Prestación </td>
+          	<td> Empresa </td>
+          	<td> Prestador </td>
+          	<td> Fecha Inicio </td>
+          </tr> 
+          <? foreach ($prestaciones as $prestacion) {        	?>
+            <tr>
+             	<td><?php echo $prestacion["Prestacion"]["id"] ?> </td>
+             	<td><?php echo $prestacion["Prestacion"]["nombre"] ?> </td>
+             	<td><?php echo $prestacion["Prestador"]["empresa"] ?> </td>
+                <td><?php echo $prestacion["Prestador"]["nombre"] ?> </td>
+                <td> <?php echo $this->Time->format('d/m/Y', $prestacion["Prestacion"]["fecha"]); ?> </td>
+             </tr>
+              
+         <? } ?>
+
+      </table>        
+      -->
+      
       
        <table >
           <tr>

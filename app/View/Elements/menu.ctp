@@ -26,26 +26,30 @@
             <?=$this->Html->link('<span>Prestaciones</span>', array('controller' => 'prestadores', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
             <div>
                <ul>
-                <li>
-                    <?=$this->Html->link('<span>Listado Prestaciones</span>', array('controller' => 'prestadores', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
-                </li>
-                <li>
-                    <?=$this->Html->link('<span>Nueva Prestación</span>', array('controller' => 'prestadores', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
-                </li>               	
-                <li>
-                    <?=$this->Html->link('<span>Listado Prestadores</span>', array('controller' => 'prestadores', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
-                </li>
                	
                 <li>
                     <?=$this->Html->link('<span>Nuevo Prestador</span>', array('controller' => 'prestadores', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
+                <li>
+                    <?=$this->Html->link('<span>Listado Prestadores</span>', array('controller' => 'prestadores', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+                </li>
+                
+                               	
+                <li>
+                    <?=$this->Html->link('<span>Listado Prestaciones</span>', array('controller' => 'prestaciones', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+                </li>
+<!--                
+                <li>
+                    <?=$this->Html->link('<span>Nueva Prestación</span>', array('controller' => 'prestaciones', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
+                </li>               	
+-->
 
                 
                </ul>
             </div>            
             
         </li>
-
+<!--
         <li>
            <?=$this->Html->link('<span>Expedientes</span>', array('controller' => 'centros', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
             <div>
@@ -57,7 +61,7 @@
             </div>            
                    	
         </li>
-
+-->
 
                 
         <li>

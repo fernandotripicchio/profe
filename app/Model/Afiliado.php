@@ -25,7 +25,7 @@
 	                            );
 	  #Un Afiliado tiene un centro en el carnet
 	  #Pero a su vez guardo la relacion entre centro y 
-	  public $hasMany = array("AfiliadoCentroMedico");
+	  public $hasMany = array("AfiliadoCentroMedico", "Prestaciones", "Clinicas");
 	  
       public $validate = array(
         'nombre' => array(

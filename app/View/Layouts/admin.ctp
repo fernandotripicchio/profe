@@ -27,7 +27,7 @@ $cakeDescription = __d('Profe', 'PROFE');
                                        'jquery.buttons',
                                        'calendar-spanish',
 									   'afiliado/afiliado',
-									   'afiliado/afiliado_form'));
+									   'afiliado/afiliado_form', 'prestaciones/index'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -55,7 +55,7 @@ $cakeDescription = __d('Profe', 'PROFE');
 	</div>
 	<div class="clear"></div>
 	<div>
-	    <?php echo $this->element('sql_dump'); ?>
+	    <?//php echo $this->element('sql_dump'); ?>
 	</div>
    
 <!-- begin footer -->
