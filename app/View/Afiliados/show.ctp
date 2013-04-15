@@ -4,7 +4,7 @@
 		<tr>
 			<td>
 		      <?php echo $this->html->link('Nueva Prestacion',array("controller"=>"prestaciones", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right', 'target' => '_blank'));?>
-         	  <?php echo $this->html->link('Nueva Diagnostico',array("controller"=>"clinicas", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right','target' => '_blank'));?>		      				
+         	  <?php echo $this->html->link('Nuevo Diagnostico',array("controller"=>"clinicas", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right','target' => '_blank'));?>		      				
               <?php echo $this->html->link('Historial',array("controller"=>"afiliados", "action" => "historial", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>				
 		
 			</td>
@@ -91,82 +91,36 @@
           	<td class="width-4 th_header" colspan="4" > Centro de Salud      </td>
           </tr>          
           <tr>
-          	<td class="width-4 right">Nombre</td>
+          	<td class="width-4 right">Nombre:</td>
           	<td class="left"> <?php echo $afiliado["Centro"]["nombre"] ?>   </td>
           	<td class="width-4 right">Direccion:</td>
           	<td class="left"><?php echo $afiliado["Centro"]["direccion"] ?> </td>
-          	
           </tr>
-
-
-
-
       <table>
-          <tr>
+         <tr>
           	<td class="width-4 th_header" colspan="4"> Archivos </td>
-          </tr>          
+         </tr>          
       	
 		 <tr>
-		 	<td>
+		 	<td class="text-align-left">
 		 		<?php echo $this->Upload->view('Afiliado', $afiliado['Afiliado']['id']); ?>
 		 	</td>
-		 </tr>         	
-
+		 </tr>  
       </table>
 
-   <!-- 
-      <table>
-          <tr>
-          	<td class="width-4 th_header" colspan="5"> Prestaciones </td>
-          </tr>
-          <tr>
-          	<td colspan="5">
-          	   <?php echo $this->html->link('Nueva Prestacion',array("controller"=>"prestaciones", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>
-          	</td>
-          </tr>
-          <tr>
-          	<td> ID </td>
-          	<td> Prestación </td>
-          	<td> Empresa </td>
-          	<td> Prestador </td>
-          	<td> Fecha Inicio </td>
-          </tr> 
-          <? foreach ($prestaciones as $prestacion) {        	?>
-            <tr>
-             	<td><?php echo $prestacion["Prestacion"]["id"] ?> </td>
-             	<td><?php echo $prestacion["Prestacion"]["nombre"] ?> </td>
-             	<td><?php echo $prestacion["Prestador"]["empresa"] ?> </td>
-                <td><?php echo $prestacion["Prestador"]["nombre"] ?> </td>
-                <td> <?php echo $this->Time->format('d/m/Y', $prestacion["Prestacion"]["fecha"]); ?> </td>
-             </tr>
-              
-         <? } ?>
-
-      </table>        
-      -->
-      
-      
        <table >
           <tr>
           	<td class="width-4 th_header" colspan="4"> Observaciones </td>
           </tr>          
-  	        <tr>
+  	      <tr>
                  <td class="last left">
                      <td class="left"><?php echo $afiliado["Afiliado"]["observaciones"] ?> </td>
                  </td>
-              </tr>
-
-
-
-       </table>      
-      
-           	
-
-          
+           </tr>
+       </table>           
 	</table>
    <div class="botonera">
         <?php echo $this->html->link('Listado',array("controller"=>"afiliados", "action" => "index"), array('class' => 'button btn-right'));?>
-        <?php echo $this->html->link('Editar',array("controller"=>"afiliados", "action" => "edit", $afiliado["Afiliado"]["id"]), array('class' => 'button btn-right'));?>
-        
+        <?php echo $this->html->link('Editar',array("controller"=>"afiliados", "action" => "edit", $afiliado["Afiliado"]["id"]), array('class' => 'button btn-right'));?>        
    </div>	
 </div>

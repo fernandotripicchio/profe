@@ -76,3 +76,8 @@ a:active {color:#184c77}  /* selected link */
 	float: right;
 	margin-right:50px;
 }
+
+
+.text-align-left{
+	text-align: left;
+}

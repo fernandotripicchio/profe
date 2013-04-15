@@ -20,7 +20,8 @@ class UploadHelper extends AppHelper {
 		$baseUrl = $results['baseUrl'];
 		$files = $results['files'];
 
-		$str = "<dt>" . __("Archivos") . "</dt>\n<dd>";
+		//$str = "<dt>" . __("Archivos") . "</dt>\n<dd>";
+		$str = "<dt>" . __("") . "</dt>\n<dd>";
 		$count = 0;
 		$webroot = Router::url("/") . "ajax_multi_upload";
 		foreach ($files as $file) {

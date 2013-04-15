@@ -114,8 +114,11 @@
              </tbody>
       </table>
       <table>
+	     <tr>
+	       <th> Archivos </th>
+	     </tr>      	
 		 <tr>
-		 	<td>
+		 	<td class="text-align-left">
 		 		<?php echo $this->Upload-> edit('Afiliado', $afiliado['Afiliado']['id'], false); ?>
 		 	</td>
 		 </tr>         	
