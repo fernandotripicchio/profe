@@ -25,7 +25,7 @@
 	                            );
 	  #Un Afiliado tiene un centro en el carnet
 	  #Pero a su vez guardo la relacion entre centro y 
-	  public $hasMany = array("AfiliadoCentroMedico", "Prestaciones", "Clinicas");
+	  public $hasMany = array("AfiliadoCentroMedico", "Prestaciones", "Clinicas", "Expedientes");
 	  
       public $validate = array(
         'nombre' => array(
@@ -186,13 +186,10 @@
     }
     
 	
-	function nro_pension($afiliado){
-
+	function nro_pension( $afiliado ) {
 		$nro_pension = $afiliado["Afiliado"]["clave_excaja"]."-".$afiliado["Afiliado"]["clave_tipo"] ."-".$afiliado["Afiliado"]["clave_numero"];
 		$nro_pension.= "-".$afiliado["Afiliado"]["clave_coparticipe"]."-".$afiliado["Afiliado"]["clave_parentezco"];
 		return $nro_pension;
-		//Nº de pensión «Clave_ExCaja»-«Clave_Tipo»-«Clave_Numero»-«Clave_Coparticipe»-«Clave_Parentesco»-«LeyAplicada»	
-		
 	}
 	
  }

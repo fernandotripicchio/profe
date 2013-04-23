@@ -3,6 +3,7 @@
 	<table>
 		<tr>
 			<td>
+              <?php echo $this->html->link('Nuevo Expediente',array("controller"=>"expedientes", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right', 'target' => '_blank'));?>				
 		      <?php echo $this->html->link('Nueva Prestacion',array("controller"=>"prestaciones", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right', 'target' => '_blank'));?>
          	  <?php echo $this->html->link('Nuevo Diagnostico',array("controller"=>"clinicas", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right','target' => '_blank'));?>		      				
               <?php echo $this->html->link('Historial',array("controller"=>"afiliados", "action" => "historial", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>				

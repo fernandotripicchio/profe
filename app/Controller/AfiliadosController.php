@@ -3,7 +3,7 @@
   var $name = 'Afiliados';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler", 'Session');
-  var $uses = array('Afiliado', 'Provincia' ,'Departamento', 'Localidad', 'Centro', 'Prestacion', "Prestador", "Diagnostico", "Clinica");
+  var $uses = array('Afiliado', 'Provincia' ,'Departamento', 'Localidad', 'Centro', 'Prestacion', "Prestador", "Diagnostico", "Clinica", "Enfermedad");
   public $paginate = array(
                           'limit' => 50,
                                'order' => array('Afiliado.nombre' => 'asc')
@@ -200,10 +200,24 @@ public function imprimir_carnet($id){
    	return $initial_conditions;
   }
  
+function getAfiliado( $key ){
+     $afiliados = array();
+     $new_afiliados = array();
+     $afiliado = $this->Afiliado->find("first", array( "conditions" => array("documento" => $key)
+	                                                  , "recursive" => -1 )
+									  );
+     if( $this->RequestHandler->isAjax() ) {
+     	 $this->layout = 'ajax';
+		 $afiliado = json_encode(compact('afiliado'));
+	 }
+	 	 
+	 $this->set(compact("afiliado"));
+}
+
  
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////
-  //     FUNCTION para SQL
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+//     FUNCTION para SQL
+///////////////////////////////////////////////////////////////////////////////////////////////////////
   
   public function sql_condition($key, $keyword, $operator = ' and' ) {
   	   
@@ -221,6 +235,32 @@ public function imprimir_carnet($id){
       return $condition;
   }   
     
+  
+  
+  function temporal_afiliados(){
+  	$enfermedades = $this->Enfermedad->find("all");
+	
+	foreach ($enfermedades as $value) {
+		
+		$afiliado = $this->Afiliado->find("first", array("conditions" => array("documento" =>$value["Enfermedad"]["dni"] )));
+
+        if (!empty($afiliado)) {
+        	
+        }		
+		echo $value["Enfermedad"]["patologia"].";";
+		echo $value["Enfermedad"]["beneficiario"].";";
+		echo $value["Enfermedad"]["departamento"].";";
+		echo $value["Enfermedad"]["localidad"].";";
+		echo $value["Enfermedad"]["direccion"].";";
+		echo $value["Enfermedad"]["centro_de_salud"].";";
+		echo $value["Enfermedad"]["dni"].";";
+		echo $value["Enfermedad"]["medicamentos"].";";
+		
+		
+	}
+	
+  
+  }
   
 
  }

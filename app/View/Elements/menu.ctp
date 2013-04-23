@@ -21,6 +21,17 @@
             </div>
         </li>
         
+        <li>
+            <?=$this->Html->link('<span>Expedientes</span>', array('controller' => 'expedientes', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
+            <div>
+               <ul>
+	                <li>
+	                    <?=$this->Html->link('<span>Nuevo Expediente</span>', array('controller' => 'expedientes', 'action' => 'add'), array('class' => 'parent', 'escape' => false)); ?>
+	                </li>
+               </ul>
+            </div>               
+        </li>
+
 
         <li>
             <?=$this->Html->link('<span>Prestaciones</span>', array('controller' => 'prestadores', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>

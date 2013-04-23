@@ -41,6 +41,7 @@
                 <th scope="col">Fecha Alta</th>  
                 <th scope="col">Departamento</th>                              
                 <th scope="col">Localidad</th>
+                <th scope="col">Direccion</th>
                 <th scope="col">Centro de Salud</th>   
                 <th>&nbsp;</th>             
             </tr>
@@ -71,6 +72,9 @@
 	                 <td class="left">
 	                    <?php echo $afiliado['Localidad']['nombre']  ?>	
 	                 </td>
+	                 <td class="left">
+	                    <?php echo $afiliado['Afiliado']['domicilio_calle']. " ".$afiliado['Afiliado']['domicilio_nro']   ?>	
+	                 </td>	                 
 	                 <td class="left">
 	                    <?php echo $afiliado['Centro']['nombre']  ?>
 	                 </td>	                 

@@ -60,6 +60,43 @@
    ////////////////////////////////////////////////////////////////////////////////////////	   
    //Funcion para importar usuarios desde un archivo CSV y generar un nuevo listado  
    ////////////////////////////////////////////////////////////////////////////////////////
+   function importar_temporal($filename)  {
+		// open the file
+ 		$handle = fopen($filename, "r");
+ 		// read the 1st row as headings
+ 		$header = fgetcsv($handle);
+
+		// create a message container
+		$return = array(
+			'messages' => array(),
+			'errors' => array(),
+		);
+
+        $nuevo_centro = array();
+		
+		
+		$i = 0;
+		$cantidad_centros = 0;
+        while (($row = fgetcsv($handle)) !== FALSE) {
+			
+        	if ( $i > -1 ) {
+        		
+			//strtoupper(“Texto minúsculas”);
+			$afiliado_documento  = strtoupper( $row[5] );
+			}	
+        $i++;
+		}
+ 		fclose($handle);
+
+ 		// return the messages
+ 		return $cantidad_centros;
+
+	}	  	
+	
+	
+   ////////////////////////////////////////////////////////////////////////////////////////	   
+   //Funcion para importar usuarios desde un archivo CSV y generar un nuevo listado  
+   ////////////////////////////////////////////////////////////////////////////////////////
    function import($filename)  {
 		// open the file
  		$handle = fopen($filename, "r");

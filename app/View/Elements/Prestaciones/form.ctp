@@ -22,6 +22,8 @@
                      <?php echo $this->form->input('fecha',   array('label'=> false,'type'=>'text', 'size'=>30, 'id' => "datepickerDesde", 'div' => array('tag' => '')));?>
                  </td>
                </tr>               
+
+             
                
                <tr >
                  <td class="with-4 right">Prestación :</td>

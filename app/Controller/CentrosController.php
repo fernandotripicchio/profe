@@ -80,6 +80,18 @@
 	$this->set(compact("cantidad_centros")); 
 	   
   }
+
+ public function importar_temporal(){
+    $cantidad_centros = 0; 
+    if (!empty($this->data))  {
+    	    set_time_limit ( 3000 );
+            $cantidad_centros = $this->Centro->import_temporal($this->data['field']['tmp_name']);
+            //$this->redirect('somecontroller/someaction');
+    }	 
+	 
+	$this->set(compact("cantidad_centros")); 
+	   
+  }
   
   
   public function getCentrosByDepartamento($departamento_id ){
