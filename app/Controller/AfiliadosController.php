@@ -184,7 +184,7 @@ public function imprimir_carnet($id){
 
 
  
- public function buildCondition($keyword, $filters, $filtros) {
+public function buildCondition($keyword, $filters, $filtros) {
   	//$conditions = "Afiliado.activo = true and ";	   
   	$initial_conditions = "Afiliado.activo = 1 ";
   	$conditions = "";
@@ -198,9 +198,9 @@ public function imprimir_carnet($id){
 		$initial_conditions = $initial_conditions . " and " . $conditions;
 	}
    	return $initial_conditions;
-  }
+}
  
-function getAfiliado( $key ){
+public function getAfiliado( $key ){
      $afiliados = array();
      $new_afiliados = array();
      $afiliado = $this->Afiliado->find("first", array( "conditions" => array("documento" => $key)
@@ -219,7 +219,7 @@ function getAfiliado( $key ){
 //     FUNCTION para SQL
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
   
-  public function sql_condition($key, $keyword, $operator = ' and' ) {
+public function sql_condition($key, $keyword, $operator = ' and' ) {
   	   
   	  $condition = ""; 
       switch ($key) {
@@ -234,33 +234,5 @@ function getAfiliado( $key ){
       $condition = $this->cleanCondition("and", $condition);
       return $condition;
   }   
-    
-  
-  
-  function temporal_afiliados(){
-  	$enfermedades = $this->Enfermedad->find("all");
-	
-	foreach ($enfermedades as $value) {
-		
-		$afiliado = $this->Afiliado->find("first", array("conditions" => array("documento" =>$value["Enfermedad"]["dni"] )));
-
-        if (!empty($afiliado)) {
-        	
-        }		
-		echo $value["Enfermedad"]["patologia"].";";
-		echo $value["Enfermedad"]["beneficiario"].";";
-		echo $value["Enfermedad"]["departamento"].";";
-		echo $value["Enfermedad"]["localidad"].";";
-		echo $value["Enfermedad"]["direccion"].";";
-		echo $value["Enfermedad"]["centro_de_salud"].";";
-		echo $value["Enfermedad"]["dni"].";";
-		echo $value["Enfermedad"]["medicamentos"].";";
-		
-		
-	}
-	
-  
-  }
-  
 
  }

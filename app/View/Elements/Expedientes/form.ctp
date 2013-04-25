@@ -38,7 +38,7 @@
         <tr>
            <td>Fecha Inicio:</td>
            <td class="last">
-             <?php echo $this->form->input('fecha_inicio', array('label'=> false,'type'=>'text', 'size'=>30, 'value' => $fecha_inicio,'class' => 'required', 'div' => array('tag' => '')));?>
+             <?php echo $this->form->input('fecha_inicio', array('label'=> false,'type'=>'text', 'size'=>30, 'value' => $this->Time->format('d/m/Y', $fecha_inicio ),'class' => 'required', 'div' => array('tag' => '')));?>
            </td>
         </tr>
         <tr>
@@ -57,4 +57,14 @@
            </td>
         </tr>
     </table>
+    
+    <table>
+       <caption>Archivos </caption>
+ 	   <tr>
+		  <td class="text-align-left">
+		 		<?php echo $this->Upload-> edit('Expediente', $afiliado['id'], false); ?>
+		  </td>
+	   </tr>         	
+
+    </table>    
 </fieldset>  

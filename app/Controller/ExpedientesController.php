@@ -84,12 +84,16 @@
   
   public function edit($id){
     $this->Expediente->id = $id;
+	$nuevo_expediente = false;	
     if (!$this->Expediente->exists()) {
-            throw new NotFoundException(__('Expedientes invalido'));
+            throw new NotFoundException(__('Expediente invalido'));
     }
+	
+	$expediente = $this->Expediente->read();
+	$afiliado = $this->obtenerAfiliado( $expediente["Expediente"]["afiliado_id"] );
+	
     if ($this->request->is('get')) {
         $this->request->data = $this->Expediente->read();
-
     } else {
         if ($this->Expediente->save($this->request->data)) {
             $this->Session->setFlash('Se modifico el Expediente con éxito', "sucess");
@@ -97,7 +101,11 @@
         } else {
             $this->Session->setFlash('No se pudo modificar el Expediente', "error");
         }
-    }  	
+    }  
+	$fecha_inicio = $expediente["Expediente"]["fecha_inicio"];
+	$this->set('fecha_inicio', $fecha_inicio);
+    $this->set('expediente', $expediente);		
+    $this->set('afiliado'  , $afiliado);		
   }
   
   
