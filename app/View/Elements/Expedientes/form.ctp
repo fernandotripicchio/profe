@@ -3,7 +3,7 @@
     <legend><?=$title?> </legend>
     
     <!-- Tabla de Afiliados -->  
-    <table class="span-17">
+    <table>
         <caption>Afiliado</caption>
        	<tr>
            <td>Buscar:</td>
@@ -33,38 +33,54 @@
     </table>
         
     <!-- Tabla de Expedientes -->    
-    <table class="span-17">
-      	<caption>Expediente </caption>
-        <tr>
-           <td>Fecha Inicio:</td>
-           <td class="last">
-             <?php echo $this->form->input('fecha_inicio', array('label'=> false,'type'=>'text', 'size'=>30, 'value' => $this->Time->format('d/m/Y', $fecha_inicio ),'class' => 'required', 'div' => array('tag' => '')));?>
-           </td>
-        </tr>
-        <tr>
-           <td>Urgente:</td>
-           <td>
-              <?php echo $this->form->input('urgente', array('label' => false,'legend' => false ,'type' => 'radio', 'options' => array('0'=>'No Urgente','1'=>'Urgente'), 'value' => 0, 'div' => array('tag' => '')  )  ); ?>                               
-           </td>
-        </tr>                 
-        <tr>
-           <td colspan="2">  <hr /> </td>
-        </tr>
-        <tr>
-           <td colspan="2" style="text-align: center">
-                     <?=$this->form->submit("Guardar" , array('div' => false,'class' => 'button left' ) )?>
-                     <?=$this->html->link('Volver','/expedientes/', array('class' => 'button left'));?>
-           </td>
-        </tr>
-    </table>
-    
-    <table>
-       <caption>Archivos </caption>
- 	   <tr>
-		  <td class="text-align-left">
-		 		<?php echo $this->Upload-> edit('Expediente', $afiliado['id'], false); ?>
-		  </td>
-	   </tr>         	
+    <div id="afiliadoExpedienteDiv" style="display: <?php echo ( empty($afiliado["id" ]) ? "none" : "") ?>">
+		    <table>
+		      	<caption>Expediente </caption>
+		        <tr>
+		           <td>Fecha Inicio:</td>
+		           <td class="last">
+		             <?php echo $this->form->input('fecha_inicio', array('label'=> false,'type'=>'text', 'size'=>30, 'value' => $this->Time->format('d/m/Y', $fecha_inicio ),'class' => 'required', 'div' => array('tag' => '')));?>
+		           </td>
+		        </tr>
+		        <tr>
+		           <td>Urgente:</td>
+		           <td>
+		              <?php echo $this->form->input('urgente', array('label' => false,'legend' => false ,'type' => 'radio', 'options' => array('0'=>'No Urgente','1'=>'Urgente'), 'value' => 0, 'div' => array('tag' => '')  )  ); ?>                               
+		           </td>
+		        </tr>                 
+		        <tr>
+		           <td colspan="2">  <hr /> </td>
+		        </tr>
 
-    </table>    
+		    </table>
+		    
+		    <table>
+		       <caption>Archivos </caption>
+		 	   <tr>
+				  <td class="text-align-left">
+				 		<?php echo $this->Upload-> edit('Expediente', $afiliado['id'], false); ?>
+				  </td>
+			   </tr>         	
+		
+		    </table>
+		    
+		    <table>
+		        <tr>
+		           <td  style="text-align: center">
+		                     <?=$this->form->submit("Guardar" , array('div' => false, 'id' => 'buttonGuardarExpediente', 'class' => 'button left' ) )?>
+		                     <?=$this->html->link('Volver','/expedientes/', array('class' => 'button left'));?>
+		           </td>
+		        </tr>
+		    </table>    
+    </div>
+    <div id="afiliadoExpedienteEmptyDiv" style="display: <?php echo ( empty($afiliado["id" ]) ? "" : "none") ?>">
+    	<table>
+    		<tr>
+    			<td>
+    				<h3 id="noExisteAfiliado">Debe seleccionar un Afiliado</h3>
+    			</td>
+    		</tr>
+    	</table>
+    	
+    </div>
 </fieldset>  
