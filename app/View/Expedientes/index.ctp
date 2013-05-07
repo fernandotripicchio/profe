@@ -23,6 +23,7 @@
           <thead>
             <tr>
             	<th scope="col">ID</th>
+            	<th scope="col">Tipo</th>
                 <th scope="col">Urgente</th>            	
             	<th scope="col">Fecha Inicio</th>
                 <th scope="col">Afiliado</th>
@@ -37,6 +38,10 @@
 	                 <td class="left">
 	                 	<?php echo $expediente['Expediente']['id'];   ?>
 	                 </td>
+	                 <td class="left">
+	                 	<?php echo ( $expediente['TipoExpediente']['urgente']==1 ? "Si" : "No" );   ?>
+	                 </td>
+	                 
 	                 <td class="left">
 	                 	<?php echo ( $expediente['Expediente']['urgente']==1 ? "Si" : "No" );   ?>
 	                 </td>

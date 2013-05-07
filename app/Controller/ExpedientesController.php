@@ -3,7 +3,7 @@
   var $name = 'Expedientes';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler");
-  var $uses = array('Expediente', 'Afiliado');
+  var $uses = array('Expediente', 'TipoExpediente','Afiliado');
   public $paginate = array(
                           'limit' => 50,
                                'order' => array(
@@ -24,7 +24,7 @@
   }
   
   
-  public function resetearAfiliado(){
+  public function resetearAfiliado() {
   	$afiliado = array();
 	$afiliado["id"]          = false;
 	$afiliado["nombre"]      = false;
@@ -44,7 +44,15 @@
   }
   
 
- 
+ public function getTipoExpediente(){
+ 	$tipos_expedientes = $this->TipoExpediente->find("all", array("recursive" => -1));
+ 	$tipos = array();
+
+ 	foreach ($tipos_expedientes as $tipo) {
+		 $tipos[$tipo["TipoExpediente"]["id"]] = $tipo["TipoExpediente"]["nombre"];
+	 }
+ 	$this->set("tipos_expedientes", $tipos);
+ }
   
   
   public function add($afiliado_id=false) {
@@ -52,6 +60,7 @@
 	//Ver si pasa afiliado como parametros
 	//Si lo manda no agregar buscador en la pagina
 	
+	$this->getTipoExpediente();
 	$afiliado = $this->resetearAfiliado();
 	
 	if ( $afiliado_id )  {
@@ -78,13 +87,15 @@
 	$this->set('afiliado', $afiliado);
 	$this->set('fecha_inicio', $fecha_inicio);
 	$this->set('nuevo_expediente', $nuevo_expediente);	
+    
   }
   
   
   
-  public function edit($id){
+  public function edit($id) {
     $this->Expediente->id = $id;
 	$nuevo_expediente = false;	
+	$this->getTipoExpediente();	
     if (!$this->Expediente->exists()) {
             throw new NotFoundException(__('Expediente invalido'));
     }
@@ -109,7 +120,7 @@
   }
   
   
-  public function show($id){
+  public function show($id) {
     $this->Expediente->id = $id;
     if (!$this->Expediente->exists()) {
             throw new NotFoundException(__('Expediente invalido'));

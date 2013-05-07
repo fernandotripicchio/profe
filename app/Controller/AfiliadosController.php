@@ -61,6 +61,7 @@
 	if (!$this->Afiliado->exists()) {
 	            throw new NotFoundException(__('Afiliado invalido'));
 	}
+	
 	if ($this->request->is('get')) {
 	        $this->request->data = $this->Afiliado->read();	
 	} else {

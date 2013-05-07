@@ -7,26 +7,26 @@
         <caption>Afiliado</caption>
        	<tr>
            <td>Buscar:</td>
-           <td>
+           <td class="left">
               <?=$this->form->input('buscar_afiliado',    array('label'=> false,'type'=>'text', 'size'=>10,'id' =>'afiliado_key', 'div' => array('tag' => '')));?>
               <input type="button" name="buscarAfiliado" value="Buscar" id="buttonAfiliadoBuscar">
            </td>
        	</tr>
         <tr>
            <td>Nombre:</td>
-           <td>
+           <td class="left">
               <?=$this->form->input('afiliado_nomnbre',    array('label'=> false, 'value' => $afiliado["nombre"],'readonly' => true,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
            </td>
        	</tr>
         <tr>
           <td>Documento:</td>
-          <td>
+          <td class="left">
               <?=$this->form->input('afiliado_documento',    array('label'=> false,'value' => $afiliado["documento"] ,'readonly' => true,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
           </td>
         </tr>
         <tr>
           <td>Clave:</td>
-          <td>
+          <td class="left">
               <?=$this->form->input('afiliado_clave',    array('label'=> false, 'value' => $afiliado["nro_pension"], 'readonly' => true,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
           </td>
         </tr>
@@ -38,13 +38,20 @@
 		      	<caption>Expediente </caption>
 		        <tr>
 		           <td>Fecha Inicio:</td>
-		           <td class="last">
-		             <?php echo $this->form->input('fecha_inicio', array('label'=> false,'type'=>'text', 'size'=>30, 'value' => $this->Time->format('d/m/Y', $fecha_inicio ),'class' => 'required', 'div' => array('tag' => '')));?>
+		           <td class="left">
+		             <?php echo $this->form->input('fecha_inicio', array('label'=> false,'type'=>'text', 'size'=>10, 'value' => $this->Time->format('d/m/Y', $fecha_inicio ),'class' => 'required', 'div' => array('tag' => '')));?>
 		           </td>
 		        </tr>
 		        <tr>
+		           <td>Tipo:</td>
+		           <td class="left">
+		              <?php echo $this->form->input('tipo_expediente_id', array('label' => false,'legend' => false ,'type' => 'radio', 'options' => $tipos_expedientes, 'value' => 0, 'div' => array('tag' => '')  )  ); ?>                               
+		           </td>
+		        </tr>                 
+		        
+		        <tr>
 		           <td>Urgente:</td>
-		           <td>
+		           <td class="left">
 		              <?php echo $this->form->input('urgente', array('label' => false,'legend' => false ,'type' => 'radio', 'options' => array('0'=>'No Urgente','1'=>'Urgente'), 'value' => 0, 'div' => array('tag' => '')  )  ); ?>                               
 		           </td>
 		        </tr>                 
