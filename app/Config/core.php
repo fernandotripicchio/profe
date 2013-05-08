@@ -173,8 +173,7 @@
  *
  */
 	Configure::write('Session', array(
-		'defaults' => 'php',
-        'timeout' => 6000,
+		'defaults' => 'php'
 	));
 	
 
@@ -182,7 +181,7 @@
  * The level of CakePHP security.
  */
 	Configure::write('Security.level', 'medium');
-    Configure::write('Session.timeout', '10000');
+    Configure::write('Session.timeout', '1000000');
 /**
  * A random string used in security hashing methods.
  */

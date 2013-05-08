@@ -124,27 +124,6 @@
 			}	else {
 				$cantidad_afiliados++;
 			}
-				
-			
-			// $guardo = false;
-			// if (empty($afiliado)) {
-				// $this->create();
-				// if ( !$this->save($nuevo_afiliado) ) {
-					// die();
-				// };
-				// $cantidad_afiliados++;
-			// } else {
-				// $this->id = $afiliado["Afiliado"]["id"];
-				// $guardo = $this->save($nuevo_afiliado);
-				// $this->id = -1;
-				// $cantidad_afiliados++;
-			// }
-			// if ($guardo)
-                 // $i++;
-			// else {
-				// print_r("Afiliado: ".$codigo."-".$row[9]."<br>");
-			// }     
-		
 		}
  		// close the file
  		fclose($handle);
@@ -155,8 +134,7 @@
     function construirAfiliado($row){
     	 $nuevo_afiliado = array();
 		 $nuevo_afiliado["clave_excaja"] = $row[0];
-		 $nuevo_afiliado["clave_tipo"] = $row[1];
-		 
+		 $nuevo_afiliado["clave_tipo"] = $row[1];		 
 		 $nuevo_afiliado["clave_numero"] = $row[2];
 		 $nuevo_afiliado["clave_coparticipe"] = $row[3];
 		 $nuevo_afiliado["clave_parentezco"] = $row[4];
@@ -178,9 +156,7 @@
 		 //Fecha de Nacimiento
 		 //Agregar para formatear fecha
 		 
-		 //Fecha Alta
-		 
-		 
+		 //Fecha Alta		 
 		 return $nuevo_afiliado;
     	
     }

@@ -71,12 +71,14 @@
 	
     if (!empty($this->data)) {
 	    $this->Expediente->create();        
+		
 		$data["Expediente"] =  $this->data["Expediente"];
 		$data["Expediente"]["fecha_inicio"] = $this->fechaSpanishDB($this->data["Expediente"]["fecha_inicio"]);
 		
 		if ($this->Expediente->save($data)) {
+			$expediente_id =  $this->Expediente->getInsertId();
 			$this->Session->setFlash(__('Se guardo el expediente con éxito', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('action'=>'edit', $expediente_id));
 		} else {
 			$this->Session->setFlash(__('El Expediente no se pudo guardar. Por favor intente de nuevo.', true));
 		}
@@ -117,6 +119,7 @@
 	$this->set('fecha_inicio', $fecha_inicio);
     $this->set('expediente', $expediente);		
     $this->set('afiliado'  , $afiliado);		
+	$this->set('nuevo_expediente', $nuevo_expediente);	
   }
   
   
@@ -125,8 +128,10 @@
     if (!$this->Expediente->exists()) {
             throw new NotFoundException(__('Expediente invalido'));
     }  	
-	
+   $afiliado = $this->Expediente->read() ;
+   $nro_pension  = $this->Afiliado->nro_pension($afiliado);
    $this->set('expediente', $this->Expediente->read());	
+   $this->set('nro_pension', $nro_pension);
 	
   }
 

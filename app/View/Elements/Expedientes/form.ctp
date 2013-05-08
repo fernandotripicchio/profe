@@ -61,15 +61,16 @@
 
 		    </table>
 		    
-		    <table>
-		       <caption>Archivos </caption>
-		 	   <tr>
-				  <td class="text-align-left">
-				 		<?php echo $this->Upload-> edit('Expediente', $afiliado['id'], false); ?>
-				  </td>
-			   </tr>         	
-		
-		    </table>
+		    <? if (!$nuevo_expediente) { ?>
+				    <table>
+				       <caption>Archivos </caption>
+				 	   <tr>
+						  <td class="text-align-left">
+						 		<?php echo $this->Upload-> edit('Expediente', $afiliado['id'], false); ?>
+						  </td>
+					   </tr>         			
+				    </table>
+		    <? } ?>
 		    
 		    <table>
 		        <tr>

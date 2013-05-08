@@ -22,48 +22,40 @@
           <caption>Expedientes</caption>
           <thead>
             <tr>
-            	<th scope="col">ID</th>
+            	<th scope="col">Nro de Expediente</th>
             	<th scope="col">Tipo</th>
                 <th scope="col">Urgente</th>            	
             	<th scope="col">Fecha Inicio</th>
-                <th scope="col">Afiliado</th>
-                <th scope="col">Nro de Expediente</th>                
+                <th scope="col">Afiliado</th>               
                 <th>&nbsp;</th>             
             </tr>
         </thead>
-            <!-- Here is where we loop through our $posts array, printing out post info -->
-            <tbody>
+        <tbody>
             <?php foreach ($expedientes as $expediente): ?>
                <tr>
-	                 <td class="left">
+               	     <td class="left">
 	                 	<?php echo $expediente['Expediente']['id'];   ?>
 	                 </td>
 	                 <td class="left">
-	                 	<?php echo ( $expediente['TipoExpediente']['urgente']==1 ? "Si" : "No" );   ?>
-	                 </td>
-	                 
+	                 	<?php echo  $expediente['TipoExpediente']['nombre'] ;   ?>
+	                 </td>	                 
 	                 <td class="left">
 	                 	<?php echo ( $expediente['Expediente']['urgente']==1 ? "Si" : "No" );   ?>
 	                 </td>
 	                 
 	                 <td class="left">
-	                 	<?php echo $expediente['Expediente']['fecha_inicio'];   ?>
+                        <?php echo $this->Time->format('d/m/Y', $expediente['Expediente']['fecha_inicio'] ); ?>	                 	
 	                 </td>
 	                 <td class="left">
 	                    <?php echo $expediente["Afiliado"]["nombre"]?>
  	                 </td>               	
-	                 <td class="left">
-	                 	<?php echo $expediente['Expediente']['nro_expediente']; ?>
-	                 </td>
-
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "expedientes", "action" => "show", $expediente['Expediente']['id']))?>
                         <?php echo $this->html->link("Editar", array("controller" => "expedientes", "action" => "edit", $expediente['Expediente']['id']))?>
                      </td>	                 
-	                 
-            </tr>
+                </tr>
             <?php endforeach; ?>
-            </tbody>
+        </tbody>
        </table>
       </div>
       <div class="paging">
