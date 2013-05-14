@@ -18,7 +18,7 @@
   
   
   public function index() {
-   $filtros =  array("Todos" => "Todos", "Expediente.nro_expediente" => "Nro Expediente","Afiliado.nombre" => "Afiliado Nombre", "Afiliado.documento" => "Afiliado Documento");
+   $filtros =  array("Todos" => "Todos", "Expediente.id" => "Nro Expediente","Afiliado.nombre" => "Afiliado Nombre", "Afiliado.documento" => "Afiliado Documento");
    $condition = "";
    if ($this->request->is('post') ) {
      	            if ($this->params["data"]["keys"]["submit_action"] == "reset") {
@@ -38,8 +38,8 @@
               $expedientesSession = $this->resetForm();   
          }
    }     
-     		
-   $expedientes = $this->paginate('Expediente');
+   $condition .= $this->buildCondition( strtoupper( $expedientesSession["keys"] ) , $expedientesSession["filters"] , $filtros);
+   $expedientes = $this->paginate('Expediente', $condition);
    $this->set('expedientes', $expedientes);	 
    $this->set('expedinetesSession', $expedientesSession);
    $this->set('filtros', $filtros);	   
@@ -169,5 +169,51 @@
    $this->set('nro_pension', $nro_pension);
 	
   }
+  
+  
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+//     FUNCTION para SQL
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+  public function buildCondition($keyword, $filters, $filtros) {
+  	//$conditions = "Afiliado.activo = true and ";	   
+  	$initial_conditions = "Afiliado.activo = 1 ";
+  	$conditions = "";
+	if ( $filters  == "Todos") {		
+   	    $conditions .=  $this->all_condition($filtros, $keyword);
+	} else {
+	   	$conditions .= $this->sql_condition($filters, $keyword);
+	}
+	
+	if (!empty( $conditions )) {
+		$initial_conditions = $initial_conditions . " and " . $conditions;
+	}
+   	return $initial_conditions;
+ } 
+ 
+
+ 
+
+  public function sql_condition($key, $keyword, $operator = ' and' ) {
+  	   
+  	  $condition = ""; 
+      switch ($key) {
+			case 'Afiliado.nombre':							  
+				  $condition = " $key like \"%$keyword%\" $operator";
+			      break;
+		   case 'Afiliado.documento':						  
+		  	      $condition = " $key like \"%$keyword%\" $operator";
+				  break;
+				  
+		   case 'Expediente.id':
+		  	      $condition = " $key like \"%$keyword%\" $operator";
+				  break;
+			   		  
+	   }
+	  
+      $condition = $this->cleanCondition("and", $condition);
+      return $condition;
+   }   
+    
 
  }

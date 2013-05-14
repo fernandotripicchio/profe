@@ -37,7 +37,8 @@
             	<th scope="col">Tipo</th>
                 <th scope="col">Urgente</th>            	
             	<th scope="col">Fecha Inicio</th>
-                <th scope="col">Afiliado</th>               
+                <th scope="col">Afiliado</th>      
+                <th scope="col">Documento</th>         
                 <th>&nbsp;</th>             
             </tr>
         </thead>
@@ -59,7 +60,11 @@
 	                 </td>
 	                 <td class="left">
 	                    <?php echo $expediente["Afiliado"]["nombre"]?>
+ 	                 </td>
+	                 <td class="left">
+	                    <?php echo $expediente["Afiliado"]["documento"]?>
  	                 </td>               	
+ 	                                	
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "expedientes", "action" => "show", $expediente['Expediente']['id']))?>
                         <?php echo $this->html->link("Editar", array("controller" => "expedientes", "action" => "edit", $expediente['Expediente']['id']))?>
