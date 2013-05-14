@@ -11,6 +11,8 @@
                                'recursive' => 2
                                )
                            );
+						   
+						   
   function beforeFilter() {
   	 parent::beforeFilter();
      $this->layout = "admin";

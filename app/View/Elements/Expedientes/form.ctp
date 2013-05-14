@@ -55,14 +55,14 @@
 		        <tr>
 		           <td class="right">Tipo:</td>
 		           <td class="left">
-		              <?php echo $this->form->input('tipo_expediente_id', array('label' => false,'legend' => false ,'type' => 'radio', 'options' => $tipos_expedientes, 'checked' => ($nuevo_expediente), 'div' => array('tag' => '')  )  ); ?>                               
+		              <?php echo $this->form->input('tipo_expediente_id', array('label' => false,'legend' => false ,'type' => 'radio', 'options' => $tipos_expedientes, 'div' => array('tag' => '')  )  ); ?>                               
 		           </td>
 		        </tr>                 
 		        
 		        <tr>
 		           <td class="right">Urgente:</td>
 		           <td class="left">
-		              <?php echo $this->form->input('urgente', array('label' => false,'legend' => false ,'type' => 'radio', 'options' => array('0'=>'No Urgente','1'=>'Urgente'), 'value' => 0, 'div' => array('tag' => '')  )  ); ?>                               
+		              <?php echo $this->form->input('urgente', array('label' => false,'legend' => false ,'type' => 'radio', 'options' => array('0'=>'No Urgente','1'=>'Urgente'), 'div' => array('tag' => '')  )  ); ?>                               
 		           </td>
 		        </tr>                 
 		        <tr>
@@ -76,20 +76,21 @@
 				       <caption>Archivos </caption>
 				 	   <tr>
 						  <td class="text-align-left">
-						 		<?php echo $this->Upload-> edit('Expediente', $afiliado['id'], false); ?>
+						 		<?php echo $this->Upload->edit('Expediente', $afiliado['id'], false); ?>
 						  </td>
 					   </tr>         			
 				    </table>
 		    <? } ?>
-		    
+		    <!--
 		    <table>
 		        <tr>
 		           <td  style="text-align: center">
+		                     <?php echo $this->html->link('Volver','/expedientes/', array('class' => 'button left'));?>		           	
 		                     <?php echo $this->form->submit("Guardar" , array('div' => false, 'id' => 'buttonGuardarExpediente', 'class' => 'button left' ) )?>
-		                     <?php echo $this->html->link('Volver','/expedientes/', array('class' => 'button left'));?>
 		           </td>
 		        </tr>
-		    </table>    
+		    </table>  
+		    -->  
     </div>
     <div id="afiliadoExpedienteEmptyDiv" style="display: <?php echo ( empty($afiliado["id" ]) ? "" : "none") ?>">
     	<table>
