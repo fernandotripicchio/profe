@@ -1,13 +1,11 @@
 <? 
+//Modulo para ver el historial del afiliado
  class ClinicasController extends AppController {
   var $name = 'Clinicas';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler");
   var $uses = array('Diagnostico', 'Afiliado', 'Clinica');
-  public $paginate = array('limit' => 50);
-	
-	
-  
+  public $paginate = array('limit' => 50);  
 
   
  public function getDiagnosticos() {

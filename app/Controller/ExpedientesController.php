@@ -17,12 +17,42 @@
   }
   
   
-  public function index() {	
-    $expedientes = $this->paginate('Expediente');
-    $this->set('expedientes', $expedientes);	 
+  public function index() {
+   $filtros =  array("Todos" => "Todos", "Expediente.nro_expediente" => "Nro Expediente","Afiliado.nombre" => "Afiliado Nombre", "Afiliado.documento" => "Afiliado Documento");
+   $condition = "";
+   if ($this->request->is('post') ) {
+     	            if ($this->params["data"]["keys"]["submit_action"] == "reset") {
+     	            	 $expedientesSession = $this->resetForm();
+     	            }  else { 
+	                    if (isset($this->params["data"]["keys"])) {
+					         $this->Session->write('Expedientes.keys', strtoupper( $this->params["data"]["keys"]["keys"] ));
+							 $this->Session->write('Expedientes.filters', $this->params["data"]["filters"]);
+	                         $expedientesSession = $this->Session->read("Expedientes");                          
+	                    } else {
+	                        die("Error en la busqueda");
+	                    }
+					}
+   } else {
+         $expedientesSession = $this->Session->read("Expedientes");
+         if (!isset($expedientesSession)){
+              $expedientesSession = $this->resetForm();   
+         }
+   }     
+     		
+   $expedientes = $this->paginate('Expediente');
+   $this->set('expedientes', $expedientes);	 
+   $this->set('expedinetesSession', $expedientesSession);
+   $this->set('filtros', $filtros);	   
      
   }
   
+  
+  public function resetForm(){
+     $this->Session->write('Expedientes.keys', false );
+	 $this->Session->write('Expedientes.filters',false);
+     $expedientesSession = $this->Session->read("Expedientes");
+     return $expedientesSession;
+  }  
   
   public function resetearAfiliado() {
   	$afiliado = array();
@@ -108,13 +138,18 @@
     if ($this->request->is('get')) {
         $this->request->data = $this->Expediente->read();
     } else {
-        if ($this->Expediente->save($this->request->data)) {
+  		 $data["Expediente"] =  $this->data["Expediente"];
+		 $data["Expediente"]["fecha_inicio"] = $this->fechaSpanishDB($this->data["Expediente"]["fecha_inicio"]);
+    	
+        if ($this->Expediente->save($data)) {
             $this->Session->setFlash('Se modifico el Expediente con éxito', "sucess");
-            $this->redirect(array('action' => 'index'));
+            $this->redirect(array('action' => 'edit', $id));
         } else {
             $this->Session->setFlash('No se pudo modificar el Expediente', "error");
         }
     }  
+	
+    		
 	$fecha_inicio = $expediente["Expediente"]["fecha_inicio"];
 	$this->set('fecha_inicio', $fecha_inicio);
     $this->set('expediente', $expediente);		

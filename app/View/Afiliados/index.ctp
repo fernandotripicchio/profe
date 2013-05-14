@@ -12,7 +12,7 @@
 					<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"value" => $afiliadosSession["keys"],"label" => false )) ?>
 				</td>
 				<td><label for="keysKeys">Filtros</label></td>
-				<td colspan="5">					
+				<td>					
 					<?php echo $this->form->select('filters', $filtros,  array("class" => "select-filter-afiliados", "empty" => false)) ?>
   			    </td>       
 				<td>								
@@ -27,7 +27,7 @@
     <div id="listado">
     	<div>
     		<strong>
-    			Cantidad de Afiliados: <?=$params_paginator["count"] ?>
+    			Cantidad de Afiliados: <?= $params_paginator["count"] ?>
     		</strong>
     	</div>
        <table class="list" >

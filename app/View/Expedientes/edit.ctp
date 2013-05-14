@@ -1,4 +1,4 @@
-<?echo $this->Html->script('expedientes');?>
+<?echo $this->Html->script('expedientes/expedientes');?>
 
 <div id="expediente_add">
     <?=$this->form->create('Expediente',array('action'=>'edit'), array("autocomplete" => "off"));?>
