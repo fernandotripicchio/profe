@@ -1,5 +1,5 @@
-<div class="container">
-	
+<div class="container listados">
+	<h1>Afiliados - Importar </h1>
 	<?php echo $this->Form->create('Afiliado', array('action' => 'importar','type' => 'file')); ?>
 	
 	<table>

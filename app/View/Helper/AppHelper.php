@@ -41,4 +41,18 @@ class AppHelper extends Helper {
 			return "Femenino";
 		}
 	}
+	
+	function show_estado($estado) {
+		if ($estado=="1") {
+			return "<span class='activo'>ACTIVO<span>";
+		} else {
+			return "<span class='baja'>BAJA</span>";
+		}
+	}
+	
+	function nro_pension( $afiliado ) {
+		$nro_pension = $afiliado["Afiliado"]["clave_excaja"]."-".$afiliado["Afiliado"]["clave_tipo"] ."-".$afiliado["Afiliado"]["clave_numero"];
+		$nro_pension.= "-".$afiliado["Afiliado"]["clave_coparticipe"]."-".$afiliado["Afiliado"]["clave_parentezco"];
+		return $nro_pension;
+	}	
 }

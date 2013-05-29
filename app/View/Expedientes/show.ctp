@@ -38,12 +38,15 @@
 	 </table>	 
      <!-- Tabla con los archivos -->	 
 	 <table>
-	 	<td class="width-4 th_header" > Archivos </td>
-         <tr>
+	 	<tr>
+	 	    <td class="width-4 th_header" > Archivos </td>	
+	 	</tr>
+	 	
+        <tr>
 		 	<td class="text-align-left">
 		 		<?php echo $this->Upload->view('Expediente', $expediente['Afiliado']['id']); ?>
 		 	</td>
-		 </tr> 
+		</tr> 
 	 </table>
    <div class="botonera">
         <?php echo $this->html->link('Listado',array("controller"=>"expedientes", "action" => "index"), array('class' => 'button btn-right'));?>

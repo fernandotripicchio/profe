@@ -3,14 +3,13 @@
 	<table>
 		<tr>
 			<td>
-              <?php echo $this->html->link('Nuevo Expediente',array("controller"=>"expedientes", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>				
-		      <?php echo $this->html->link('Nueva Prestacion',array("controller"=>"prestaciones", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right', 'target' => '_blank'));?>
-         	  <?php echo $this->html->link('Nuevo Diagnostico',array("controller"=>"clinicas", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right','target' => '_blank'));?>		      				
               <?php echo $this->html->link('Historial',array("controller"=>"afiliados", "action" => "historial", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>				
-		
+              <?php echo $this->html->link('Nuevo Expediente',array("controller"=>"expedientes", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>				
+		      <?php echo $this->html->link('Nueva Prestación',array("controller"=>"prestaciones", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right', 'target' => '_blank'));?>
+         	  <?php echo $this->html->link('Nuevo Diagnostico',array("controller"=>"clinicas", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right','target' => '_blank'));?>		      				
+				
 			</td>
 		</tr>
-		
 	</table>
 	<table>
         <tr>
@@ -18,7 +17,9 @@
         </tr>	
 		<tr>
 			<td class="with-4 right">Nro de Pensión: </td>
-			<td class="left" colspan="3"><?php echo $nro_pension?></td>
+			<td class="left"><?php echo $nro_pension?></td>
+			<td class="with-4 right">Estado: </td>
+			<td class="left"><?php echo $afiliado["Afiliado"]["activo"] ? "<label class='activo'>ACTIVO</label>": "<label class='no_activo'>NO ACTIVO</label>" ?></td>
 		</tr>        	
 		<tr>
          <td class="with-4 right">Nombre: </td>
@@ -101,12 +102,13 @@
          <tr>
           	<td class="width-4 th_header" colspan="4"> Archivos </td>
          </tr>          
-      	
+
 		 <tr>
 		 	<td class="text-align-left">
 		 		<?php echo $this->Upload->view('Afiliado', $afiliado['Afiliado']['id']); ?>
 		 	</td>
-		 </tr>  
+		 </tr> 
+		  
       </table>
 
        <table >

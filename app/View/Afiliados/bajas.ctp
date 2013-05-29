@@ -1,7 +1,6 @@
-<div class="container">
-	
-	<?php echo $this->Form->create('Afiliado', array('action' => 'bajas','type' => 'file')); ?>
-	
+<div class="container listados">
+	<h1>Afiliados - Bajas </h1>
+	<?php echo $this->Form->create('Afiliado', array('action' => 'bajas','type' => 'file')); ?>	
 	<table>
 		<tr>
 			<td>
@@ -17,7 +16,5 @@
 			</td>
 		</tr>
 	</table>	
-	
-	
 	</form>
 </div>

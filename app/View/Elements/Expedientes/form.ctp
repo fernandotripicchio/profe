@@ -27,7 +27,7 @@
           </td>
         </tr>
         <tr>
-          <td class="right">Clave:</td>
+          <td class="right">Número Clave:</td>
           <td class="left">
               <?php echo $this->form->input('afiliado_clave',    array('label'=> false, 'value' => $afiliado["nro_pension"], 'readonly' => true,'type'=>'text', 'size'=>30, 'class' => 'required', 'div' => array('tag' => '')));?>
           </td>
@@ -55,14 +55,15 @@
 		        <tr>
 		           <td class="right">Tipo:</td>
 		           <td class="left">
-		              <?php echo $this->form->input('tipo_expediente_id', array('label' => false,'legend' => false ,'type' => 'radio', 'options' => $tipos_expedientes, 'div' => array('tag' => '')  )  ); ?>                               
+                      <?php echo $this->form-> radio('tipo_expediente_id', $tipos_expedientes, array('default' => '1', 'label' => false, 'legend' => false, 'div' => array('tag' => ''))); ?>
 		           </td>
 		        </tr>                 
 		        
 		        <tr>
 		           <td class="right">Urgente:</td>
 		           <td class="left">
-		              <?php echo $this->form->input('urgente', array('label' => false,'legend' => false ,'type' => 'radio', 'options' => array('0'=>'No Urgente','1'=>'Urgente'), 'div' => array('tag' => '')  )  ); ?>                               
+                      <?php echo $this->form-> radio('urgente', array('0'=>'No Urgente','1'=>'Urgente'), array('default' => '0', 'label' => false, 'legend' => false, 'div' => array('tag' => ''))); ?>
+		                                             
 		           </td>
 		        </tr>                 
 		        <tr>

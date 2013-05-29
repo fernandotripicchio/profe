@@ -81,3 +81,14 @@ a:active {color:#184c77}  /* selected link */
 .text-align-left{
 	text-align: left;
 }
+
+
+.activo{
+	color: green;
+	font-weight: bold;
+}
+
+.baja{
+	color: red;
+	font-weight: bold;
+}
