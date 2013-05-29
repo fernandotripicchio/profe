@@ -7,7 +7,7 @@
         <caption>Afiliado</caption>
         <? if ($nuevo_expediente) { ?>
 	       	<tr>
-	           <td class="right">Buscar:</td>
+	           <td class="right">Buscar Afiliado:</td>
 	           <td class="left">
 	              <?php echo $this->form->input('buscar_afiliado',    array('label'=> false,'type'=>'text', 'size'=>10,'id' =>'afiliado_key', 'div' => array('tag' => '')));?>
 	              <input type="button" name="buscarAfiliado" value="Buscar" id="buttonAfiliadoBuscar">

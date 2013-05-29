@@ -13,7 +13,7 @@
 		 </tr>        
 		 <tr>
 			<td class="with-4 right"> Documento: </td>
-			<td class="left" ><?php echo $expediente["Afiliado"]["documento"] ?></td>
+			<td class="left" ><?php echo $expediente["Afiliado"]["tipo_documento"]." " .$expediente["Afiliado"]["documento"] ?></td>
 		 </tr>        
 		 	
 	 </table>

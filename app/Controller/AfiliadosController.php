@@ -157,8 +157,7 @@
 
 	$this->getDepartamentos();
     $this->getCentros(19,$afiliado["Afiliado"]["departamento_id"] );
-	$this->getLocalidades($afiliado["Afiliado"]["provincia"], $afiliado["Afiliado"]["departamento"] );
-	
+	$this->getLocalidades($afiliado["Afiliado"]["provincia"], $afiliado["Afiliado"]["departamento"] );	
     $this->set('afiliado', $afiliado);	
 	$nro_pension  = $this->Afiliado->nro_pension($afiliado);	 	
 	$this->set('nro_pension', $nro_pension);
@@ -216,14 +215,13 @@ public function buildCondition($keyword, $filters, $filtros_activos ,$filtros) {
 public function getAfiliado( $key ) {
      $afiliados = array();
      $new_afiliados = array();
-     $afiliado = $this->Afiliado->find("first", array( "conditions" => array("documento" => $key)
+     $afiliado = $this->Afiliado->find("first", array( "conditions" => array("activo" => "1", "documento" => $key)
 	                                                  , "recursive" => -1 )
 									  );
      if( $this->RequestHandler->isAjax() ) {
      	 $this->layout = 'ajax';
 		 $afiliado = json_encode(compact('afiliado'));
 	 }
-	 	 
 	 $this->set(compact("afiliado"));
 }
 
@@ -233,8 +231,6 @@ public function getAfiliado( $key ) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
   
 public function sql_condition($key, $keyword, $operator = ' and' ) {
-  	  //print_r($key);
-	  //echo "<br>"; 
   	  $condition = ""; 
       switch ($key) {
 			case 'Afiliado.nombre':							  
@@ -250,8 +246,7 @@ public function sql_condition($key, $keyword, $operator = ' and' ) {
 		   case 'baja':
 			   	  $condition = " and Afiliado.activo = 0 ";
 			      break;
-			   
-			   	  
+			   		   	  
 	   }
 	  
       $condition = $this->cleanCondition("and", $condition);

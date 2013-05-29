@@ -1,6 +1,5 @@
 <!-- Formulario de Busqueda -->
 <? $params_paginator = $this->Paginator->params() ?>
-
 <div id = "listado_expedientes" class="listados">
 <h1>Listado de Expedientes</h1>
 <div id="formulario_expedientes">
@@ -33,13 +32,14 @@
           <caption>Expedientes</caption>
           <thead>
             <tr>
-            	<th scope="col">Nro de Expediente</th>
-            	<th scope="col">Tipo</th>
-                <th scope="col">Urgente</th>            	
-            	<th scope="col">Fecha Inicio</th>
-                <th scope="col">Afiliado</th>      
-                <th scope="col">Documento</th>         
-                <th>&nbsp;</th>             
+            	<th scope="col">Nro de Expediente </th>
+            	<th scope="col">Tipo              </th>
+                <th scope="col">Urgente           </th>            	
+            	<th scope="col">Fecha Inicio      </th>
+                <th scope="col">Afiliado          </th>      
+                <th scope="col">Documento         </th>
+                <th scope="col">Estado            </th>         
+                <th scope="col">&nbsp;            </th>             
             </tr>
         </thead>
         <tbody>
@@ -52,7 +52,7 @@
 	                 	<?php echo  $expediente['TipoExpediente']['nombre'] ;   ?>
 	                 </td>	                 
 	                 <td class="left">
-	                 	<?php echo ( $expediente['Expediente']['urgente']==1 ? "Si" : "No" );   ?>
+	                 	<?php echo ( $expediente['Expediente']['urgente']==1 ? "<span class='baja'>Si</span>" : "No" );   ?>
 	                 </td>
 	                 
 	                 <td class="left">
@@ -64,7 +64,9 @@
 	                 <td class="left">
 	                    <?php echo $expediente["Afiliado"]["documento"]?>
  	                 </td>               	
- 	                                	
+	                 <td class="left">
+	                    <?php echo $this->html->show_estado($expediente['Afiliado']['activo']);      ?>
+ 	                 </td>              	
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "expedientes", "action" => "show", $expediente['Expediente']['id']))?>
                         <?php echo $this->html->link("Editar", array("controller" => "expedientes", "action" => "edit", $expediente['Expediente']['id']))?>

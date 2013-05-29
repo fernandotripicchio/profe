@@ -21,7 +21,7 @@ $(document).ready(function(){
 		            var afiliado = jQuery.parseJSON(data);
 		            afiliado = afiliado.afiliado;                   
                     if ( typeof afiliado.Afiliado == 'undefined' ) {
-                     	 $("#noExisteAfiliado").html("No existe el afiliado");
+                     	 $("#noExisteAfiliado").html("<span class='baja'>No existe el afiliado</span>");
 		                 setField( "#ExpedienteAfiliadoNomnbre", "" ) ;
 		                 setField( "#ExpedienteAfiliadoDocumento", "" ) ;
 		                 setField( "#ExpedienteAfiliadoClave", "" ) ;
