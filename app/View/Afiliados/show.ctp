@@ -19,7 +19,7 @@
 			<td class="with-4 right">Nro de Pensión: </td>
 			<td class="left"><?php echo $nro_pension?></td>
 			<td class="with-4 right">Estado: </td>
-			<td class="left"><?php echo $afiliado["Afiliado"]["activo"] ? "<label class='activo'>ACTIVO</label>": "<label class='no_activo'>NO ACTIVO</label>" ?></td>
+			<td class="left"><?php echo $this->html->show_estado($afiliado['Afiliado']['activo']); ?></td>
 		</tr>        	
 		<tr>
          <td class="with-4 right">Nombre: </td>
@@ -124,6 +124,8 @@
 	</table>
    <div class="botonera">
         <?php echo $this->html->link('Listado',array("controller"=>"afiliados", "action" => "index"), array('class' => 'button btn-right'));?>
-        <?php echo $this->html->link('Editar',array("controller"=>"afiliados", "action" => "edit", $afiliado["Afiliado"]["id"]), array('class' => 'button btn-right'));?>        
+        <?php if ($afiliado["Afiliado"]["activo"]) { ?> 
+        	<?php echo $this->html->link('Editar',array("controller"=>"afiliados", "action" => "edit", $afiliado["Afiliado"]["id"]), array('class' => 'button btn-right'));?>
+        <?php } ?>        
    </div>	
 </div>
