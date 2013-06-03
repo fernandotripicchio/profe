@@ -61,8 +61,18 @@
 	
     $afiliados = $this->paginate('Afiliado', $condition);
 	$this->getDepartamentos(19);	
-	$this->getLocalidades(19,$reportesSession["departamentos"]);
-	$this->getCentrosByCodigo(19,$reportesSession["departamentos"] ,$reportesSession["localidades"]);
+	
+	if ( isset( $reportesSession["departamentos"] )) {
+		$this->getLocalidades(19, $reportesSession["departamentos"]  );	
+	} else {
+		$this->getLocalidades(19);
+	}
+	
+	if ( isset($reportesSession["localidades"])) {
+		$this->getCentrosByCodigo(19,$reportesSession["departamentos"] , $reportesSession["localidades"]);
+	} else {
+		$this->getCentrosByCodigo(19,$reportesSession["departamentos"] );
+	}
 	
 	//Hasta ACA
 	$this->set('reportesSession', $reportesSession);

@@ -75,13 +75,17 @@
 		
         while (($row = fgetcsv($handle)) !== FALSE) {
 			$baja_afiliado = $this->construirBajaAfiliado($row);
-            $afiliado = $this->find("first",  array("conditions" => array("clave_numero" => $baja_afiliado["clave_numero"] ), "recursive" => -1));
+            $afiliado = $this->find("first",  array("conditions" => array("documento" => $baja_afiliado["documento"] ), "recursive" => -1));
 			if (empty($afiliado)) {
 			    //$baja_afiliado["id"] = $afiliado["Afiliado"]["id"];
 			    $baja_afiliado["activo"] = false;				
 				$this->create();
 				if ( $this->save($baja_afiliado) ) 
 				                 $cantidad_afiliados++;
+			 } else {
+			 	$baja_afiliado["id"] = $afiliado["Afiliado"]["id"];
+			 	$this->save($baja_afiliado);
+				$cantidad_afiliados++;				
 			 }
 		}
  		// close the file
@@ -120,6 +124,7 @@
 			$depto       = $this->Departamento->findDepartamento($departamento, $provincia); 
  	        $nuevo_afiliado = $this->construirAfiliado($row);
 			$clave_numero = $nuevo_afiliado["clave_numero"];
+			$documento    = $nuevo_afiliado["documento"];
 			$nuevo_afiliado["activo"] = $activo;
 					
 		    if (!empty( $loca )) {
@@ -144,13 +149,17 @@
 			}
 					
 			//Me fijo si ya existe, si existe hago el update si no hago el create
-			$afiliado = $this->find("first",  array("conditions" => array("clave_numero" => $clave_numero ), "recursive" => -1));
+			$afiliado = $this->find("first",  array("conditions" => array("documento" => $documento ), "recursive" => -1));
+			
 			if (empty($afiliado)) {
 				$this->create();
 			    if ( $this->save($nuevo_afiliado) ) {
 						$cantidad_afiliados++;
-			    }	
-			}
+			    } 
+			} else {
+			    	print_r($nuevo_afiliado);
+					echo "<br>";
+			}	
 		}
  		// close the file
  		fclose($handle);
