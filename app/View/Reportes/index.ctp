@@ -12,9 +12,13 @@
 					<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"value" => $reportesSession["keys"],"label" => false )) ?>
 				</td>
 				<td><label for="keysKeys">Filtros</label></td>
-				<td colspan="5">					
+				<td ">					
 					<?php echo $this->form->select('filters', $filtros,  array("class" => "select-filter-afiliados", "empty" => false)) ?>
   			    </td>       
+				<td><label for="keysKeys">Activos</label></td>
+				<td>					
+					<?php echo $this->form->select('filtros_activos', $filtros_activos,  array("class" => "select-filter-afiliados-activos", "empty" => false)) ?>
+  			    </td>  			    
 			</tr>
              <tr>             
                 <td><label for="keysKeys">Departamento</label></td>
@@ -70,6 +74,7 @@
           <caption>Afiliados</caption>
           <thead>
             <tr>
+            	<th scope="col">Activo</th>
                 <th scope="col">Clave</th>
                 <th scope="col">Nombre</th>                
                 <th scope="col">Documento</th>
@@ -81,12 +86,17 @@
                 <th>&nbsp;</th>             
             </tr>
         </thead>
-            <!-- Here is where we loop through our $posts array, printing out post info -->
+          
             <tbody>
             <?php foreach ($afiliados as $afiliado): ?>
                <tr>
 	                 <td class="left">
-	                 	<?php echo $afiliado['Afiliado']['clave_numero'];      ?>
+	                 	<?php echo $this->html->show_estado($afiliado['Afiliado']['activo']);      ?>
+	                 </td>
+               	
+	                 <td class="left">
+	                 	<?php echo $this->HTML->nro_pension($afiliado);?>
+
 	                 </td>
 	                 <td class="left">
 	                    <?php echo $afiliado['Afiliado']['nombre']   ?>
@@ -113,7 +123,7 @@
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $afiliado['Afiliado']['id']))?>
                         <?php echo $this->html->link("Editar", array("controller" => "afiliados", "action" => "edit", $afiliado['Afiliado']['id']))?>
-                        <?php echo $this->html->link("Carnet", array("controller" => "afiliados", "action" => "carnet", $afiliado['Afiliado']['id']))?>                        	                 	
+                       	                 	
                      </td>	                 
 	                 
             </tr>

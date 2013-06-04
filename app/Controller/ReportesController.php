@@ -18,7 +18,7 @@
   
   public function index() {  
 	$filtros =  array("Todos" => "Todos", "Afiliado.nombre" => "Nombre", "Afiliado.documento" => "Documento");
-	$condition = "";
+	$filtros_activos = array("Todos" => "Todos", "activos" => "Activos", "baja" => "Baja");	$condition = "";
 	
     //Set Session variables
     if ($this->request->is('post') ) {
@@ -31,6 +31,7 @@
 	 						 $this->Session->write('Reportes.departamentos', $this->params["data"]["departamentos"]);
 	 						 $this->Session->write('Reportes.localidades', $this->params["data"]["localidades"]);
 							 $this->Session->write('Reportes.centros', $this->params["data"]["centros"]);
+                             $this->Session->write('Reportes.filtros_activos', $this->params["data"]["filtros_activos"]);							 
 	                         $reportesSession = $this->Session->read("Reportes");                          
 	                    } else {
 	                        die("Error en la busqueda");
@@ -44,7 +45,7 @@
      }     
 
    
-   $condition .= $this->buildCondition( strtoupper( $reportesSession["keys"] ) , $reportesSession["filters"] , $filtros);
+   $condition .= $this->buildCondition( strtoupper( $reportesSession["keys"] ) , $reportesSession["filters"], $reportesSession["filtros_activos"] , $filtros);
    
    if (!empty( $reportesSession["departamentos"] )) {
 			$condition .= " and Afiliado.departamento_id = ". $reportesSession["departamentos"];
@@ -60,24 +61,25 @@
 
 	
     $afiliados = $this->paginate('Afiliado', $condition);
-	$this->getDepartamentos(19);	
 	
+	//Informacion para mostrar en la pagina
+	$this->getDepartamentos(19);		
 	if ( isset( $reportesSession["departamentos"] )) {
 		$this->getLocalidades(19, $reportesSession["departamentos"]  );	
 	} else {
 		$this->getLocalidades(19);
-	}
-	
+	}	
 	if ( isset($reportesSession["localidades"])) {
 		$this->getCentrosByCodigo(19,$reportesSession["departamentos"] , $reportesSession["localidades"]);
 	} else {
-		$this->getCentrosByCodigo(19,$reportesSession["departamentos"] );
+		$this->getCentrosByCodigo(19 );
 	}
 	
 	//Hasta ACA
 	$this->set('reportesSession', $reportesSession);
     $this->set('afiliados', $afiliados);	 
 	$this->set('filtros', $filtros);	
+    $this->set('filtros_activos', $filtros_activos);  	
 	
 
 
@@ -91,20 +93,26 @@
      $this->Session->write('Reportes.departamentos', false);
  	 $this->Session->write('Reportes.localidades',false);
 	 $this->Session->write('Reportes.centros', false);
+	 $this->Session->write('Reportes.filtros_activos', false);
      $reportesSession = $this->Session->read("Afiliados");
      return $reportesSession;
   }
    
   
   
- public function buildCondition($keyword, $filters, $filtros) {
-  	$initial_conditions = "Afiliado.activo = 1 ";
+ public function buildCondition($keyword, $filters, $filtros_activos, $filtros) {
+  	$initial_conditions = " 1 ";
   	$conditions = "";
 	if ( $filters  == "Todos") {		
    	    $conditions .=  $this->all_condition($filtros, $keyword);
 	} else {
 	   	$conditions .= $this->sql_condition($filters, $keyword);
 	}
+	
+	if ($filtros_activos != "Todos") {
+	   $conditions .=  $this->sql_condition($filtros_activos, "1");
+	}
+		
 	if (!empty( $conditions )) {
 		$initial_conditions = $initial_conditions . " and " . $conditions;
 	}
@@ -134,6 +142,12 @@
 		   case 'Centro.id':
 		  	      $condition = " $key = $keyword $operator";
 				  break;
+		   case 'activos':
+			   	  $condition = " and Afiliado.activo = 1";
+			      break;
+		   case 'baja':
+			   	  $condition = " and Afiliado.activo = 0 ";
+			      break;				  
 	   }
 	  
       $condition = $this->cleanCondition("and", $condition);

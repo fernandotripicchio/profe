@@ -109,8 +109,7 @@
 			'errors' => array(),
 		);
 
-        $nuevo_centro = array();
-		
+        $nuevo_centro = array();		
 		
 		$i = 0;
 		$cantidad_centros = 0;
