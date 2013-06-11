@@ -70,9 +70,9 @@
 		$this->getLocalidades(19);
 	}	
 	if ( isset($reportesSession["localidades"])) {
-		$this->getCentrosByCodigo(19,$reportesSession["departamentos"] , $reportesSession["localidades"]);
+		//$this->getCentrosByCodigo(19,$reportesSession["departamentos"] , $reportesSession["localidades"]);
 	} else {
-		$this->getCentrosByCodigo(19 );
+		//$this->getCentrosByCodigo(19 );
 	}
 	
 	//Hasta ACA

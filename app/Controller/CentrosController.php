@@ -72,6 +72,7 @@
  public function importar(){
     $cantidad_centros = 0; 
     if (!empty($this->data))  {
+    	     
     	    set_time_limit ( 3000 );
             $cantidad_centros = $this->Centro->import($this->data['field']['tmp_name']);
             //$this->redirect('somecontroller/someaction');
@@ -108,8 +109,7 @@
 	$new_centros = array();
 	$centros = $this->Centro->getCentrosLocation($provincia_id = 19, $departamento_id, $localidad_id);
     $centros = json_encode(compact('centros'));
-    $this->set(compact("centros"));
-  	
+    $this->set(compact("centros"));  	
   }
   
   

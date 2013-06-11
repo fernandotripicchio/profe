@@ -65,7 +65,30 @@
                       <?php echo $this->form-> radio('urgente', array('0'=>'No Urgente','1'=>'Urgente'), array('default' => '0', 'label' => false, 'legend' => false, 'div' => array('tag' => ''))); ?>
 		                                             
 		           </td>
-		        </tr>                 
+		        </tr>   
+		        
+		        <tr>
+		        	<td class="right"> Diagnostico:</td>
+		        	<td class="left">
+                        <?php echo $this->form->select('diagnostico_id', $diagnosticos, array("class" => "",   "empty" => "Seleccione un Diagnostico")) ?>                 
+		        	</td>
+		        </tr>
+		        
+		        <tr>
+		        	<td class="right"> Nro. Expediente Tramix:</td>
+		        	<td class="left">
+                        <?php echo $this->form->input('nro_expediente_tramix', array('label'=> false,'type'=>'text', 'size'=>20,'class' => 'required', 'div' => array('tag' => '')));?>                 
+		        	</td>
+		        </tr>
+		        
+		        <tr>
+		        	<td class="right"> Motivos:</td>
+		        	<td class="left">
+                        <?php echo $this->form->textarea('motivos', array('label'=> false,'rows'=>15,'class' => 'required', 'style' => 'width:90%','div' => array('tag' => '')));?>                 
+		        	</td>
+		        </tr>
+		        
+		                      
 		        <tr>
 		           <td colspan="2">  <hr /> </td>
 		        </tr>
@@ -82,16 +105,7 @@
 					   </tr>         			
 				    </table>
 		    <? } ?>
-		    <!--
-		    <table>
-		        <tr>
-		           <td  style="text-align: center">
-		                     <?php echo $this->html->link('Volver','/expedientes/', array('class' => 'button left'));?>		           	
-		                     <?php echo $this->form->submit("Guardar" , array('div' => false, 'id' => 'buttonGuardarExpediente', 'class' => 'button left' ) )?>
-		           </td>
-		        </tr>
-		    </table>  
-		    -->  
+
     </div>
     <div id="afiliadoExpedienteEmptyDiv" style="display: <?php echo ( empty($afiliado["id" ]) ? "" : "none") ?>">
     	<table>

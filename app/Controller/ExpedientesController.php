@@ -3,7 +3,7 @@
   var $name = 'Expedientes';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler");
-  var $uses = array('Expediente', 'TipoExpediente','Afiliado');
+  var $uses = array('Expediente', 'TipoExpediente','Afiliado', 'Diagnostico');
   public $paginate = array(
                           'limit' => 50,
                                'order' => array(
@@ -76,14 +76,23 @@
   }
   
 
- public function getTipoExpediente(){
+ public function getDatos(){
+ 	//Tipos Expedientes	
  	$tipos_expedientes = $this->TipoExpediente->find("all", array("recursive" => -1));
  	$tipos = array();
-
  	foreach ($tipos_expedientes as $tipo) {
 		 $tipos[$tipo["TipoExpediente"]["id"]] = $tipo["TipoExpediente"]["nombre"];
 	 }
+	//Diagnosticos
+ 	$diagnosticos_db = $this->Diagnostico->find("all", array("recursive" => -1));
+ 	$diagnosticos = array();
+ 	foreach ($diagnosticos_db as $diagnostico) {
+		 $diagnosticos[$diagnostico["Diagnostico"]["id"]] = $diagnostico["Diagnostico"]["nombre"];
+	 }
+		
+	
  	$this->set("tipos_expedientes", $tipos);
+	$this->set("diagnosticos", $diagnosticos);
  }
   
   
@@ -92,7 +101,7 @@
 	//Ver si pasa afiliado como parametros
 	//Si lo manda no agregar buscador en la pagina
 	
-	$this->getTipoExpediente();
+	$this->getDatos();
 	$afiliado = $this->resetearAfiliado();
 	
 	if ( $afiliado_id )  {
@@ -129,7 +138,7 @@
   public function edit($id) {
     $this->Expediente->id = $id;
 	$nuevo_expediente = false;	
-	$this->getTipoExpediente();	
+	$this->getDatos();	
     if (!$this->Expediente->exists()) {
             throw new NotFoundException(__('Expediente invalido'));
     }

@@ -93,8 +93,8 @@
  		// return the messages
  		return $cantidad_afiliados;
 	}
-	 //Funcion para importar usuarios desde un archivo CSV y generar un nuevo listado  
-	 function import($filename, $activo =  1)  {
+	//Funcion para importar usuarios desde un archivo CSV y generar un nuevo listado  
+	function import($filename, $activo =  1)  {
  		$handle = fopen($filename, "r");
  		$header = fgetcsv($handle);
 		$return = array(

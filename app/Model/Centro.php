@@ -113,17 +113,20 @@
 		
 		$i = 0;
 		$cantidad_centros = 0;
+		
+		
+		
         while (($row = fgetcsv($handle)) !== FALSE) {
-			
-        	if ( $i > -1 ) {
-        		
 			//strtoupper(“Texto minúsculas”);
 			$afiliado_clave      = strtoupper( $row[2] );
 			$afiliado_documento  = strtoupper( $row[10] );
+			$afiliado_telefono   = strtoupper( $row[31] );
+			
 			
 			//Centro
 			$centro_nombre     = strtoupper( $row[25] );
-            $centro_medico     = strtoupper( $row[26] );			
+            $centro_medico     = strtoupper( $row[26] );
+			$centro_medico_telefono = strtoupper( $row[27] );			
 			$centro_localidad  = strtoupper( $row[28] );
 			
 		    
@@ -153,11 +156,11 @@
 					  print_r($afiliado);
 					  if (!empty($afiliado) && !empty($afiliado[0])) {
 					  	    $afiliado_id = $afiliado[0]["afiliados"]["id"];
-                            $this->query("UPDATE afiliados set centro_id = " . $centro_id . "  where afiliados.id = ".$afiliado_id);
+                            $this->query("UPDATE afiliados set medico='".$centro_medico. "', medico_telefono = '".$centro_medico_telefono."',telefonos = '".$afiliado_telefono."' , centro_id = " . $centro_id . "  where afiliados.id = ".$afiliado_id);
 					  }
 			}
             
-		 }
+		 
         $i++;
 		}
  		fclose($handle);
