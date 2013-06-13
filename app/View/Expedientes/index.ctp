@@ -38,7 +38,7 @@
             	<th scope="col">Fecha Inicio      </th>
                 <th scope="col">Afiliado          </th>      
                 <th scope="col">Documento         </th>
-                <th scope="col">Estado            </th>         
+                <th scope="col">Afiliado          </th>         
                 <th scope="col">&nbsp;            </th>             
             </tr>
         </thead>

@@ -84,7 +84,7 @@
 		 $tipos[$tipo["TipoExpediente"]["id"]] = $tipo["TipoExpediente"]["nombre"];
 	 }
 	//Diagnosticos
- 	$diagnosticos_db = $this->Diagnostico->find("all", array("recursive" => -1));
+ 	$diagnosticos_db = $this->Diagnostico->find("all", array("order" => "nombre asc","recursive" => -1));
  	$diagnosticos = array();
  	foreach ($diagnosticos_db as $diagnostico) {
 		 $diagnosticos[$diagnostico["Diagnostico"]["id"]] = $diagnostico["Diagnostico"]["nombre"];

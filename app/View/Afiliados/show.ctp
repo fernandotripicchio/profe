@@ -11,6 +11,7 @@
 			</td>
 		</tr>
 	</table>
+	<h3>Afiliado:</h3>
 	<table>
         <tr>
           	<td class="width-4 th_header" colspan="4"> Datos del Afiliado </td>
