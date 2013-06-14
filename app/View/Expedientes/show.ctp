@@ -49,7 +49,8 @@
 		</tr> 
 	 </table>
    <div class="botonera">
-        <?php echo $this->html->link('Listado',array("controller"=>"expedientes", "action" => "index"), array('class' => 'button btn-right'));?>
+        <?php echo $this->html->link('Listado Afiliados',array("controller"=>"expedientes", "action" => "index"), array('class' => 'button btn-right'));?>
+        <?php echo $this->html->link('Historial Afiliado',array("controller"=>"afiliados", "action" => "historial", $expediente['Afiliado']['id']), array('class' => 'button btn-right'));?>        
         <?php echo $this->html->link('Editar',array("controller"=>"expedientes", "action" => "edit", $expediente["Expediente"]["id"]), array('class' => 'button btn-right'));?>        
    </div>	
 </div>

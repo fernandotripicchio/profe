@@ -33,12 +33,13 @@
           <thead>
             <tr>
             	<th scope="col">Nro de Expediente </th>
+                <th scope="col">Estado            </th>              	
             	<th scope="col">Tipo              </th>
                 <th scope="col">Urgente           </th>            	
             	<th scope="col">Fecha Inicio      </th>
                 <th scope="col">Afiliado          </th>      
                 <th scope="col">Documento         </th>
-                <th scope="col">Afiliado          </th>         
+                <th scope="col">Afiliado          </th>     
                 <th scope="col">&nbsp;            </th>             
             </tr>
         </thead>
@@ -48,6 +49,10 @@
                	     <td class="left">
 	                 	<?php echo $expediente['Expediente']['id'];   ?>
 	                 </td>
+	                 <td class="left">
+	                    <?php echo $this->html->show_estado_expediente($expediente['Expediente']['estado']);      ?>
+ 	                 </td>         
+	                 
 	                 <td class="left">
 	                 	<?php echo  $expediente['TipoExpediente']['nombre'] ;   ?>
 	                 </td>	                 
@@ -66,7 +71,9 @@
  	                 </td>               	
 	                 <td class="left">
 	                    <?php echo $this->html->show_estado($expediente['Afiliado']['activo']);      ?>
- 	                 </td>              	
+ 	                 </td>         
+ 	                 
+ 	                      	
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "expedientes", "action" => "show", $expediente['Expediente']['id']))?>
                         <?php echo $this->html->link("Editar", array("controller" => "expedientes", "action" => "edit", $expediente['Expediente']['id']))?>

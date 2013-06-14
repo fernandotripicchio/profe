@@ -49,6 +49,11 @@
   }
   
   
+  public function getEstadosExpediente(){
+  	$estados_expedientes = array("0" => "Nuevo", "1" => "En Proceso", "2" =>"Cerrado", "3"  => "Eliminado");
+    $this->set('estados_expedientes', $estados_expedientes);	
+  }
+  
   public function resetForm(){
      $this->Session->write('Expedientes.keys', false );
 	 $this->Session->write('Expedientes.filters',false);
@@ -102,8 +107,7 @@
 	//Si lo manda no agregar buscador en la pagina
 	
 	$this->getDatos();
-	$afiliado = $this->resetearAfiliado();
-	
+	$afiliado = $this->resetearAfiliado();	
 	if ( $afiliado_id )  {
   		 $afiliado = $this->obtenerAfiliado($afiliado_id);
 	}
@@ -162,6 +166,7 @@
 	
     		
 	$fecha_inicio = $expediente["Expediente"]["fecha_inicio"];
+	$this->getEstadosExpediente();
 	$this->set('fecha_inicio', $fecha_inicio);
     $this->set('expediente', $expediente);		
     $this->set('afiliado'  , $afiliado);		

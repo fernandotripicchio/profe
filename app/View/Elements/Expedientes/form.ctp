@@ -45,6 +45,12 @@
 		              		<?php echo $expediente["Expediente"]["id"]; ?>
 		           		</td>
 		       	    </tr>	
+		       	    <tr>
+		           		<td class="right">Estado:</td>
+		           		<td class="left">
+		       	    	<?php echo $this->form->select('estado', $estados_expedientes, array("class" => "",   "empty" => false)) ?>
+		       	    	</td>
+		       	    </tr>
 	       	    <? } ?>	      	
 		        <tr>
 		           <td class="right with-3">Fecha Inicio:</td>

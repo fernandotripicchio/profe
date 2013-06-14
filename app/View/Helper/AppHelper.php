@@ -50,6 +50,25 @@ class AppHelper extends Helper {
 		}
 	}
 	
+	function show_estado_expediente($estado) {
+		
+		switch ($estado) {
+			case '0':
+				return "<span class='activo'>NUEVO<span>"; 
+				break;
+			case '1':
+				return "<span class='activo'>EN PROCESO<span>"; 
+				break;
+			case '2':
+				return "<span class='activo'>CERRADO<span>"; 
+				break;
+			case '3':
+				return "<span class='baja'>ELIMINADO<span>"; 
+				break;
+		}
+		
+	}	
+	
 	function nro_pension( $afiliado ) {
 		$nro_pension = $afiliado["Afiliado"]["clave_excaja"]."-".$afiliado["Afiliado"]["clave_tipo"] ."-".$afiliado["Afiliado"]["clave_numero"];
 		$nro_pension.= "-".$afiliado["Afiliado"]["clave_coparticipe"]."-".$afiliado["Afiliado"]["clave_parentezco"];
