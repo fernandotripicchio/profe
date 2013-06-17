@@ -9,8 +9,13 @@
 		<tr>
             <td><label for="keysKeys">Buscar por</label></td>			
 			<td class="with-4">				
-				<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"label" => false )) ?>
+				<?php echo $this->form->input("keys", array("type" => "text", "size" => 30,"label" => false )) ?>
 			</td>
+  		    <td><label for="keysKeys">Estado</label></td>
+			<td>					
+				<?php echo $this->form->select('estados_expedientes', $estados_expedientes,  array("class" => "select-filter-expedientes", "empty" => false)) ?>
+  			</td>
+			
   		    <td><label for="keysKeys">Filtros</label></td>
 			<td>					
 				<?php echo $this->form->select('filters', $filtros,  array("class" => "select-filter-expedientes", "empty" => false)) ?>
