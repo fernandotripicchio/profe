@@ -15,6 +15,11 @@
      $this->layout = "admin";
   }
   
+  public function para_imprimir(){
+  	$afiliados = $this->paginate('Afiliado', "Afiliado.por_imprimir = 0");
+	$this->set('afiliados', $afiliados);	 
+  }
+  
   
   public function index() {  
 	$filtros =  array("Todos" => "Todos", "Afiliado.nombre" => "Nombre", "Afiliado.documento" => "Documento");

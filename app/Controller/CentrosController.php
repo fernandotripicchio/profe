@@ -108,6 +108,9 @@
     $this->layout = 'ajax';
 	$new_centros = array();
 	$centros = $this->Centro->getCentrosLocation($provincia_id = 19, $departamento_id, $localidad_id);
+	if (empty ( $centros ) ) {
+		$centros = $this->Centro->getCentrosLocation($provincia_id = 19, $departamento_id);
+	}
     $centros = json_encode(compact('centros'));
     $this->set(compact("centros"));  	
   }

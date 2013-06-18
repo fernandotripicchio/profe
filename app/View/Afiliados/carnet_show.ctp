@@ -133,9 +133,10 @@
        </table>  
     <?php echo $this->Form->input('id', array('type' => 'hidden'));?>  
     <div class="full center_image botonera">
+       <?php echo $this->html->link('Imprimir','/afiliados/imprimir_carnet/'.$afiliado["Afiliado"]["id"], array('class' => 'button btn-right', 'target' => '_blank'));?>    	
        <?php echo $this->html->link("Editar", array("controller" => "afiliados", "action" => "carnet", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'))?>                        	                 	
-       <?php echo $this->html->link('Imprimir','/afiliados/imprimir_carnet/'.$afiliado["Afiliado"]["id"], array('class' => 'button btn-right', 'target' => '_blank'));?>
        <?php echo $this->html->link('Volver',  '/afiliados/', array('class' => 'button btn-right'));?>
+       
     </div>    
     <?php echo  $this->form->end();?>
 </div>

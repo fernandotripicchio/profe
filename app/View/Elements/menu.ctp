@@ -8,6 +8,10 @@
                     <?=$this->Html->link('<span>Listados</span>', array('controller' => 'afiliados', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
                 
+                <li>
+                    <?=$this->Html->link('<span>Imprimir Carnets</span>', array('controller' => 'afiliados', 'action' => 'para_imprimir'), array('class' => 'parent', 'escape' => false)); ?>
+                </li>
+
                	
                 <li>
                     <?=$this->Html->link('<span>Actualizar Afiliados </span>', array('controller' => 'afiliados', 'action' => 'importar'), array('class' => 'parent', 'escape' => false)); ?>

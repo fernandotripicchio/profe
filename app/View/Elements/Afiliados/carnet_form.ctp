@@ -1,3 +1,4 @@
+<?php echo $this->form->input('por_imprimir', array("type" => "hidden","value" => "0")); ?>
 <fieldset>  
   <legend><?php echo $title?> </legend>  
   <table class="full">
@@ -89,7 +90,7 @@
        	<tr>
        		<td >Centro de Salud:</td>
 		    <td>
-   	            <select name="data[centros]" id="afiliadosFilterCentros" class="select-filter-afiliados">
+   	            <select name="data[Afiliado][centro_id]" id="afiliadosFilterCentros" class="select-filter-afiliados">
 			                 <option value="">Seleccione un Centro</option>
                              <?php foreach($centros as $key=>$value) { ?>
                                    <option value="<?=$key?>" <?=(($afiliado["Afiliado"]["centro_id"] == $key) ? "selected": "")?>><?=$value?></option>                             	
