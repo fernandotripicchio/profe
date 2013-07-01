@@ -19,9 +19,7 @@
 				<td><label for="keysKeys">Activos</label></td>
 				<td>					
 					<?php echo $this->form->select('filtros_activos', $filtros_activos,  array("class" => "select-filter-afiliados-activos", "empty" => false)) ?>
-  			    </td>
-
-  			           
+  			    </td>  			           
 				<td>								
 					<?php echo $this->Form->submit("Buscar", array("class" => "btn-form"))?>    
 					<?php echo $this->Form->submit("Limpiar", array("class" => "btn-form", "id" => "buttonReset"))?>                    				
@@ -44,13 +42,15 @@
             <tr>
             	<th scope="col">Activo</th>
                 <th scope="col">Clave</th>
+            	<th scope="col">Tipo</th>                
                 <th scope="col">Nombre</th>                
                 <th scope="col">Documento</th>
                 <!-- <th scope="col">Fecha Nacimiento</th> !-->
-                <th scope="col">Fecha Alta</th>  
+                <!-- <th scope="col">Fecha Alta</th> -->  
                 <th scope="col">Departamento</th>                              
                 <th scope="col">Localidad</th>
-                <th scope="col">Dirección</th>
+                <!--<th scope="col">Dirección</th>-->
+                
                 <th scope="col">Centro de Salud</th>   
                 <th>&nbsp;</th>             
             </tr>
@@ -62,11 +62,16 @@
 	                 <td class="left">
 	                 	<?php echo $this->html->show_estado($afiliado['Afiliado']['activo']);      ?>
 	                 </td>
+	                 
                	
 	                 <td class="left">
 	                 	<?php echo $this->HTML->nro_pension($afiliado);?>
-
 	                 </td>
+	                 
+	                 <td class="left">
+	                 	<?php echo $this->html->show_tipo($afiliado['Afiliado']['clave_parentezco']);      ?>
+	                 </td>
+	                 
 	                 <td class="left">
 	                    <?php echo $afiliado['Afiliado']['nombre']   ?>
  	                 </td>
@@ -77,10 +82,11 @@
 	                 <td>
 	                      <?php echo $this->Time->format('d/m/Y', $afiliado['Afiliado']['fecha_nacimiento']); ?>
 	                 </td>
-	                -->
+	                
 	                 <td>                      
 	                    <?php echo $this->Time->format('d/m/Y', $afiliado['Afiliado']['fecha_alta']); ?>
 	                 </td>
+-->	                 
 	                 <td class="left">
 	                    <?php echo $afiliado['Departamento']['nombre']  ?>	
 	                 </td>
@@ -88,9 +94,11 @@
 	                 <td class="left">
 	                    <?php echo $afiliado['Localidad']['nombre']  ?>	
 	                 </td>
+	                 <!--
 	                 <td class="left">
 	                    <?php echo $afiliado['Afiliado']['domicilio_calle']. " ".$afiliado['Afiliado']['domicilio_nro']   ?>	
-	                 </td>	                 
+	                 </td>	
+	                 -->                 
 	                 <td class="left">
 	                    <?php echo $afiliado['Centro']['nombre']  ?>
 	                 </td>	                 
@@ -98,7 +106,6 @@
                      	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $afiliado['Afiliado']['id']))?>
                      	<? if ($afiliado['Afiliado']['activo']) { ?>
                         	<?php echo $this->html->link("Editar", array("controller" => "afiliados", "action" => "edit", $afiliado['Afiliado']['id']))?>
-                        	<?php echo $this->html->link("Carnet", array("controller" => "afiliados", "action" => "carnet", $afiliado['Afiliado']['id']))?>
                         <? } ?>                        	                 	
                      </td>	                 
 	                 

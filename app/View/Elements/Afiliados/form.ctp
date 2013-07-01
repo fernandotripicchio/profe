@@ -1,5 +1,4 @@
-    <fieldset>  
-        <legend><?php echo $title?> </legend>  
+<fieldset>  
         <table class="full">
              <tbody>
 			    <tr>

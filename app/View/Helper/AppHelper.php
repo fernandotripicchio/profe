@@ -49,6 +49,15 @@ class AppHelper extends Helper {
 			return "<span class='baja'>BAJA</span>";
 		}
 	}
+
+	function show_tipo($tipo) {
+		if ($tipo=="0") {
+			return "<span class='activo'>TITULAR<span>";
+		} else {
+			return "<span class='activo'>BENEFICARIO</span>";
+		}
+	}
+	
 	
 	function show_estado_expediente($estado) {
 		

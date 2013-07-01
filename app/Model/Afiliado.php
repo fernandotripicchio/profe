@@ -169,21 +169,23 @@
 
     function construirBajaAfiliado($row){
     	 $baja_afiliado = array();
-		 $baja_afiliado["clave_excaja"]  = $row[0];
-		 $baja_afiliado["clave_tipo"]    = $row[1];		 
-		 $baja_afiliado["clave_numero"]  = $row[2];
-		 $baja_afiliado["clave_coparticipe"] = $row[3];
-		 $baja_afiliado["clave_parentezco"]  = $row[4];
-		 $baja_afiliado["ley_aplicada"]     = $row[5];
+		 $baja_afiliado["clave_excaja"]  = (!empty($row[0]) ? $row[0] : "");
+		 $baja_afiliado["clave_tipo"]    = (!empty($row[1]) ? $row[1] : "");		 
+		 $baja_afiliado["clave_numero"]  = (!empty($row[2]) ? $row[2] : ""); 
+		 $baja_afiliado["clave_coparticipe"] = (!empty($row[3]) ? $row[3] : ""); 
+		 $baja_afiliado["clave_parentezco"]  = (!empty($row[4]) ? $row[4] : ""); 
+		 $baja_afiliado["ley_aplicada"]     = (!empty($row[5]) ? $row[5] : ""); 
 		 $baja_afiliado["nombre"]           = strtoupper( $row[6] ); 
 		 $baja_afiliado["sexo"]             = strtoupper( $row[7] ); 
 		 $baja_afiliado["tipo_documento"]   = strtoupper( $row[8] );
 		 $baja_afiliado["documento"]        = strtoupper( $row[9] );
-         $baja_afiliado["fecha_nacimiento"] = $this->date_format($row[10]);
-		 $baja_afiliado["fecha_alta"]       = $this->date_format($row[11]);	
-		 $baja_afiliado["fecha_baja"]       = $this->date_format($row[12]);	 
+         $baja_afiliado["fecha_nacimiento"] = (!empty( $row[10]) ?  $this->date_format($row[10]) : "");
+		 $baja_afiliado["fecha_alta"]       = (!empty( $row[11]) ?  $this->date_format($row[11]) : "");	
+		 $baja_afiliado["fecha_baja"]       = (!empty( $row[12]) ?  $this->date_format($row[12]) : "");	 
 		 $baja_afiliado["motivo_baja"]      = $row[13] ;
-		  return $baja_afiliado;    	
+		 print_r($baja_afiliado);
+		 print_r("<br>");
+		 return $baja_afiliado;    	
     }
 
 

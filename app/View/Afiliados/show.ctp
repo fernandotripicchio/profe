@@ -3,6 +3,9 @@
 	<table>
 		<tr>
 			<td>
+			  <? if ($afiliado['Afiliado']["activo"]) { ?>				
+                <?php echo $this->html->link('Carnet',array("controller"=>"afiliados", "action" => "carnet", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>           	     
+			  <? }?>				
               <?php echo $this->html->link('Historial',array("controller"=>"afiliados", "action" => "historial", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>				
               <?php echo $this->html->link('Nuevo Expediente',array("controller"=>"expedientes", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right'));?>				
 		      <?php echo $this->html->link('Nueva Prestación',array("controller"=>"prestaciones", "action" => "add", $afiliado['Afiliado']['id']), array('class' => 'button btn-right', 'target' => '_blank'));?>

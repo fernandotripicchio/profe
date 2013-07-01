@@ -1,7 +1,7 @@
 <!-- Formulario de Busqueda -->
 <? $params_paginator = $this->Paginator->params() ?>
 <div id = "listado_afiliados" class="listados">
-	<h1>Listado de Afiliados</h1>
+	<h1> Carnet para imprimir </h1>
     <div id="listado">
     	<div>
     		<strong>
@@ -12,6 +12,8 @@
           <caption>Afiliados</caption>
           <thead>
             <tr>
+            	<th scope="col" class="span-1"></th>
+            	<th scope="col">Estado</th>
                 <th scope="col">Clave</th>
                 <th scope="col">Nombre</th>                
                 <th scope="col">Documento</th>
@@ -19,14 +21,16 @@
                 <th scope="col">Departamento</th>                              
                 <th scope="col">Localidad</th>
                 <th scope="col">Dirección</th>
-                <th scope="col">Centro de Salud</th>   
-          
+                <th scope="col">Centro de Salud</th>             
             </tr>
         </thead>
             <!-- Here is where we loop through our $posts array, printing out post info -->
             <tbody>
             <?php foreach ($afiliados as $afiliado): ?>
                <tr>
+               	     <td class="left">
+               	     	<input type="checkbox" name="para_imprimir" values="<?php echo $afiliado["Afiliado"]["id"]?>"
+               	     </td>
 	                 <td class="left">
 	                 	<?php echo $this->html->show_estado($afiliado['Afiliado']['activo']);      ?>
 	                 </td>

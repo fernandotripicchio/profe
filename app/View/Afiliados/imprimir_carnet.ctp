@@ -8,6 +8,7 @@
 }
 </style>
 <table  class="fontCarnet tableCarnet">
+	    
 		<tr>
 			<td><?php echo strtoupper( $afiliado["Afiliado"]["nombre"] ) ?></td>
 		</tr>

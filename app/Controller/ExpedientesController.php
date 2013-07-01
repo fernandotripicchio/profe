@@ -22,7 +22,6 @@
   public function index() {
    $filtros =  array("Todos" => "Todos", "Expediente.id" => "Nro Expediente","Afiliado.nombre" => "Afiliado Nombre", "Afiliado.documento" => "Afiliado Documento");
    $condition = "";
-   print_r( $this->params );
    if ($this->request->is('post') ) {
      	            if ($this->params["data"]["keys"]["submit_action"] == "reset") {
      	            	 $expedientesSession = $this->resetForm();
