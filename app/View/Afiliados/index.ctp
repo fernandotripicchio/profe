@@ -86,8 +86,7 @@
                      	<? if ($afiliado['Afiliado']['activo']) { ?>
                         	<?php echo $this->html->link("Editar", array("controller" => "afiliados", "action" => "edit", $afiliado['Afiliado']['id']))?>
                         <? } ?>                        	                 	
-                     </td>	            
-	                 
+                     </td>	
             </tr>
             <?php endforeach; ?>
             </tbody>

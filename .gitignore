@@ -4,3 +4,4 @@ app/tmp/*
 app/config/database.php
 !empty
 nbproject/*
+app/webroot/files/*

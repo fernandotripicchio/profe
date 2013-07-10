@@ -117,7 +117,7 @@ class qqFileUploader {
         $size = $this->file->getSize();
         
         if ($size == 0) {
-            return array('error' => 'File is empty!');
+            return array('error' => 'El archivo esta vacio!');
         }
         
         if ($size > $this->sizeLimit) {
@@ -131,7 +131,7 @@ class qqFileUploader {
 
         if($this->allowedExtensions && !in_array(strtolower($ext), $this->allowedExtensions)){
             $these = implode(', ', $this->allowedExtensions);
-            return array('error' => 'File has an invalid extension, it should be one of '. $these . '.');
+            return array('error' => 'No se puede subir este tipo de archivos, solo son válidos los archivos terminados en: '. $these . '.');
         }
         
         if(!$replaceOldFile){

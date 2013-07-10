@@ -16,7 +16,7 @@ class UploadsController extends AjaxMultiUploadAppController {
 	public $uses = null;
 
 	// list of valid extensions, ex. array("jpeg", "xml", "bmp")
-	public $allowedExtensions = array();
+	public $allowedExtensions = array("pdf");
 
 	public function upload($dir=null) {
 		// max file size in bytes

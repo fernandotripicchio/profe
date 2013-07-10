@@ -88,4 +88,8 @@ class AppHelper extends Helper {
 	function money( $number ){
 		return "$ ".number_format($number, 2, ',', '.');
 	}
+	
+	function link_button($tipo, $url){
+		return "<li class='ui-state-default ui-corner-all' ><span class='ui-icon ui-icon-circle-zoomout'></span></li>";
+	}
 }
