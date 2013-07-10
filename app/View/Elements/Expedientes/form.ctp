@@ -88,7 +88,16 @@
 		        </tr>
 		        
 		        <tr>
-		        	<td class="right"> Motivos:</td>
+		        	<td class="right"> Presupuesto:</td>
+		        	<td class="left">
+                        <?php echo $this->form->input('presupuesto', array('label'=> false,'type'=>'text', 'size'=>20,'class' => 'required', 'div' => array('tag' => '')));?>                 
+		        	</td>
+		        </tr>
+
+
+		        
+		        <tr>
+		        	<td class="right"> Observaciones:</td>
 		        	<td class="left">
                         <?php echo $this->form->textarea('motivos', array('label'=> false,'rows'=>15,'class' => 'required', 'style' => 'width:90%','div' => array('tag' => '')));?>                 
 		        	</td>

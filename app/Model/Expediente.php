@@ -3,7 +3,7 @@
       public $name = 'Expediente';
 	  
 	  
-	  public $belongsTo = array("Afiliado", "TipoExpediente"); 
+	  public $belongsTo = array("Afiliado", "TipoExpediente", "Diagnostico"); 
 	  
       public $validate = array(
         'fecha_inicio' => array(

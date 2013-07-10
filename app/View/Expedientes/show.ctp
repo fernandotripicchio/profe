@@ -23,17 +23,37 @@
   	 	 	<td class="width-4 th_header" colspan="2"> Expediente </td>
   	 	 </tr>
 		 <tr>
-			<td class="with-4 right"> Nro : </td>
+			<td class="with-4 right"> ID : </td>
 			<td class="left" > <?php echo $expediente["Expediente"]["id"]  ?> </td>
+		 </tr>
+		 
+		 <tr>
+			<td class="with-4 right"> Fecha Inicio : </td>
+			<td class="left" > <?php echo $expediente["Expediente"]["fecha_inicio"]  ?> </td>
 		 </tr>        
+		         
 		 <tr>
 			<td class="with-4 right"> Tipo: </td>
 			<td class="left" ><?php echo $expediente["TipoExpediente"]["nombre"] ?></td>
 		 </tr>        
+
+		 
 		 <tr>
 			<td class="with-4 right"> Urgente: </td>
 			<td class="left" > <?php echo ( $expediente['Expediente']['urgente']==1 ? "Si" : "No" );   ?> </td>
 		 </tr>        
+		 <tr>
+			<td class="with-4 right"> Diagnostico: </td>
+			<td class="left" > <?php echo $expediente['Diagnostico']['nombre'] ;   ?> </td>
+		 </tr>        
+
+
+		 <tr>
+			<td class="with-4 right"> Presupuesto: </td>
+			<td class="left" ><?php echo $this->html->money( $expediente["Expediente"]["presupuesto"] ) ?></td>
+		 </tr>        
+
+
 		 	
 	 </table>	 
      <!-- Tabla con los archivos -->	 

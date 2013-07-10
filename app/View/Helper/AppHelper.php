@@ -83,4 +83,9 @@ class AppHelper extends Helper {
 		$nro_pension.= "-".$afiliado["Afiliado"]["clave_coparticipe"]."-".$afiliado["Afiliado"]["clave_parentezco"];
 		return $nro_pension;
 	}	
+	
+	
+	function money( $number ){
+		return "$ ".number_format($number, 2, ',', '.');
+	}
 }

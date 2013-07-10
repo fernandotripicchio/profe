@@ -37,14 +37,14 @@
           <caption>Expedientes</caption>
           <thead>
             <tr>
-            	<th scope="col">Nro de Expediente </th>
-                <th scope="col">Estado            </th>              	
-            	<th scope="col">Tipo              </th>
-                <th scope="col">Urgente           </th>            	
-            	<th scope="col">Fecha Inicio      </th>
+            	<th scope="col" class="with-1">ID </th>
+                <th scope="col">Estado            </th>
+				<th scope="col">Tipo              </th>                
                 <th scope="col">Afiliado          </th>      
                 <th scope="col">Documento         </th>
-                <th scope="col">Afiliado          </th>     
+                <th scope="col">Urgente           </th>            	
+            	<th scope="col">Fecha Inicio      </th>
+        	    <th scope="col">Presupuesto      </th>    
                 <th scope="col">&nbsp;            </th>             
             </tr>
         </thead>
@@ -61,6 +61,15 @@
 	                 <td class="left">
 	                 	<?php echo  $expediente['TipoExpediente']['nombre'] ;   ?>
 	                 </td>	                 
+
+	                 <td class="left">
+	                    <?php echo $expediente["Afiliado"]["nombre"]?>
+ 	                 </td>
+	                 <td class="left">
+	                    <?php echo $expediente["Afiliado"]["documento"]?>
+ 	                 </td>               	
+	                 
+	                 
 	                 <td class="left">
 	                 	<?php echo ( $expediente['Expediente']['urgente']==1 ? "<span class='baja'>Si</span>" : "No" );   ?>
 	                 </td>
@@ -69,13 +78,7 @@
                         <?php echo $this->Time->format('d/m/Y', $expediente['Expediente']['fecha_inicio'] ); ?>	                 	
 	                 </td>
 	                 <td class="left">
-	                    <?php echo $expediente["Afiliado"]["nombre"]?>
- 	                 </td>
-	                 <td class="left">
-	                    <?php echo $expediente["Afiliado"]["documento"]?>
- 	                 </td>               	
-	                 <td class="left">
-	                    <?php echo $this->html->show_estado($expediente['Afiliado']['activo']);      ?>
+                         <?php echo $this->html->money($expediente["Expediente"]["presupuesto"]) ?>
  	                 </td>         
  	                 
  	                      	
