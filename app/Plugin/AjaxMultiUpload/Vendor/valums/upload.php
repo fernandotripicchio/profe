@@ -121,7 +121,7 @@ class qqFileUploader {
         }
         
         if ($size > $this->sizeLimit) {
-            return array('error' => 'File is too large. Please ask server admin to increase the file upload limit.');
+            return array('error' => 'Archivo excede la capacidad');
         }
         
         $pathinfo = pathinfo($this->file->getName());
