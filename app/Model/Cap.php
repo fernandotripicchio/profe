@@ -1,11 +1,11 @@
 <?php
- class Centro extends AppModel {
-      public $name = 'Centro';
+ class Cap extends AppModel {
+      public $name = 'Cap';
 	  
 	  public $belongsTo = array("Localidad");
 	  public $hasMany = array("Afiliados"); 
 	  
-     public $hasAndBelongsToMany = array('Medico'=>array('className'=>'Medico'));
+      //public $hasAndBelongsToMany = array('Medico'=>array('className'=>'Medico'));
 	  
       public $validate = array(
         'nombre' => array(

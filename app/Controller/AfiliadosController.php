@@ -20,6 +20,10 @@
 	$this->set('afiliados', $afiliados);	 
   }
   
+  	public function map() {
+
+	}
+  
   
   public function index() {  
 	$filtros =  array("Todos" => "Todos", "Afiliado.nombre" => "Nombre", "Afiliado.documento" => "Documento");

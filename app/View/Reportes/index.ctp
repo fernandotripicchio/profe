@@ -52,7 +52,32 @@
                              <?php } ?>
                    </select>                                       
                 </td>
-            </tr>      
+            </tr>    
+            
+            <tr>
+            	<td>
+            		<label> Ley Aplicada </label>
+            	</td>
+            	<td colspan="5">
+                    <select name="data[ley_aplicada]" id="afiliadosFilterGrupo" class="select-filter-afiliados">
+                        <option value="">Seleccione un Grupo</option>
+                             <?php foreach($grupos as $key=>$value) { ?>
+                                   <option value="<?=$key?>" <?=(($reportesSession["ley_aplicada"]== $key) ? "selected": "")?>><?=$value?></option>                               
+                             <?php } ?>
+                    </select>
+            	</td>
+            	<td>
+            		<label> Tipo </label>
+                    <select name="data[tipo]" id="afiliadosFilterTipo" class="select-filter-afiliados">
+                        <option value="">Tipo</option>
+                        
+                             <?php foreach($tipos as $key=>$value) { ?>
+                                   <option value="<?=$key?>" <?=(($reportesSession["tipos"]== $key) ? "selected": "")?>><?=$value?></option>                               
+                             <?php } ?>
+                    </select>
+            		
+            	</td>
+            </tr>  
             <tr>
                 <td  colspan="5">&nbsp;</td>
 				<td>								

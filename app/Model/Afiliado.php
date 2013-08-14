@@ -59,6 +59,8 @@
        );
 	   
 	   
+
+	   
 	 // Metodo para dar de bajas afiliados, lo que hace es setear el campo en no activo y poner el motivo de 
 	 // de la baja  
 	 function bajas($filename, $activo =  1)  {
@@ -109,6 +111,8 @@
 		$no_departamento = $this->Departamento->find("first", array("conditions" => array("nombre" => "NO TIENE DEPARTAMENTO"), "recursive" => -1));
 		
         while (($row = fgetcsv($handle)) !== FALSE) {
+        	print_r($row);
+			echo "<br>";
         	$codigo = "";
 			$loca = "";
 			$depto = "";
@@ -157,8 +161,13 @@
 						$cantidad_afiliados++;
 			    } 
 			} else {
-			    	print_r($nuevo_afiliado);
-					echo "<br>";
+			    $nuevo_afiliado["id"] = $afiliado["Afiliado"]["id"];
+				print_r($nuevo_afiliado);	
+                if ( $this->save($nuevo_afiliado) ) {
+						$cantidad_afiliados++;
+			    } 				
+			    
+				echo "<br>";
 			}	
 		}
  		// close the file
