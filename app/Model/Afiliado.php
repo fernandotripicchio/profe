@@ -211,9 +211,10 @@
 		 $nuevo_afiliado["estado_civil"]   = strtoupper( $row[8] );
 		 $nuevo_afiliado["tipo_documento"] = strtoupper( $row[9] );
 		 $nuevo_afiliado["documento"]      = strtoupper( $row[10] );
-         $nuevo_afiliado["fecha_alta"] = $this->date_format($row[11]);		 
+         $nuevo_afiliado["fecha_nacimiento"] = $this->date_format($row[11]);		 
          $nuevo_afiliado["incapacidad"]  = $row[12];
 		 $nuevo_afiliado["fecha_alta"]   = $this->date_format($row[13]);
+		 
 		 //Localidad
 		 $nuevo_afiliado["domicilio_calle"] = strtoupper( $row[14] );
 		 $nuevo_afiliado["domicilio_nro"]   = strtoupper( $row[15] );
