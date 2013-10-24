@@ -44,7 +44,14 @@ $(document).ready(function(){
 		}
 	} );
 	
-	
+    $("#buttonResetExpedientes").on("click", function(){
+    	
+       var form = $("#expedienteSearchForm");
+       $("#submit_action").attr("value", "reset");
+       // Submit the form
+       form.submit();
+	   return false;
+	})
 	
 });
 

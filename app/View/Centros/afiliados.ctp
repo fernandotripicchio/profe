@@ -1,35 +1,4 @@
-<!-- Formulario de Busqueda -->
-<? $params_paginator = $this->Paginator->params() ?>
-<div id = "listado_afiliados" class="listados">
-	<h1>Listado de Afiliados</h1>
-	<div id="formulario_afiliados">
-		<?php echo $this->Form->create("keys", array("afiliadoSearchForm")) ?>
-		<?php echo $this->Form->hidden('submit_action', array("id" => 'submit_action', 'value' => "")); ?>
-		<table>
-			<tr>
-				<td><label for="keysKeys">Buscar por</label></td>
-				<td class="with-4">				
-					<?php echo $this->Form->input("keys", array("type" => "text", "size" => 30,"value" => $afiliadosSession["keys"],"label" => false )) ?>
-				</td>
-				<td><label for="keysKeys">Filtros</label></td>
-				<td>					
-					<?php echo $this->form->select('filters', $filtros,  array("class" => "select-filter-afiliados", "empty" => false)) ?>
-  			    </td>
-
-				<td><label for="keysKeys">Activos</label></td>
-				<td>					
-					<?php echo $this->form->select('filtros_activos', $filtros_activos,  array("class" => "select-filter-afiliados-activos","empty" => false)) ?>
-  			    </td>  			           
-				<td>								
-					<?php echo $this->Form->submit("Buscar", array("class" => "btn-form"))?>    
-					<?php echo $this->Form->submit("Limpiar", array("class" => "btn-form", "id" => "buttonReset"))?>                    				
-			    </td>			    
-			</tr>
-		</table>
-		<?php echo $this->Form->end; ?>
-	</div>
-
-    <div id="listado">
+ <div id="listado">
     	<div>
     		<strong>
     			Cantidad de Afiliados: <?= $params_paginator["count"] ?>
@@ -52,7 +21,6 @@
         </thead>
             <tbody>
             <?php foreach ($afiliados as $afiliado): ?>
-            	<? print_r($afiliado)?>
                <tr>
 	                 <td class="left">
 	                 	<?php echo $this->html->show_estado($afiliado['Afiliado']['activo']);      ?>
@@ -98,4 +66,3 @@
              <?php echo $this->Paginator->numbers(array('tag' => 'div','separator' => ''));?>
              <?php echo $this->Paginator->next(__('Siguientes', true).' >>', array(), array(), array('class' => 'off'));?>
        </div>
-</div>

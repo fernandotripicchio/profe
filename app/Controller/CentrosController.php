@@ -3,7 +3,7 @@
   var $name = 'Centros';
   public $helpers = array("Html","Form");
   var $components = array("RequestHandler");
-  var $uses = array('Centro', 'Localidad', 'Departamento');
+  var $uses = array('Centro', 'Localidad', 'Departamento', 'Afiliado');
   public $paginate = array(
                           'limit' => 50,
                                'order' => array(
@@ -69,18 +69,7 @@
   }
 
 
- public function importar(){
-    $cantidad_centros = 0; 
-    if (!empty($this->data))  {
-    	     
-    	    set_time_limit ( 3000 );
-            $cantidad_centros = $this->Centro->import($this->data['field']['tmp_name']);
-            //$this->redirect('somecontroller/someaction');
-    }	 
-	 
-	$this->set(compact("cantidad_centros")); 
-	   
-  }
+
  
 
  public function importar_cap(){
@@ -148,6 +137,12 @@
   }   
   
   
+  
+  public function afiliados($id){
+  	$afiliados = $this->Afiliado->find("all");
+	$this->set(compact("afiliados"));
+	
+  }
   
   
   

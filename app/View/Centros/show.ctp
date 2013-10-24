@@ -25,6 +25,7 @@
 	</table>
    <div class="botonera">
         <?php echo $this->html->link('Volver',array("controller"=>"centros", "action" => "index"), array('class' => 'button'));?>
-        <?php echo $this->html->link('Editar',array("controller"=>"centros", "action" => "edit", $centro["Centro"]["id"]), array('class' => 'button'));?>        
+ 	    <?php echo $this->html->link("Afiliados", array("controller" => "centros", "action" => "afiliados", $centro['Centro']['id']), array('class' => 'button') )?>
+        
    </div>	
 </div>

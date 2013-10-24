@@ -23,11 +23,12 @@
    $filtros =  array("Todos" => "Todos", "Expediente.id" => "Nro Expediente","Afiliado.nombre" => "Afiliado Nombre", "Afiliado.documento" => "Afiliado Documento");
    $condition = "";
    if ($this->request->is('post') ) {
+   	print_r($this->params);
      	            if ($this->params["data"]["keys"]["submit_action"] == "reset") {
      	            	 $expedientesSession = $this->resetForm();
      	            }  else { 
 	                    if (isset($this->params["data"]["keys"])) {
-					         $this->Session->write('Expedientes.keys', strtoupper( $this->params["data"]["keys"]["keys"] ));
+					         $this->Session->write('Expedientes.keys', strtoupper( $this->params["data"]["keys"]));
 							 $this->Session->write('Expedientes.filters', $this->params["data"]["filters"]);
 	                         $expedientesSession = $this->Session->read("Expedientes");                          
 	                    } else {
@@ -35,8 +36,10 @@
 	                    }
 					}
    } else {
+   	
          $expedientesSession = $this->Session->read("Expedientes");
          if (!isset($expedientesSession)){
+         	die("entra a resetear el formulario");
               $expedientesSession = $this->resetForm();   
          }
    }     
@@ -44,14 +47,14 @@
    $expedientes = $this->paginate('Expediente', $condition);
    $this->getEstadosExpediente();
    $this->set('expedientes', $expedientes);	 
-   $this->set('expedinetesSession', $expedientesSession);
+   $this->set('expedientesSession', $expedientesSession);
    $this->set('filtros', $filtros);	   
      
   }
   
   
   public function getEstadosExpediente(){
-  	$estados_expedientes = array("0" => "Nuevo", "1" => "En Proceso", "2" =>"Cerrado", "3"  => "Eliminado");
+  	$estados_expedientes = array("-1" => "Todos", "0" => "Nuevo", "1" => "En Proceso", "2" =>"Cerrado", "3"  => "Eliminado");
     $this->set('estados_expedientes', $estados_expedientes);	
   }
   
@@ -59,6 +62,7 @@
      $this->Session->write('Expedientes.keys', false );
 	 $this->Session->write('Expedientes.filters',false);
      $expedientesSession = $this->Session->read("Expedientes");
+     die("llega");
      return $expedientesSession;
   }  
   
@@ -84,7 +88,7 @@
 
  public function getDatos(){
  	//Tipos Expedientes	
- 	$tipos_expedientes = $this->TipoExpediente->find("all", array("recursive" => -1));
+ 	$tipos_expedientes = $this->TipoExpediente->find("all", array("recursive" => -1, "order" => "nombre asc"));
  	$tipos = array();
  	foreach ($tipos_expedientes as $tipo) {
 		 $tipos[$tipo["TipoExpediente"]["id"]] = $tipo["TipoExpediente"]["nombre"];

@@ -52,8 +52,7 @@
 	                 </td>
                      <td>
                      	<?php echo $this->html->link("Ver", array("controller" => "centros", "action" => "show", $centro['Centro']['id']))?>
-                        <?php echo $this->html->link("Editar", array("controller" => "centros", "action" => "edit", $centro['Centro']['id']))?>
- 	                 	<?php echo $this->html->link("Afiliados", array("controller" => "centros", "action" => "edit", $centro['Centro']['id']))?>
+ 	                 	<?php echo $this->html->link("Afiliados", array("controller" => "centros", "action" => "afiliados", $centro['Centro']['id']))?>
                      </td>	                 
 	                 
             </tr>

@@ -61,7 +61,7 @@
 		        <tr>
 		           <td class="right">Tipo:</td>
 		           <td class="left">
-                      <?php echo $this->form-> radio('tipo_expediente_id', $tipos_expedientes, array('default' => '1', 'label' => false, 'legend' => false, 'div' => array('tag' => ''))); ?>
+                      <?php echo $this->form-> select('tipo_expediente_id', $tipos_expedientes, array('class' => '', 'empty' => true, 'legend' => false, 'div' => array('tag' => ''))); ?>
 		           </td>
 		        </tr>                 
 		        

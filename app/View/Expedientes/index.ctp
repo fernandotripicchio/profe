@@ -1,15 +1,16 @@
 <!-- Formulario de Busqueda -->
-<? $params_paginator = $this->Paginator->params() ?>
+<?php echo $this->Html->script('expedientes/expedientes');?>
+<?php echo  $params_paginator = $this->Paginator->params() ?>
 <div id = "listado_expedientes" class="listados">
 <h1>Listado de Expedientes</h1>
 <div id="formulario_expedientes">
-	<?php echo $this->Form->create("keys") ?>
+	<?php echo $this->Form->create("keys", array("id" => "expedienteSearchForm")) ?>
     <?php echo $this->Form->hidden('submit_action', array("id" => 'submit_action', 'value' => "")); ?>	
 	<table>
 		<tr>
             <td><label for="keysKeys">Buscar por</label></td>			
 			<td class="with-4">				
-				<?php echo $this->form->input("keys", array("type" => "text", "size" => 30,"label" => false )) ?>
+				<?php echo $this->form->input("keys", array("type" => "text", "size" => 30,"label" => false , "value" => $expedientesSession["keys"])) ?>
 			</td>
   		    <td><label for="keysKeys">Estado</label></td>
 			<td>					
@@ -18,11 +19,11 @@
 			
   		    <td><label for="keysKeys">Filtros</label></td>
 			<td>					
-				<?php echo $this->form->select('filters', $filtros,  array("class" => "select-filter-expedientes", "empty" => false)) ?>
+				<?php echo $this->form->select('filters', $filtros,  array("class" => "select-filter-expedientes","value" => $expedientesSession["filters"], "empty" => false)) ?>
   			</td>
 			<td>
 				<?php echo $this->Form->submit("Buscar", array("class" => "btn-form"))?>
-                <?php echo $this->Form->submit("Limpiar", array("class" => "btn-form", "id" => "buttonReset"))?> 				
+                <?php echo $this->Form->submit("Limpiar", array("class" => "btn-form", "id" => "buttonResetExpedientes"))?> 				
 			</td>
 		</tr>
 	</table>
