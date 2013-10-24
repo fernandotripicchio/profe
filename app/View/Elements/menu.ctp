@@ -45,7 +45,7 @@
         </li>
 
         
-        <!--
+        
         <li>
             <?=$this->Html->link('<span>Expedientes</span>', array('controller' => 'expedientes', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
             <div>
@@ -95,7 +95,7 @@
 	            </div>            
 	        </li>
        <? } ?>
-       -->
+       
         <li style="float: right">
             <?=$this->html->link("<span>Salir</span>" , array('controller' => 'Usuarios', 'action' => 'logout'), array('class' => 'parent', 'escape' => false)); ?> 
         </li>

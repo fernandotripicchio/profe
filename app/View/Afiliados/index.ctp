@@ -52,7 +52,7 @@
         </thead>
             <tbody>
             <?php foreach ($afiliados as $afiliado): ?>
-            	<? print_r($afiliado)?>
+            	
                <tr>
 	                 <td class="left">
 	                 	<?php echo $this->html->show_estado($afiliado['Afiliado']['activo']);      ?>
