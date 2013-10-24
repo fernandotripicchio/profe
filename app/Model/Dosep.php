@@ -5,7 +5,7 @@
 	  
 	  public $belongsTo = array("Afiliado" => array(
 	                            "className" => "Afiliado",
-								"foreignKey" => "documento")); 
+								"foreignKey" => "numerodoc")); 
 	  
       public $validate = array(
         'nombre' => array(
