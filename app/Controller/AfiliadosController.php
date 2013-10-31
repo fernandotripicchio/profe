@@ -295,7 +295,10 @@ public function export_afiliados($pagina = 0){
      //Data
       if ($registers) {
            foreach($afiliados_data as $a) {
-                  print_r($a);
+                  $documento = $a["afiliados"]["documento"];
+			      $afiliado_id = $a["afiliados"]["id"];
+      			  $sql =  "update doseps set afiliado_id = $afiliado_id where numerodoc = $documento";      
+                  $afiliados_data=$this->Afiliado->query($sql);			       
                   
 
            } //foreach
@@ -303,10 +306,10 @@ public function export_afiliados($pagina = 0){
 
     
      //Decide if show the csv file or to reload the page
-     if (  ($pagina < $offset) && $registers) {       
+     if (  ($pagina < $offset) && $registers ) {       
           $nueva_pagina = $pagina+1;
-          //echo "<script>window.location.href='".Router::url("export_raffle/$nueva_pagina")."'</script>";
-          $this->redirect(array("action" => "export_afiliados", $nueva_pagina));
+          echo "<script>window.location.href='".Router::url("export_afiliados/$nueva_pagina")."'</script>";
+          //$this->redirect(array("action" => "export_afiliados", $nueva_pagina));
           exit();
       } 
        

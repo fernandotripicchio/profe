@@ -49,6 +49,16 @@ class AppHelper extends Helper {
 			return "<span class='baja'>BAJA</span>";
 		}
 	}
+	
+	function show_estado_dosep( $afiliado ) {
+		if ( empty( $afiliado['Doseps']) ) { 		
+			return "<span class='activo'>NO<span>";
+		} else {
+			return "<span class='baja'>SI</span>";
+		}
+	}
+
+	
 
 	function show_tipo($tipo) {
 		if ($tipo=="0") {

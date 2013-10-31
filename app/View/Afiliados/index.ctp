@@ -40,12 +40,14 @@
           <thead>
             <tr>
             	<th scope="col">Activo</th>
+            	
                 <th scope="col">Clave</th>
             	<th scope="col">Tipo</th>                
                 <th scope="col">Nombre</th>                
                 <th scope="col">Documento</th>
                 <th scope="col">Departamento</th>                              
                 <th scope="col">Localidad</th>
+                <th scope="col">DOSEP</th>
                 <th scope="col">Centro de Salud</th>   
                 <th>&nbsp;</th>             
             </tr>
@@ -81,7 +83,12 @@
 	                 </td>
 	                 <td class="left">
 	                    <?php echo $afiliado['Centro']['nombre']  ?>
-	                 </td>	                 
+	                 </td>	              
+	                 
+	                 <td class="left">
+	                    <?php echo $this->html->show_estado_dosep($afiliado)?>
+	                 </td>	              
+	                    
                      <td class="left">
                      	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $afiliado['Afiliado']['id']))?>
                      	<? if ($afiliado['Afiliado']['activo']) { ?>
