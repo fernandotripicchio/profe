@@ -106,6 +106,8 @@
  		// return the messages
  		return $cantidad_afiliados;
 	}
+	 
+	 
 	//Funcion para importar usuarios desde un archivo CSV y generar un nuevo listado  
 	function import($filename, $activo =  1)  {
  		$handle = fopen($filename, "r");
@@ -164,8 +166,16 @@
 			}
 					
 			//Me fijo si ya existe, si existe hago el update si no hago el create
-			$afiliado = $this->find("first",  array("conditions" => array("documento" => $documento ), "recursive" => -1));
-			
+			//$afiliado = $this->find("first",  array("conditions" => array("documento" => $documento ), "recursive" => -1));
+
+			$this->create();
+		    if ( $this->save($nuevo_afiliado) ) {
+						$cantidad_afiliados++;
+		    } 
+
+
+          
+			 /*
 			if (empty($afiliado)) {
 				$this->create();
 			    if ( $this->save($nuevo_afiliado) ) {
@@ -173,13 +183,16 @@
 			    } 
 			} else {
 			    $nuevo_afiliado["id"] = $afiliado["Afiliado"]["id"];
-				print_r($nuevo_afiliado);	
+				
                 if ( $this->save($nuevo_afiliado) ) {
 						$cantidad_afiliados++;
 			    } 				
 			    
 				echo "<br>";
 			}	
+			   
+			  
+			  */
 		}
  		// close the file
  		fclose($handle);

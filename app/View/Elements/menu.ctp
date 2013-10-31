@@ -32,7 +32,7 @@
         </li>
 
 
-
+<!--
         <li>
           <?=$this->Html->link('<span>Centros</span>', array('controller' => 'centros', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
             <div>
@@ -76,7 +76,7 @@
         <li>
             <?=$this->Html->link('<span>Consultas</span>', array('controller' => 'reportes', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
         </li>
-        
+       -->
         <? if ( $rol_usuario == "administrador") { ?>
 	        <li>
 	           <?=$this->Html->link('<span>Administración</span>', array('controller' => 'centros', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>

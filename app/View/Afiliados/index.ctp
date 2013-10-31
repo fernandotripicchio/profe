@@ -81,13 +81,15 @@
 	                 <td class="left">
 	                    <?php echo $afiliado['Localidad']['nombre']  ?>	
 	                 </td>
-	                 <td class="left">
-	                    <?php echo $afiliado['Centro']['nombre']  ?>
-	                 </td>	              
 	                 
 	                 <td class="left">
 	                    <?php echo $this->html->show_estado_dosep($afiliado)?>
 	                 </td>	              
+
+	                 <td class="left">
+	                    <?php echo $afiliado['Centro']['nombre']  ?>
+	                 </td>	              
+
 	                    
                      <td class="left">
                      	<?php echo $this->html->link("Ver", array("controller" => "afiliados", "action" => "show", $afiliado['Afiliado']['id']))?>
