@@ -23,14 +23,20 @@
                                  )                               
                                  
 	                            );
-      public $hasOne = Array('Dosep' => array(
-	                               'className' => 'Dosep',
-							       'foreignKey' => 'numerodoc'
-								   )
-							);								
+								
+								 
+														
 	  #Un Afiliado tiene un centro en el carnet
 	  #Pero a su vez guardo la relacion entre centro y 
-	  public $hasMany = array("AfiliadoCentroMedico", "Prestaciones", "Clinicas", "Expedientes");
+	  public $hasMany = array("AfiliadoCentroMedico", 
+	                          "Prestaciones", 
+	                          "Clinicas", 
+	                          "Expedientes",
+	                          'Doseps' => array(
+	                               'className' => 'Dosep'
+
+								   )
+							   );
 	  
       public $validate = array(
         'nombre' => array(

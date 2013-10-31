@@ -3,9 +3,15 @@
       public $name = 'Dosep';
 	  public $primaryKey = 'numerodoc';
 	  
+	  
+	  
 	  public $belongsTo = array("Afiliado" => array(
-	                            "className" => "Afiliado",
-								"foreignKey" => "numerodoc")); 
+	                                "className" => "Afiliado"
+								    )
+								);
+								
+								
+             
 	  
       public $validate = array(
         'nombre' => array(

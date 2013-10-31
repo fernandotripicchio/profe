@@ -262,4 +262,60 @@ public function sql_condition($key, $keyword, $operator = ' and' ) {
       return $condition;
   }   
 
- }
+//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+public function export_afiliados($pagina = 0){
+
+      $registers = true;
+	 
+     //Obtengo la cantidad a paginar
+      $sql =  " select count(afiliados.id) as size from afiliados";
+      $afiliado_size=$this->Afiliado->query($sql);
+
+      $offset = 0;
+      if (empty($afiliado_size)) {
+           $size  = 0;
+      } else {
+          $size = $afiliado_size[0][0]["size"];
+          $offset = round($size/50);
+      }
+      
+      $pagina_to_show = $pagina*50;
+
+      //Obtengo el user id, rut de los usuarios que contestaron en esa fecha
+      $sql =  "SELECT * from afiliados limit 50 offset $pagina_to_show";      
+      $afiliados_data=$this->Afiliado->query($sql);
+	  
+      if(empty($afiliados_data))
+		//die("No hay registros entre las fechas seleccionadas");
+                $registers = false;
+
+
+     //Data
+      if ($registers) {
+           foreach($afiliados_data as $a) {
+                  print_r($a);
+                  
+
+           } //foreach
+      } // del if de register  
+
+    
+     //Decide if show the csv file or to reload the page
+     if (  ($pagina < $offset) && $registers) {       
+          $nueva_pagina = $pagina+1;
+          //echo "<script>window.location.href='".Router::url("export_raffle/$nueva_pagina")."'</script>";
+          $this->redirect(array("action" => "export_afiliados", $nueva_pagina));
+          exit();
+      } 
+       
+      die();
+  }
+
+
+
+
+
+
+}
