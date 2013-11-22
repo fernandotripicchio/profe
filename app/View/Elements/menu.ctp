@@ -6,7 +6,8 @@
                <ul>
                 <li>
                     <?=$this->Html->link('<span>Listados</span>', array('controller' => 'afiliados', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
-                </li>                
+                </li>
+                <!--                
                 <li>
                     <?=$this->Html->link('<span>Imprimir Carnets</span>', array('controller' => 'afiliados', 'action' => 'para_imprimir'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
@@ -16,10 +17,11 @@
                 <li>
                     <?=$this->Html->link('<span>Actualizar Baja Afiliados</span>', array('controller' => 'afiliados', 'action' => 'bajas'), array('class' => 'parent', 'escape' => false)); ?>
                 </li>
+               -->
                </ul>
             </div>
         </li>
-
+<!--
         <li>
           <?=$this->Html->link('<span>DOSEP</span>', array('controller' => 'doseps', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
             <div>
@@ -32,7 +34,7 @@
         </li>
 
 
-<!--
+
         <li>
           <?=$this->Html->link('<span>Centros</span>', array('controller' => 'centros', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
             <div>
@@ -76,7 +78,7 @@
         <li>
             <?=$this->Html->link('<span>Consultas</span>', array('controller' => 'reportes', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
         </li>
-       -->
+       
         <? if ( $rol_usuario == "administrador") { ?>
 	        <li>
 	           <?=$this->Html->link('<span>Administración</span>', array('controller' => 'centros', 'action' => 'index'), array('class' => 'parent', 'escape' => false)); ?>
@@ -95,7 +97,7 @@
 	            </div>            
 	        </li>
        <? } ?>
-       
+       -->
         <li style="float: right">
             <?=$this->html->link("<span>Salir</span>" , array('controller' => 'Usuarios', 'action' => 'logout'), array('class' => 'parent', 'escape' => false)); ?> 
         </li>

@@ -212,11 +212,12 @@
 		 $baja_afiliado["sexo"]             = strtoupper( $row[7] ); 
 		 $baja_afiliado["tipo_documento"]   = strtoupper( $row[8] );
 		 $baja_afiliado["documento"]        = strtoupper( $row[9] );
+		 print_r($row[11]);
          $baja_afiliado["fecha_nacimiento"] = (!empty( $row[10]) ?  $this->date_format($row[10]) : "");
 		 $baja_afiliado["fecha_alta"]       = (!empty( $row[11]) ?  $this->date_format($row[11]) : "");	
 		 $baja_afiliado["fecha_baja"]       = (!empty( $row[12]) ?  $this->date_format($row[12]) : "");	 
 		 $baja_afiliado["motivo_baja"]      = $row[13] ;
-		 print_r($baja_afiliado);
+		// print_r($baja_afiliado);
 		 print_r("<br>");
 		 return $baja_afiliado;    	
     }
