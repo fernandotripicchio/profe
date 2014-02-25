@@ -11,6 +11,12 @@
                                'order' => array('Dosep.nombre' => 'asc')
                            );
   
+  function beforeFilter() {
+  	 parent::beforeFilter();
+     $this->layout = "admin";
+  }
+    
+  
   public function index() {	
      $afiliados = $this->paginate('Dosep');
      $this->set('afiliados', $afiliados);	      

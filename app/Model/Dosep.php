@@ -48,9 +48,24 @@
 		
 		$i = 0;
 		$cantidad_afiliados = 0;
-        while (($row = fgetcsv($handle)) !== FALSE) {			
+        while ( ($row = fgetcsv($handle) ) !== FALSE ) {			
         	if ( $i > -1 ) {        		
-				//$afiliado_documento  = strtoupper( $row[5] );
+				$dosep = array();
+				$dosep["numeroDoc"]       = $row[0];
+				$dosep["Genero"]          = $row[1];
+				$dosep["ApellidoNombre"]  = $row[2];
+				$dosep["fechaNacimientoPers"] = $row[3];
+				$dosep["tipoRelacion"]    = $row[4];
+				$dosep["localidad"]       = $row[5];
+				$dosep["Empleador"]       = $row[6];
+				$dosep["Plan"]            = $row[7];
+				echo "<br>";
+				print_r( $row);
+                echo "<br>";
+				print_r( $dosep);
+				echo "<br>";					  
+				$this->create();
+				$this->save( $dosep );
 			}	
         	$cantidad_afiliados++;
 		}
